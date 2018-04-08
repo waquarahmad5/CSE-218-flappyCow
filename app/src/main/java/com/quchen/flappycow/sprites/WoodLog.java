@@ -14,7 +14,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class WoodLog extends Sprite {
+public class WoodLog extends Terrain {
 
     /**
      * Static bitmap to reduce memory usage.
@@ -31,13 +31,5 @@ public class WoodLog extends Sprite {
         this.height = this.bitmap.getHeight();
     }
     
-    /**
-     * Sets the position
-     * @param x
-     * @param y
-     */
-    public void init(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
+
 }

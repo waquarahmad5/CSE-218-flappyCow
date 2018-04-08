@@ -15,7 +15,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class Spider extends Sprite {
+public class Spider extends Terrain {
     
     /**
      * Static bitmap to reduce memory usage.
@@ -32,14 +32,6 @@ public class Spider extends Sprite {
         this.height = this.bitmap.getHeight();
     }
     
-    /**
-     * Sets the position
-     * @param x
-     * @param y
-     */
-    public void init(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
+
 
 }

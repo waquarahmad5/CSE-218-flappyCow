@@ -15,8 +15,8 @@ import com.quchen.flappycow.R;
 import android.graphics.Canvas;
 
 public class Obstacle extends Sprite{
-    private Spider spider;
-    private WoodLog log;
+    private Terrain spider;
+    private Terrain log;
     
     private static int collideSound = -1;
     private static int passSound = -1;
