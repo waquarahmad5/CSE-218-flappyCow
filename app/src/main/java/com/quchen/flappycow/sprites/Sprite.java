@@ -54,7 +54,12 @@ public abstract class Sprite {
     
     /** The context */
     protected Game game;
-    
+
+    /**
+     * Height of the ground relative to the height of the bitmap
+     */
+    final float GROUND_HEIGHT = (1f * /*45*/ 35) / 720;
+
     public Sprite(GameView view, Game game){
         this.view = view;
         this.game = game;
@@ -174,7 +179,7 @@ public abstract class Sprite {
      * @return
      */
     public boolean isTouchingGround(){
-        return this.y + this.height > this.view.getHeight() - this.view.getHeight() * Frontground.GROUND_HEIGHT;
+        return this.y + this.height > this.view.getHeight() - this.view.getHeight() * GROUND_HEIGHT;
     }
     
     /**
