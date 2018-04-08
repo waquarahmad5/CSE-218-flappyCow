@@ -268,7 +268,7 @@ public class GameView extends SurfaceView{
     }
     
     /**
-     * Creates a toast with a certain chance
+     * Creates a power up
      */
     private void createPowerUp(){
         // Toast
