@@ -20,9 +20,7 @@ public class Obstacle extends Sprite{
     
     private static int collideSound = -1;
     private static int passSound = -1;
-
-    private final int SOUND_VOLUME_DIVIDER = 3;
-
+    
     /** Necessary so the onPass method is just called once */
     public boolean isAlreadyPassed = false;
 
@@ -111,6 +109,8 @@ public class Obstacle extends Sprite{
         return spider.isPassed() && log.isPassed();
     }
 
+    private static final int SOUND_VOLUME_DIVIDER = 3;
+    
     /**
      * Will call obstaclePassed of the game, if this is the first pass of this obstacle.
      */
