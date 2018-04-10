@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
-
 public class Accessory extends Sprite {
     
     public Accessory(GameView view, Game game) {

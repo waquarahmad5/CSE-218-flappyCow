@@ -11,7 +11,6 @@ import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
-
 import android.graphics.Bitmap;
 
 public class WoodLog extends Terrain {
@@ -30,6 +29,4 @@ public class WoodLog extends Terrain {
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
     }
-    
-
 }

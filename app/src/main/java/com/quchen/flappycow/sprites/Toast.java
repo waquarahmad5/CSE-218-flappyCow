@@ -41,6 +41,4 @@ public class Toast extends PowerUp {
         super.onCollision();
         view.changeToNyanCat();
     }
-    
-    
 }

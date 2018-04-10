@@ -23,6 +23,7 @@ import com.quchen.flappycow.sprites.Obstacle;
 import com.quchen.flappycow.sprites.PauseButton;
 import com.quchen.flappycow.sprites.PlayableCharacter;
 import com.quchen.flappycow.sprites.PowerUp;
+import com.quchen.flappycow.sprites.Scene;
 import com.quchen.flappycow.sprites.Toast;
 import com.quchen.flappycow.sprites.Tutorial;
 
@@ -50,8 +51,8 @@ public class GameView extends SurfaceView{
     
     private Game game;
     private PlayableCharacter player;
-    private Background background;
-    private Frontground frontground;
+    private Scene background;
+    private Scene frontground;
     private List<Obstacle> obstacles = new ArrayList<Obstacle>();
     private List<PowerUp> powerUps = new ArrayList<PowerUp>();
     
@@ -139,8 +140,6 @@ public class GameView extends SurfaceView{
 
         draw();
     }
-
-
 
     private Canvas getCanvas() {
         Canvas canvas;
