@@ -13,7 +13,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.quchen.flappycow.Game.MyHandler;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.quchen.flappycow.sprites.Coin;
 import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
@@ -40,7 +43,7 @@ public class GameView extends SurfaceView{
     
     /** Milliseconds for game timer tick */
     public static final long UPDATE_INTERVAL = 50;        // = 20 FPS
-    
+    public InterstitialAd interstitial;
     private Timer timer = new Timer();
     private TimerTask timerTask;
     
@@ -60,6 +63,9 @@ public class GameView extends SurfaceView{
     private Tutorial tutorial;
     private boolean tutorialIsShown = true;
 
+    /** To do UI things from different threads */
+    public MessageHandler msgHandler;
+
     public GameView(Context context) {
         super(context);
         this.game = (Game) context;
@@ -71,6 +77,7 @@ public class GameView extends SurfaceView{
         foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
         pauseButton = new PauseButton(this, game);
         tutorial = new Tutorial(this, game);
+        msgHandler = new MessageHandler(this.game, this);
     }
     
     private void startTimer() {
@@ -364,7 +371,7 @@ public class GameView extends SurfaceView{
         if(game.getApiClient().isConnected()){
             Games.Achievements.unlock(game.getApiClient(), getResources().getString(R.string.achievement_toastification));
         }else{
-            game.handler.sendMessage(Message.obtain(game.handler,1,R.string.toast_achievement_toastification, MyHandler.SHOW_TOAST));
+            msgHandler.sendMessage(Message.obtain(msgHandler,1,R.string.toast_achievement_toastification, MessageHandler.SHOW_TOAST));
         }
         
         PlayableCharacter tmp = this.player;
@@ -400,7 +407,11 @@ public class GameView extends SurfaceView{
     public void gameOver(){
         pause();
         playerDeadFall();
-        game.gameOver();
+        if(game.getGameOverCounter() % Game.GAMES_PER_AD == 0) {
+            msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.SHOW_AD));
+        } else {
+            msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
+        }
     }
     
     public void revive() {
@@ -452,6 +463,23 @@ public class GameView extends SurfaceView{
     
     public Game getGame(){
         return this.game;
+    }
+
+    public void setupAd() {
+        MobileAds.initialize(this.game, getResources().getString(R.string.ad_app_id));
+
+        interstitial = new InterstitialAd(this.game);
+        interstitial.setAdUnitId(getResources().getString(R.string.ad_unit_id));
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        interstitial.loadAd(adRequest);
+        interstitial.setAdListener(new MyAdListener());
+    }
+
+    private class MyAdListener extends AdListener {
+        public void onAdClosed() {
+            msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
+        }
     }
 
 }
