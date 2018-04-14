@@ -216,12 +216,14 @@ public class Game extends BaseGameActivity{
         }
     }
 
-
-
     /** Moved Obstacle class from gameview to game.
      * Checks whether an obstacle is passed.
      */
-    public void checkPasses(List<Obstacle> obstacles,List<PowerUp> powerUps){
+    public void checkPasses(){
+
+        List<Obstacle> obstacles = view.getObstacles();
+        List<PowerUp> powerUps = view.getPowerUps();
+
         for(Obstacle o : obstacles){
             if(o.isPassed()){
                 if(!o.isAlreadyPassed){    // probably not needed
@@ -230,6 +232,8 @@ public class Game extends BaseGameActivity{
                 }
             }
         }
+
+        view.setPowerUps(powerUps);
     }
 
 
@@ -251,6 +255,12 @@ public class Game extends BaseGameActivity{
     }
 
 
+
+
+
+    public void setNumberOfRevive(int numberOfRevive) {
+        this.numberOfRevive = numberOfRevive;
+    }
 
 
     public GoogleApiClient getApiClient(){
