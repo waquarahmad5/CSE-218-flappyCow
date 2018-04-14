@@ -10,7 +10,6 @@ package com.quchen.flappycow;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 import java.util.TimerTask;
 
 import com.google.android.gms.ads.AdListener;
@@ -44,9 +43,9 @@ public class GameView extends SurfaceView{
     /** Milliseconds for game timer tick */
     public static final long UPDATE_INTERVAL = 50;        // = 20 FPS
     public InterstitialAd interstitial;
-    private Timer timer = new Timer();
     private TimerTask timerTask;
-    
+    private GameTimer gameTimer = new GameTimer(this,timerTask, UPDATE_INTERVAL);
+
     /** The surfaceholder needed for the canvas drawing */
     private SurfaceHolder holder;
     
@@ -78,32 +77,6 @@ public class GameView extends SurfaceView{
         pauseButton = new PauseButton(this, game);
         tutorial = new Tutorial(this, game);
         msgHandler = new MessageHandler(this.game, this);
-    }
-    
-    private void startTimer() {
-        setUpTimerTask();
-        timer = new Timer();
-        timer.schedule(timerTask, UPDATE_INTERVAL, UPDATE_INTERVAL);
-    }
-    
-    private void stopTimer() {
-        if (timer != null) {
-            timer.cancel();
-            timer.purge();
-        }
-        if (timerTask != null) {
-            timerTask.cancel();
-        }
-    }
-    
-    private void setUpTimerTask() {
-        stopTimer();
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                GameView.this.run();
-            }
-        };
     }
     
     @Override
@@ -178,7 +151,8 @@ public class GameView extends SurfaceView{
     }
     
     public void pause(){
-        stopTimer();
+        //stopTimer();
+        gameTimer.stopTimer();
         paused = true;
     }
     
@@ -197,7 +171,9 @@ public class GameView extends SurfaceView{
     
     public void resume(){
         paused = false;
-        startTimer();
+        //startTimer();
+        gameTimer.startTimer();
+
     }
 
     /**
