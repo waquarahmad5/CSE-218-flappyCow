@@ -14,10 +14,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.quchen.flappycow.Game.MyHandler;
-import com.quchen.flappycow.sprites.Background;
 import com.quchen.flappycow.sprites.Coin;
 import com.quchen.flappycow.sprites.Cow;
-import com.quchen.flappycow.sprites.Frontground;
 import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
 import com.quchen.flappycow.sprites.PauseButton;
@@ -69,8 +67,8 @@ public class GameView extends SurfaceView{
 
         holder = getHolder();
         player = new Cow(this, game);
-        background = new Background(this, game);
-        frontground = new Frontground(this, game);
+        background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
+        frontground = new Scene(this, game, Scene.X_GROUND.FRONTGROUND);
         pauseButton = new PauseButton(this, game);
         tutorial = new Tutorial(this, game);
     }

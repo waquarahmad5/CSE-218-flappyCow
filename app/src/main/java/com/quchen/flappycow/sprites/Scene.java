@@ -1,13 +1,36 @@
 package com.quchen.flappycow.sprites;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.R;
+import com.quchen.flappycow.Util;
 
 public class Scene extends Sprite {
-    Scene(GameView view, Game game){
+
+    /** Static bitmap to reduce memory usage */
+    public Bitmap globalBitmap;
+
+    public enum X_GROUND {FRONTGROUND, BACKGROUND}
+
+    public Scene(GameView view, Game game, X_GROUND x_ground){
         super(view, game);
+
+        if(globalBitmap == null) {
+            switch (x_ground) {
+                case BACKGROUND: {
+                    globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.bg);
+                    break;
+                }
+                case FRONTGROUND: {
+                    globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.fg);
+                    break;
+                }
+            }
+        }
+        this.bitmap = globalBitmap;
     }
 
     /**
