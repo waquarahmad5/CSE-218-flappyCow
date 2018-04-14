@@ -26,8 +26,8 @@ public class Obstacle extends Sprite{
 
     public Obstacle(GameView view, Game game) {
         super(view, game);
-        spider = new Spider(view, game);
-        log = new WoodLog(view, game);
+        spider = new Terrain(view, game, Terrain.type.SPIDER);
+        log = new Terrain(view, game, Terrain.type.WOODLOG);
         
         if(collideSound == -1){
             collideSound = Game.soundPool.load(game, R.raw.crash, 1);

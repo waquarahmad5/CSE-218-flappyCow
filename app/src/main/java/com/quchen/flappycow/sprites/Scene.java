@@ -13,7 +13,7 @@ public class Scene extends Sprite {
     /** Static bitmap to reduce memory usage */
     public Bitmap globalBitmap;
 
-    public enum X_GROUND {FRONTGROUND, BACKGROUND}
+    public enum X_GROUND {FOREGROUND, BACKGROUND}
 
     public Scene(GameView view, Game game, X_GROUND x_ground){
         super(view, game);
@@ -24,7 +24,7 @@ public class Scene extends Sprite {
                     globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.bg);
                     break;
                 }
-                case FRONTGROUND: {
+                case FOREGROUND: {
                     globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.fg);
                     break;
                 }

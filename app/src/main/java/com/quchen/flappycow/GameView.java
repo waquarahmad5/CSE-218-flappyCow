@@ -50,7 +50,7 @@ public class GameView extends SurfaceView{
     private Game game;
     private PlayableCharacter player;
     private Scene background;
-    private Scene frontground;
+    private Scene foreground;
     private List<Obstacle> obstacles = new ArrayList<Obstacle>();
     private List<PowerUp> powerUps = new ArrayList<PowerUp>();
     
@@ -68,7 +68,7 @@ public class GameView extends SurfaceView{
         holder = getHolder();
         player = new Cow(this, game);
         background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
-        frontground = new Scene(this, game, Scene.X_GROUND.FRONTGROUND);
+        foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
         pauseButton = new PauseButton(this, game);
         tutorial = new Tutorial(this, game);
     }
@@ -225,7 +225,7 @@ public class GameView extends SurfaceView{
         if(drawPlayer){
             player.draw(canvas);
         }
-        frontground.draw(canvas);
+        foreground.draw(canvas);
         pauseButton.draw(canvas);
         
         // Score Text
@@ -348,8 +348,8 @@ public class GameView extends SurfaceView{
         background.setSpeedX(-getSpeedX()/2);
         background.move();
         
-        frontground.setSpeedX(-getSpeedX()*4/3);
-        frontground.move();
+        foreground.setSpeedX(-getSpeedX()*4/3);
+        foreground.move();
         
         pauseButton.move();
         
