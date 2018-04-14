@@ -12,6 +12,10 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.example.games.basegameutils.BaseGameActivity;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.quchen.flappycow.sprites.Coin;
+import com.quchen.flappycow.sprites.NyanCat;
+import com.quchen.flappycow.sprites.Obstacle;
+import com.quchen.flappycow.sprites.PowerUp;
 
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -20,6 +24,8 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Message;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class Game extends BaseGameActivity{
     /** Name of the SharedPreference that saves the medals */
@@ -209,6 +215,43 @@ public class Game extends BaseGameActivity{
             }
         }
     }
+
+
+
+    /** Moved Obstacle class from gameview to game.
+     * Checks whether an obstacle is passed.
+     */
+    public void checkPasses(List<Obstacle> obstacles,List<PowerUp> powerUps){
+        for(Obstacle o : obstacles){
+            if(o.isPassed()){
+                if(!o.isAlreadyPassed){    // probably not needed
+                    o.onPass();
+                    createPowerUp(powerUps);
+                }
+            }
+        }
+    }
+
+
+    private void createPowerUp(List<PowerUp> powerUps){
+        // Toast
+        if(accomplishmentBox.points >= com.quchen.flappycow.sprites.Toast.POINTS_TO_TOAST /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
+            // If no powerUp is present and you have more than / equal 42 points
+            if(accomplishmentBox.points == com.quchen.flappycow.sprites.Toast.POINTS_TO_TOAST){    // First time 100 % chance
+                powerUps.add(new com.quchen.flappycow.sprites.Toast(view,this));
+            } else if(Math.random()*100 < 33){    // 33% chance
+                powerUps.add(new com.quchen.flappycow.sprites.Toast(view,this));
+            }
+        }
+
+        if((powerUps.size() < 1) && (Math.random()*100 < 20)){
+            // If no powerUp is present and 20% chance
+            powerUps.add(new Coin(view,this));
+        }
+    }
+
+
+
 
     public GoogleApiClient getApiClient(){
         return mHelper.getApiClient();
