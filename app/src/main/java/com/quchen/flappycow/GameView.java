@@ -110,7 +110,7 @@ public class GameView extends SurfaceView{
      * content of the timertask
      */
     public void run() {
-        checkPasses();
+        game.checkPasses();
         checkOutOfRange();
         checkCollision();
         createObstacle();
@@ -236,7 +236,7 @@ public class GameView extends SurfaceView{
     /**
      * Checks whether an obstacle is passed.
      */
-    private void checkPasses(){
+   /*  private void checkPasses(){
         for(Obstacle o : obstacles){
             if(o.isPassed()){
                 if(!o.isAlreadyPassed){    // probably not needed
@@ -245,16 +245,17 @@ public class GameView extends SurfaceView{
                 }
             }
         }
-    }
+    }         */
     
     /**
      * Creates a power up
      */
+    /*
     private void createPowerUp(){
         // Toast
-        if(game.accomplishmentBox.points >= Toast.POINTS_TO_TOAST /*&& powerUps.size() < 1*/ && !(player instanceof NyanCat)){
+        if(game.accomplishmentBox.points >= Toast.POINTS_TO_TOAST /*&& powerUps.size() < 1*/ //&& !(player instanceof NyanCat)){
             // If no powerUp is present and you have more than / equal 42 points
-            if(game.accomplishmentBox.points == Toast.POINTS_TO_TOAST){    // First time 100 % chance
+  /*          if(game.accomplishmentBox.points == Toast.POINTS_TO_TOAST){    // First time 100 % chance
                 powerUps.add(new Toast(this, game));
             } else if(Math.random()*100 < 33){    // 33% chance
                 powerUps.add(new Toast(this, game));
@@ -265,6 +266,10 @@ public class GameView extends SurfaceView{
             // If no powerUp is present and 20% chance
             powerUps.add(new Coin(this, game));
         }
+    }  */
+
+    public boolean isPlayerNyanCat(){
+        return(player instanceof NyanCat);
     }
     
     /**
