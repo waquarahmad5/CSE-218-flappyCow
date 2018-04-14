@@ -389,41 +389,7 @@ public class GameView extends SurfaceView{
             msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
         }
     }
-    
-//    public void revive() {
-//        game.numberOfRevive++;
-//
-//        // This needs to run another thread, so the dialog can close.
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                setupRevive();
-//            }
-//        }).start();
-//    }
-//
-//    /**
-//     * Sets the player into startposition
-//     * Removes obstacles.
-//     * Let's the character blink a few times.
-//     */
-//    private void setupRevive(){
-//        game.gameOverDialog.hide();
-//        player.setY(this.getHeight()/2 - player.getWidth()/2);
-//        player.setX(this.getWidth()/6);
-//        obstacles.clear();
-//        powerUps.clear();
-//        player.revive();
-//        for(int i = 0; i < 6; ++i){
-//            while(!holder.getSurface().isValid()){/*wait*/}
-//            Canvas canvas = getCanvas();
-//            drawCanvas(canvas, i%2 == 0);
-//            holder.unlockCanvasAndPost(canvas);
-//            // sleep
-//            try { Thread.sleep(UPDATE_INTERVAL*6); } catch (InterruptedException e) { e.printStackTrace(); }
-//        }
-//        resume();
-//    }
+
     
     /**
      * A value for the position and size of the onScreen score Text
