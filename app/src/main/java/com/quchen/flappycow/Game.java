@@ -210,6 +210,10 @@ public class Game extends BaseGameActivity{
         }
     }
 
+    public void setNumberOfRevive(int numberOfRevive) {
+        this.numberOfRevive = numberOfRevive;
+    }
+
     public GoogleApiClient getApiClient(){
         return mHelper.getApiClient();
     }

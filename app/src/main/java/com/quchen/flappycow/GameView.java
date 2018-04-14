@@ -146,7 +146,7 @@ public class GameView extends SurfaceView{
         draw();
     }
 
-    private Canvas getCanvas() {
+    public Canvas getCanvas() {
         Canvas canvas;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -221,7 +221,7 @@ public class GameView extends SurfaceView{
      * except the player will only be drawn, when the parameter is true
      * @param drawPlayer
      */
-    private void drawCanvas(Canvas canvas, boolean drawPlayer){
+    public void drawCanvas(Canvas canvas, boolean drawPlayer){
         background.draw(canvas);
         for(Obstacle r : obstacles){
             r.draw(canvas);
@@ -414,40 +414,40 @@ public class GameView extends SurfaceView{
         }
     }
     
-    public void revive() {
-        game.numberOfRevive++;
-        
-        // This needs to run another thread, so the dialog can close.
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                setupRevive();
-            }
-        }).start();
-    }
-    
-    /**
-     * Sets the player into startposition
-     * Removes obstacles.
-     * Let's the character blink a few times.
-     */
-    private void setupRevive(){
-        game.gameOverDialog.hide();
-        player.setY(this.getHeight()/2 - player.getWidth()/2);
-        player.setX(this.getWidth()/6);
-        obstacles.clear();
-        powerUps.clear();
-        player.revive();
-        for(int i = 0; i < 6; ++i){
-            while(!holder.getSurface().isValid()){/*wait*/}
-            Canvas canvas = getCanvas();
-            drawCanvas(canvas, i%2 == 0);
-            holder.unlockCanvasAndPost(canvas);
-            // sleep
-            try { Thread.sleep(UPDATE_INTERVAL*6); } catch (InterruptedException e) { e.printStackTrace(); }
-        }
-        resume();
-    }
+//    public void revive() {
+//        game.numberOfRevive++;
+//
+//        // This needs to run another thread, so the dialog can close.
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                setupRevive();
+//            }
+//        }).start();
+//    }
+//
+//    /**
+//     * Sets the player into startposition
+//     * Removes obstacles.
+//     * Let's the character blink a few times.
+//     */
+//    private void setupRevive(){
+//        game.gameOverDialog.hide();
+//        player.setY(this.getHeight()/2 - player.getWidth()/2);
+//        player.setX(this.getWidth()/6);
+//        obstacles.clear();
+//        powerUps.clear();
+//        player.revive();
+//        for(int i = 0; i < 6; ++i){
+//            while(!holder.getSurface().isValid()){/*wait*/}
+//            Canvas canvas = getCanvas();
+//            drawCanvas(canvas, i%2 == 0);
+//            holder.unlockCanvasAndPost(canvas);
+//            // sleep
+//            try { Thread.sleep(UPDATE_INTERVAL*6); } catch (InterruptedException e) { e.printStackTrace(); }
+//        }
+//        resume();
+//    }
     
     /**
      * A value for the position and size of the onScreen score Text
@@ -480,6 +480,37 @@ public class GameView extends SurfaceView{
         public void onAdClosed() {
             msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
         }
+    }
+
+    public List<Obstacle> getObstacles()
+    {
+        return this.obstacles;
+    }
+    public List<PowerUp> getPowerUps()
+    {
+        return this.powerUps;
+    }
+    public void setObstacles(List<Obstacle> obs)
+    {
+        this.obstacles = obs;
+    }
+    public void setPowerUps(List<PowerUp> powers)
+    {
+        this.powerUps = powers;
+    }
+
+    public PlayableCharacter getPlayerInstance()
+    {
+        return this.player;
+    }
+
+    public void setPlayerInstance(PlayableCharacter p)
+    {
+        this.player = p;
+    }
+    public SurfaceHolder getHolderInstance()
+    {
+        return this.holder;
     }
 
 }
