@@ -71,8 +71,9 @@ public class GameOverDialog extends Dialog {
                 dismiss();
                 game.coins -= REVIVE_PRICE * game.numberOfRevive;
                 saveCoins();
-                Revive revive = new Revive();
-                revive.revive(game.numberOfRevive, game.view);
+                Revive revive = new Revive(game.numberOfRevive);
+                revive.revive(game.view);
+                game.numberOfRevive++;
             }
         });
         if(game.coins < REVIVE_PRICE * game.numberOfRevive){

@@ -12,9 +12,12 @@ import java.util.List;
 
 public class Revive {
 
-
-    public void revive(int numberOfRevive, final GameView gameView) {
-        numberOfRevive++;
+    private int numberOfRevive;
+    public Revive(int n)
+    {
+        numberOfRevive = n;
+    }
+    public void revive(final GameView gameView) {
 
         // This needs to run another thread, so the dialog can close.
         new Thread(new Runnable() {
