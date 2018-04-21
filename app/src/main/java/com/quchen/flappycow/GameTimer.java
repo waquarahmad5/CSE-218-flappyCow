@@ -9,8 +9,7 @@ public class GameTimer {
     TimerTask task;
     private long UPDATE_INTERVAL;
 
-    public GameTimer(GameView gameView, TimerTask task, long UPDATE_INTERVAL){
-        this.task = task;
+    public GameTimer(GameView gameView, long UPDATE_INTERVAL){
         timer = new Timer();
         this.gameView = gameView;
         this.UPDATE_INTERVAL = UPDATE_INTERVAL;

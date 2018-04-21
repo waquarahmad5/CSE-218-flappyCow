@@ -236,7 +236,9 @@ public class Game extends BaseGameActivity{
         view.setPowerUps(powerUps);
     }
 
-
+    /**
+     * Creates a power up
+     */
     private void createPowerUp(List<PowerUp> powerUps){
         // Toast
         if(accomplishmentBox.points >= com.quchen.flappycow.sprites.Toast.POINTS_TO_TOAST /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
