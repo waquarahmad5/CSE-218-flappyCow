@@ -16,7 +16,7 @@ import com.quchen.flappycow.Util;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Cow extends PlayableCharacter {
+public class Cow extends PlayableCharacter implements Play{
     
     private static final int POINTS_TO_SIR = 23;
     private static final int POINTS_TO_COOL = 35;
@@ -96,16 +96,17 @@ public class Cow extends PlayableCharacter {
      * Calls super.dead
      * And changes the frame to a dead cow -.-
      */
-    @Override
+
     public void dead() {
         this.row = 3;
         this.frameTime = 3;
-        super.dead();
+        this.isDead = true;
+        this.speedY = getMaxSpeed()/2;
     }
-    
-    @Override
+
     public void revive() {
-        super.revive();
+        this.isDead = false;
+        this.row = 0;
         this.accessory.setBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.accessory_scumbag));
     }
 

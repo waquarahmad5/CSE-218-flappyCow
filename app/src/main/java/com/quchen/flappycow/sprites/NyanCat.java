@@ -17,7 +17,7 @@ import com.quchen.flappycow.Util;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class NyanCat extends PlayableCharacter {
+public class NyanCat extends PlayableCharacter implements Play {
     
     /** Static bitmap to reduce memory usage */
     public static Bitmap globalBitmap;
@@ -83,17 +83,18 @@ public class NyanCat extends PlayableCharacter {
      * removes the rainbow tail
      * and set the bitmapframe to a dead cat -.-
      */
-    @Override
+
     public void dead() {
-        super.dead();
+        this.isDead = true;
+        this.speedY = getMaxSpeed()/2;
         this.row = 1;
         
         // Maybe an explosion
     }
 
-    @Override
     public void revive() {
-        super.revive();
+        this.isDead = false;
+        this.row = 0;
         manageRainbowMovement();
     }
 
