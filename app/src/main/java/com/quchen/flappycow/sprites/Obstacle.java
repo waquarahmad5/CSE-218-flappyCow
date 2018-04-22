@@ -78,7 +78,7 @@ public class Obstacle extends Sprite implements StaticObjects{
     /**
      * Checks whether the spider or the log is colliding with the sprite.
      */
-    @Override
+
     public boolean isColliding(Sprite sprite) {
         return spider.isColliding(sprite) || log.isColliding(sprite);
     }
@@ -104,7 +104,7 @@ public class Obstacle extends Sprite implements StaticObjects{
     /**
      * Checks whether the spider and the log are passed.
      */
-    @Override
+
     public boolean isPassed(){
         return spider.isPassed() && log.isPassed();
     }

@@ -6,4 +6,5 @@ public interface StaticObjects {
      */
 
     void onCollision();
+    boolean isColliding(Sprite sprite);
 }

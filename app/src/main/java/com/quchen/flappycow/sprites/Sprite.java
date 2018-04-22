@@ -109,21 +109,7 @@ public abstract class Sprite {
         return this.x + width < 0;
     }
     
-    /**
-     * Checks whether the sprite is touching this.
-     * Seeing the sprites as rectangles.
-     * @param sprite
-     * @return
-     */
-    public boolean isColliding(Sprite sprite){
-        if(this.x + getCollisionTolerance() < sprite.x + sprite.width
-                && this.x + this.width > sprite.x + getCollisionTolerance()
-                && this.y + getCollisionTolerance() < sprite.y + sprite.height
-                && this.y + this.height > sprite.y + getCollisionTolerance()){
-            return true;
-        }
-        return false;
-    }
+
     
     /**
      * Checks whether the sprite is touching this.
@@ -184,14 +170,6 @@ public abstract class Sprite {
     public boolean isTouchingSky(){
         return this.y < 0;
     }
-    
-    /**
-     * Checks whether the play has passed this sprite.
-     * @return
-     */
-    public boolean isPassed(){
-        return this.x + this.width < view.getPlayer().getX();
-    }
 
     public int getX() {
         return x;
@@ -229,14 +207,6 @@ public abstract class Sprite {
         return width;
     }
     
-    /**
-     * Gives a value that will be tolerated when touching a sprite.
-     * Because my images have some whitespace to the edge.
-     * @return
-     */
-    private int getCollisionTolerance(){
-        // 25 @ 720x1280 px
-        return game.getResources().getDisplayMetrics().heightPixels / 50;
-    }
+
 
 }

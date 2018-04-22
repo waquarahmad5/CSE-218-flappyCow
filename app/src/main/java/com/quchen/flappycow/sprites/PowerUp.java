@@ -15,7 +15,8 @@ public abstract class PowerUp extends Sprite implements StaticObjects{
         super(view, game);
         init();
     }
-    
+
+
     /**
      * Sets this sprite above the visible screen.
      * At x = 4/5 of the screen.
@@ -26,5 +27,29 @@ public abstract class PowerUp extends Sprite implements StaticObjects{
         this.y = 0 - this.height;
         this.speedX = - view.getSpeedX();
         this.speedY = (int) (view.getSpeedX() * (Math.random() + 0.5));
+    }
+    /**
+     * Checks whether the sprite is touching this.
+     * Seeing the sprites as rectangles.
+     * @param sprite
+     * @return
+     */
+    public boolean isColliding(Sprite sprite){
+        if(this.x + getCollisionTolerance() < sprite.x + sprite.width
+                && this.x + this.width > sprite.x + getCollisionTolerance()
+                && this.y + getCollisionTolerance() < sprite.y + sprite.height
+                && this.y + this.height > sprite.y + getCollisionTolerance()){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Gives a value that will be tolerated when touching a sprite.
+     * Because my images have some whitespace to the edge.
+     * @return
+     */
+    private int getCollisionTolerance(){
+        // 25 @ 720x1280 px
+        return game.getResources().getDisplayMetrics().heightPixels / 50;
     }
 }

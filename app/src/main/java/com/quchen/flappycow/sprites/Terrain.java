@@ -7,7 +7,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
-public class Terrain extends Sprite {
+public class Terrain extends Sprite implements StaticObjects {
     /**
      * Static bitmap to reduce memory usage.
      */
@@ -46,4 +46,41 @@ public class Terrain extends Sprite {
         this.y = y;
     }
 
+
+    public void onCollision() {
+
+    }
+
+    /**
+     * Checks whether the sprite is touching this.
+     * Seeing the sprites as rectangles.
+     * @param sprite
+     * @return
+     */
+    public boolean isColliding(Sprite sprite){
+        if(this.x + getCollisionTolerance() < sprite.x + sprite.width
+                && this.x + this.width > sprite.x + getCollisionTolerance()
+                && this.y + getCollisionTolerance() < sprite.y + sprite.height
+                && this.y + this.height > sprite.y + getCollisionTolerance()){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Gives a value that will be tolerated when touching a sprite.
+     * Because my images have some whitespace to the edge.
+     * @return
+     */
+    private int getCollisionTolerance(){
+        // 25 @ 720x1280 px
+        return game.getResources().getDisplayMetrics().heightPixels / 50;
+    }
+
+    /**
+     * Checks whether the play has passed this sprite.
+     * @return
+     */
+    public boolean isPassed(){
+        return this.x + this.width < view.getPlayer().getX();
+    }
 }
