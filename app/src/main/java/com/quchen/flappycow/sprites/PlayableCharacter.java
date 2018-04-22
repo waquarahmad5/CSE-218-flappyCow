@@ -10,7 +10,7 @@ package com.quchen.flappycow.sprites;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
-public abstract class PlayableCharacter extends Sprite implements DynamicObjects{
+public abstract class PlayableCharacter extends Sprite implements DynamicObjects,SharedObjects{
     
     protected boolean isDead = false;
     
@@ -24,7 +24,7 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
      * Moves the character to 1/6 of the horizontal screen
      * Manages the speed changes -> Falling
      */
-    @Override
+
     public void move(){
         this.x = this.view.getWidth() / 6;
         
@@ -40,8 +40,9 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
             // speed limit
             this.speedY = getMaxSpeed();
         }
-        
-        super.move();
+
+        x+= speedX;
+        y+= speedY;
     }
 
     /**

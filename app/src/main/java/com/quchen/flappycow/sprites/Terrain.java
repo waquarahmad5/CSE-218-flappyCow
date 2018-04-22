@@ -7,7 +7,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
-public class Terrain extends Sprite implements StaticObjects {
+public class Terrain extends Sprite implements StaticObjects,SharedObjects {
     /**
      * Static bitmap to reduce memory usage.
      */
@@ -87,5 +87,13 @@ public class Terrain extends Sprite implements StaticObjects {
      */
     public boolean isPassed(){
         return this.x + this.width < view.getPlayer().getX();
+    }
+
+    public void move(){
+        // changeToNextFrame();
+        // Its more efficient if only the classes that need this implement it in their move method.
+
+        x+= speedX;
+        y+= speedY;
     }
 }

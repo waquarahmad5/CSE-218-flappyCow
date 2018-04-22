@@ -14,7 +14,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class Tutorial extends Sprite {
+public class Tutorial extends Sprite implements SharedObjects {
     public static Bitmap globalBitmap;
 
     public Tutorial(GameView view, Game game) {
@@ -30,7 +30,7 @@ public class Tutorial extends Sprite {
     /**
      * Sets the position to the center of the view.
      */
-    @Override
+
     public void move() {
         this.x = view.getWidth() / 2 - this.width / 2;
         this.y = view.getHeight() / 2 - this.height / 2;

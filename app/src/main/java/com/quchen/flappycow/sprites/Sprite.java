@@ -82,13 +82,13 @@ public abstract class Sprite {
     /**
      * Modifies the x and y coordinates according to the speedX and speedY value
      */
-    public void move(){
+  /*  public void move(){
         // changeToNextFrame();
         // Its more efficient if only the classes that need this implement it in their move method.
         
         x+= speedX;
         y+= speedY;
-    }
+    } */
     
     /**
      * Changes the frame by cycling through the columns.

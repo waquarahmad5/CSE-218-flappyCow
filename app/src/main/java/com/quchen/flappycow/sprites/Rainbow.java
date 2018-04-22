@@ -14,7 +14,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class Rainbow extends Sprite {
+public class Rainbow extends Sprite implements SharedObjects {
     
     /**
      * Static bitmap to reduce memory usage.
@@ -31,10 +31,11 @@ public class Rainbow extends Sprite {
         this.height = this.bitmap.getHeight()/3;
     }
 
-    @Override
+
     public void move() {
         changeToNextFrame();
-        super.move();
+        x+= speedX;
+        y+= speedY;
     }
     
     

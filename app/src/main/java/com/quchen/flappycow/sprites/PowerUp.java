@@ -10,7 +10,7 @@ package com.quchen.flappycow.sprites;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
-public abstract class PowerUp extends Sprite implements StaticObjects{
+public abstract class PowerUp extends Sprite implements StaticObjects,SharedObjects{
     public PowerUp(GameView view, Game game) {
         super(view, game);
         init();
@@ -55,5 +55,13 @@ public abstract class PowerUp extends Sprite implements StaticObjects{
 
     public boolean isOutOfRange() {
         return this.x + width < 0;
+    }
+
+     public void move(){
+        // changeToNextFrame();
+        // Its more efficient if only the classes that need this implement it in their move method.
+
+        x+= speedX;
+        y+= speedY;
     }
 }

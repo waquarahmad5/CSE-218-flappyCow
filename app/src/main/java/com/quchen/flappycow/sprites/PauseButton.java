@@ -12,7 +12,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
-public class PauseButton extends Sprite{
+public class PauseButton extends Sprite implements SharedObjects{
     public PauseButton(GameView view, Game game) {
         super(view, game);
         this.bitmap = Util.getScaledBitmapAlpha8(game, R.drawable.pause_button);
@@ -23,7 +23,7 @@ public class PauseButton extends Sprite{
     /**
      * Sets the button in the right upper corner.
      */
-    @Override
+
     public void move(){
         this.x = this.view.getWidth() - this.width;
         this.y = 0;

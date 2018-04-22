@@ -8,7 +8,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
-public class Scene extends Sprite {
+public class Scene extends Sprite implements SharedObjects {
 
     /** Static bitmap to reduce memory usage */
     public Bitmap globalBitmap;
@@ -60,5 +60,14 @@ public class Scene extends Sprite {
             dst.set(endCanvas, 0, endCanvas + canvas.getWidth(), canvas.getHeight());
             canvas.drawBitmap(this.bitmap, src, dst, null);
         }
+    }
+
+
+     public void move(){
+        // changeToNextFrame();
+        // Its more efficient if only the classes that need this implement it in their move method.
+
+        x+= speedX;
+        y+= speedY;
     }
 }

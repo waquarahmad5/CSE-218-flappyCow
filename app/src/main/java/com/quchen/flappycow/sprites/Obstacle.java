@@ -14,7 +14,7 @@ import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
 
-public class Obstacle extends Sprite implements StaticObjects{
+public class Obstacle extends Sprite implements StaticObjects,SharedObjects{
     private Terrain spider;
     private Terrain log;
     
@@ -85,7 +85,6 @@ public class Obstacle extends Sprite implements StaticObjects{
     /**
      * Moves both, spider and log.
      */
-    @Override
     public void move() {
         spider.move();
         log.move();

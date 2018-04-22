@@ -15,7 +15,7 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class Coin extends PowerUp {
+public class Coin extends PowerUp implements SharedObjects {
     /**
      * Static bitmap to reduce memory usage.
      */
@@ -56,9 +56,10 @@ public class Coin extends PowerUp {
         Game.soundPool.play(sound, MainActivity.volume, MainActivity.volume, 0, 0, 1);
     }
     
-    @Override
+
     public void move() {
         changeToNextFrame();
-        super.move();
+        x+= speedX;
+        y+= speedY;
     }
 }
