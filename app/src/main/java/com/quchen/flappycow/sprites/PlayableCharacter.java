@@ -10,7 +10,7 @@ package com.quchen.flappycow.sprites;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
-public abstract class PlayableCharacter extends Sprite{
+public abstract class PlayableCharacter extends Sprite implements DynamicObjects{
     
     protected boolean isDead = false;
     
@@ -103,5 +103,28 @@ public abstract class PlayableCharacter extends Sprite{
     
     public boolean isDead(){
         return this.isDead;
+    }
+    /**
+     * Checks whether the sprite is touching the ground or the sky.
+     * @return
+     */
+    public boolean isTouchingEdge(){
+        return isTouchingGround() || isTouchingSky();
+    }
+
+    /**
+     * Checks whether the sprite is touching the ground.
+     * @return
+     */
+    public boolean isTouchingGround(){
+        return this.y + this.height > this.view.getHeight() - this.view.getHeight() * GROUND_HEIGHT;
+    }
+
+    /**
+     * Checks whether the sprite is touching the sky.
+     * @return
+     */
+    public boolean isTouchingSky(){
+        return this.y < 0;
     }
 }
