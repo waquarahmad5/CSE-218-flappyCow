@@ -17,7 +17,7 @@ import com.quchen.flappycow.Util;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class NyanCat extends PlayableCharacter implements Play {
+public class NyanCat extends PlayableCharacter {
     
     /** Static bitmap to reduce memory usage */
     public static Bitmap globalBitmap;

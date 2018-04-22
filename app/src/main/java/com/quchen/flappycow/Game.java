@@ -109,7 +109,7 @@ public class Game extends BaseGameActivity{
 
     private void loadCoins(){
         SharedPreferences saves = this.getSharedPreferences(coin_save, 0);
-        this.coins = saves.getInt(coin_key, 0);
+        this.coins = saves.getInt(coin_key, 0) + 100; ////REMOVE 100 :P -SR
     }
 
     /**

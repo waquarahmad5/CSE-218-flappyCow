@@ -16,7 +16,7 @@ import com.quchen.flappycow.Util;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Cow extends PlayableCharacter implements Play{
+public class Cow extends PlayableCharacter{
     
     private static final int POINTS_TO_SIR = 23;
     private static final int POINTS_TO_COOL = 35;

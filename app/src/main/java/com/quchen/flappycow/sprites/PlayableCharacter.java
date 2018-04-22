@@ -10,7 +10,7 @@ package com.quchen.flappycow.sprites;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
-public abstract class PlayableCharacter extends Sprite implements Play{
+public abstract class PlayableCharacter extends Sprite{
     
     protected boolean isDead = false;
     
@@ -95,7 +95,8 @@ public abstract class PlayableCharacter extends Sprite implements Play{
         // -12 @ 720x1280 px
         return - view.getHeight() / 100;
     }
-
+    public abstract void dead();
+    public abstract void revive();
     public void upgradeBitmap(int points){
         // Change bitmap, maybe when a certain amount of point is reached.
     }
