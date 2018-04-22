@@ -145,32 +145,6 @@ public abstract class Sprite {
             && y  > this.y && y < this.y + height);
     }
     
-
-    
-    /**
-     * Checks whether the sprite is touching the ground or the sky.
-     * @return
-     */
-    public boolean isTouchingEdge(){
-        return isTouchingGround() || isTouchingSky();
-    }
-    
-    /**
-     * Checks whether the sprite is touching the ground.
-     * @return
-     */
-    public boolean isTouchingGround(){
-        return this.y + this.height > this.view.getHeight() - this.view.getHeight() * GROUND_HEIGHT;
-    }
-    
-    /**
-     * Checks whether the sprite is touching the sky.
-     * @return
-     */
-    public boolean isTouchingSky(){
-        return this.y < 0;
-    }
-
     public int getX() {
         return x;
     }
