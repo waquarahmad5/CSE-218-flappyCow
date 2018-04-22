@@ -10,7 +10,7 @@ package com.quchen.flappycow.sprites;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
-public abstract class PowerUp extends Sprite {
+public abstract class PowerUp extends Sprite implements StaticObjects{
     public PowerUp(GameView view, Game game) {
         super(view, game);
         init();

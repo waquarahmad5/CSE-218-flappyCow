@@ -36,9 +36,7 @@ public class Toast extends PowerUp {
     /**
      * When eaten the player will turn into nyan cat.
      */
-    @Override
     public void onCollision() {
-        super.onCollision();
         view.changeToNyanCat();
     }
 }

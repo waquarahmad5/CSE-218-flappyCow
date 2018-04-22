@@ -14,7 +14,7 @@ import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
 
-public class Obstacle extends Sprite{
+public class Obstacle extends Sprite implements StaticObjects{
     private Terrain spider;
     private Terrain log;
     
@@ -122,9 +122,7 @@ public class Obstacle extends Sprite{
         }
     }
 
-    @Override
     public void onCollision() {
-        super.onCollision();
         Game.soundPool.play(collideSound, MainActivity.volume/SOUND_VOLUME_DIVIDER, MainActivity.volume/SOUND_VOLUME_DIVIDER, 0, 0, 1);
     }
 

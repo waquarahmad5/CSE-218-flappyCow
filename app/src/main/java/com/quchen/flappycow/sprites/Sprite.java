@@ -159,12 +159,7 @@ public abstract class Sprite {
             && y  > this.y && y < this.y + height);
     }
     
-    /**
-     * What should be done, when the player collide with this sprite?
-     */
-    public void onCollision(){
-        // Every subclass has to specify this itself
-    }
+
     
     /**
      * Checks whether the sprite is touching the ground or the sky.
