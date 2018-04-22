@@ -102,16 +102,6 @@ public abstract class Sprite {
     }
     
     /**
-     * Checks whether this sprite is so far to the left, it's not visible anymore.
-     * @return
-     */
-    public boolean isOutOfRange(){
-        return this.x + width < 0;
-    }
-    
-
-    
-    /**
      * Checks whether the sprite is touching this.
      * With the distance of the 2 centers.
      * @param sprite

@@ -70,7 +70,6 @@ public class Obstacle extends Sprite implements StaticObjects{
     /**
      * Checks whether both, spider and log, are out of range.
      */
-    @Override
     public boolean isOutOfRange() {
         return spider.isOutOfRange() && log.isOutOfRange();
     }

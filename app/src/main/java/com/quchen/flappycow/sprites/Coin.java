@@ -43,7 +43,15 @@ public class Coin extends PowerUp {
         playSound();
         game.increaseCoin();
     }
-    
+
+    /**
+     * Checks whether this coin is so far to the left, it's not visible anymore.
+     * @return
+     */
+    public boolean isOutOfRange() {
+        return this.x + width < 0;
+    }
+
     private void playSound(){
         Game.soundPool.play(sound, MainActivity.volume, MainActivity.volume, 0, 0, 1);
     }
