@@ -66,6 +66,11 @@ public class Terrain extends Sprite implements StaticObjects {
         }
         return false;
     }
+
+    public boolean isOutOfRange() {
+        return this.x + width < 0;
+    }
+
     /**
      * Gives a value that will be tolerated when touching a sprite.
      * Because my images have some whitespace to the edge.

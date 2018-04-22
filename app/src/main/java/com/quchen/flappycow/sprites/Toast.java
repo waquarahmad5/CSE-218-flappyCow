@@ -39,4 +39,8 @@ public class Toast extends PowerUp {
     public void onCollision() {
         view.changeToNyanCat();
     }
+
+    public boolean isOutOfRange() {
+        return this.x + width < 0;
+    }
 }

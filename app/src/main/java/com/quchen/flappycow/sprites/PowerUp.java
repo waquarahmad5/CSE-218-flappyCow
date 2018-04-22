@@ -52,4 +52,8 @@ public abstract class PowerUp extends Sprite implements StaticObjects{
         // 25 @ 720x1280 px
         return game.getResources().getDisplayMetrics().heightPixels / 50;
     }
+
+    public boolean isOutOfRange() {
+        return this.x + width < 0;
+    }
 }
