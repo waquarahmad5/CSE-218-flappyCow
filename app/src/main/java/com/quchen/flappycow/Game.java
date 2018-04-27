@@ -90,7 +90,6 @@ public class Game extends BaseGameActivity{
         }
     }
 
-
     /**
      * Initializes the player with the nyan cat song
      * and sets the position to 0.
@@ -173,44 +172,21 @@ public class Game extends BaseGameActivity{
     }
 
     /**
-     * What should happen, when an obstacle is passed?
+     * Increase points of the game
      */
     public void increasePoints(){
-        accomplishmentBox.points++;
+        accomplishmentBox.increasePoints(this);
+        this.view.getPlayer().upgradeBitmap(accomplishmentBox.points); //CURRENTLY EMPTY
+    }
 
-        this.view.getPlayer().upgradeBitmap(accomplishmentBox.points);
-
-        if(accomplishmentBox.points >= AccomplishmentBox.BRONZE_POINTS){
-            if(!accomplishmentBox.achievement_bronze){
-                accomplishmentBox.achievement_bronze = true;
-                if(getApiClient().isConnected()){
-                    Games.Achievements.unlock(getApiClient(), getResources().getString(R.string.achievement_bronze));
-                }else{
-                    view.msgHandler.sendMessage(Message.obtain(view.msgHandler, MessageHandler.SHOW_TOAST, R.string.toast_achievement_bronze, MessageHandler.SHOW_TOAST));
-                }
-            }
-
-            if(accomplishmentBox.points >= AccomplishmentBox.SILVER_POINTS){
-                if(!accomplishmentBox.achievement_silver){
-                    accomplishmentBox.achievement_silver = true;
-                    if(getApiClient().isConnected()){
-                        Games.Achievements.unlock(getApiClient(), getResources().getString(R.string.achievement_silver));
-                    }else{
-                        view.msgHandler.sendMessage(Message.obtain(view.msgHandler, MessageHandler.SHOW_TOAST, R.string.toast_achievement_silver, MessageHandler.SHOW_TOAST));
-                    }
-                }
-
-                if(accomplishmentBox.points >= AccomplishmentBox.GOLD_POINTS){
-                    if(!accomplishmentBox.achievement_gold){
-                        accomplishmentBox.achievement_gold = true;
-                        if(getApiClient().isConnected()){
-                            Games.Achievements.unlock(getApiClient(), getResources().getString(R.string.achievement_gold));
-                        }else{
-                            view.msgHandler.sendMessage(Message.obtain(view.msgHandler, MessageHandler.SHOW_TOAST, R.string.toast_achievement_gold, MessageHandler.SHOW_TOAST));
-                        }
-                    }
-                }
-            }
+    /**
+     * Make an announcement in the game
+     */
+    public void announcement(int toBeAnnounced){
+        if(getApiClient().isConnected()){
+            Games.Achievements.unlock(getApiClient(), getResources().getString(toBeAnnounced));
+        }else{
+            view.msgHandler.sendMessage(Message.obtain(view.msgHandler, MessageHandler.SHOW_TOAST, toBeAnnounced, MessageHandler.SHOW_TOAST));
         }
     }
 

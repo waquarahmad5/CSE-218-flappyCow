@@ -155,4 +155,21 @@ public class AccomplishmentBox{
     public static boolean isOnline(Activity activity){
         return activity.getSharedPreferences(SAVE_NAME, 0).getBoolean(ONLINE_STATUS_KEY, true);
     }
+
+    public void increasePoints(Game game) {
+        points++;
+        checkForAchievements(game);
+    }
+    private void checkForAchievements(Game game){
+        if(!achievement_gold && points >= GOLD_POINTS){
+            achievement_gold = true;
+            game.announcement(R.string.achievement_gold);
+        }else if(!achievement_silver && points >= SILVER_POINTS) {
+            achievement_silver = true;
+            game.announcement(R.string.achievement_silver);
+        }else if(!achievement_bronze && points >= BRONZE_POINTS) {
+            achievement_bronze = true;
+            game.announcement(R.string.achievement_bronze);
+        }
+    }
 }
