@@ -67,9 +67,6 @@ public class Game extends BaseGameActivity{
     /** The view that handles all kind of stuff */
     GameView view;
 
-    /** The amount of collected coins */
-    int coins;
-
     /** This will increase the revive price */
     public int numberOfRevive = 1;
 
@@ -106,7 +103,7 @@ public class Game extends BaseGameActivity{
 
     private void loadCoins(){
         SharedPreferences saves = this.getSharedPreferences(coin_save, 0);
-        this.coins = saves.getInt(coin_key, 0) + 100; ////REMOVE 100 :P -SR
+        this.accomplishmentBox.setCoins(saves.getInt(coin_key, 0) + 100); ////REMOVE 100 :P -SR
     }
 
     /**
@@ -159,16 +156,11 @@ public class Game extends BaseGameActivity{
         return gameOverCounter;
     }
 
+    /**
+     * Increase coins of the game
+     */
     public void increaseCoin(){
-        this.coins++;
-        if(coins >= 50 && !accomplishmentBox.achievement_50_coins){
-            accomplishmentBox.achievement_50_coins = true;
-            if(getApiClient().isConnected()){
-                Games.Achievements.unlock(getApiClient(), getResources().getString(R.string.achievement_50_coins));
-            }else{
-                view.msgHandler.sendMessage(Message.obtain(view.msgHandler,1,R.string.toast_achievement_50_coins, MessageHandler.SHOW_TOAST));
-            }
-        }
+        accomplishmentBox.increaseCoins(this);
     }
 
     /**

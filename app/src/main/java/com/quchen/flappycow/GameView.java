@@ -210,7 +210,7 @@ public class GameView extends SurfaceView{
         paint.setColor(Color.BLACK);
         paint.setTextSize(getScoreTextMetrics());
         canvas.drawText(game.getResources().getString(R.string.onscreen_score_text) + " " + game.accomplishmentBox.points
-                        + " / " + game.getResources().getString(R.string.onscreen_coin_text) + " " + game.coins,
+                        + " / " + game.getResources().getString(R.string.onscreen_coin_text) + " " + game.accomplishmentBox.getCoins(),
                         0, getScoreTextMetrics(), paint);
     }
     

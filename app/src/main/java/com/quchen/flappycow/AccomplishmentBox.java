@@ -35,8 +35,13 @@ public class AccomplishmentBox{
     public static final String ACHIEVEMENT_KEY_BRONZE = "achievement_bronze";
     public static final String ACHIEVEMENT_KEY_SILVER = "achievement_silver";
     public static final String ACHIEVEMENT_KEY_GOLD = "achievement_gold";
-    
+
+    /** The amount of points gained */
     int points;
+
+    /** The amount of collected coins */
+    int coins;
+
     boolean achievement_50_coins;
     boolean achievement_toastification;
     boolean achievement_bronze;
@@ -158,9 +163,9 @@ public class AccomplishmentBox{
 
     public void increasePoints(Game game) {
         points++;
-        checkForAchievements(game);
+        checkForPointAchievements(game);
     }
-    private void checkForAchievements(Game game){
+    private void checkForPointAchievements(Game game){
         if(!achievement_gold && points >= GOLD_POINTS){
             achievement_gold = true;
             game.announcement(R.string.achievement_gold);
@@ -170,6 +175,25 @@ public class AccomplishmentBox{
         }else if(!achievement_bronze && points >= BRONZE_POINTS) {
             achievement_bronze = true;
             game.announcement(R.string.achievement_bronze);
+        }
+    }
+
+    public int getCoins(){
+        return coins;
+    }
+
+    public void setCoins(int incCoins){
+        coins = incCoins;
+    }
+    public void increaseCoins(Game game){
+        coins++;
+        checkForCoinAchievements(game);
+    }
+
+    private void checkForCoinAchievements(Game game){
+        if(!achievement_50_coins && coins >= 50){
+            achievement_50_coins = true;
+            game.announcement(R.string.toast_achievement_50_coins);
         }
     }
 }

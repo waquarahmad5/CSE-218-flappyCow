@@ -69,14 +69,14 @@ public class GameOverDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 dismiss();
-                game.coins -= REVIVE_PRICE * game.numberOfRevive;
+                game.accomplishmentBox.setCoins(game.accomplishmentBox.getCoins() - (REVIVE_PRICE * game.numberOfRevive));
                 saveCoins();
                 Revive revive = new Revive(game.numberOfRevive);
                 revive.revive(game.view);
                 game.numberOfRevive++;
             }
         });
-        if(game.coins < REVIVE_PRICE * game.numberOfRevive){
+        if(game.accomplishmentBox.getCoins() < REVIVE_PRICE * game.numberOfRevive){
             reviveButton.setClickable(false);
         }else{
             reviveButton.setClickable(true);
@@ -131,7 +131,7 @@ public class GameOverDialog extends Dialog {
         SharedPreferences coin_save = game.getSharedPreferences(Game.coin_save, 0);
         coin_save.getInt(Game.coin_key, 0);
         SharedPreferences.Editor editor = coin_save.edit();
-        editor.putInt(Game.coin_key, game.coins);
+        editor.putInt(Game.coin_key, game.accomplishmentBox.getCoins());
         editor.commit();
     }
     
