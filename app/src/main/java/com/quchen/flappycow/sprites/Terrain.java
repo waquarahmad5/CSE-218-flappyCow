@@ -28,6 +28,7 @@ public class Terrain extends Sprite implements StaticObjects,SharedObjects {
                 case SPIDER:
                 {
                     globalBitmap = Util.getScaledBitmapAlpha8(game, R.drawable.spider_full);
+                    break;
                 }
             }
         }

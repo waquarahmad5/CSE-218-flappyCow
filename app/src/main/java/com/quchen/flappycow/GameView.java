@@ -10,13 +10,10 @@ package com.quchen.flappycow;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.quchen.flappycow.sprites.Coin;
 import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
@@ -24,7 +21,6 @@ import com.quchen.flappycow.sprites.PauseButton;
 import com.quchen.flappycow.sprites.PlayableCharacter;
 import com.quchen.flappycow.sprites.PowerUp;
 import com.quchen.flappycow.sprites.Scene;
-import com.quchen.flappycow.sprites.Toast;
 import com.quchen.flappycow.sprites.Tutorial;
 
 import android.content.Context;
@@ -114,7 +110,6 @@ public class GameView extends SurfaceView{
         checkCollision();
         createObstacle();
         move();
-
         draw();
     }
 

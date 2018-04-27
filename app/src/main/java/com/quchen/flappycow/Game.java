@@ -13,10 +13,8 @@ import com.google.example.games.basegameutils.BaseGameActivity;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.quchen.flappycow.sprites.Coin;
-import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
 import com.quchen.flappycow.sprites.PowerUp;
-
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
