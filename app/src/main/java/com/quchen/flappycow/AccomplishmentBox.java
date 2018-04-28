@@ -168,13 +168,13 @@ public class AccomplishmentBox{
     private void checkForPointAchievements(Game game){
         if(!achievement_gold && points >= GOLD_POINTS){
             achievement_gold = true;
-            game.announcement(R.string.achievement_gold);
+            game.announcement(R.string.achievement_gold, R.string.toast_achievement_gold);
         }else if(!achievement_silver && points >= SILVER_POINTS) {
             achievement_silver = true;
-            game.announcement(R.string.achievement_silver);
+            game.announcement(R.string.achievement_silver, R.string.toast_achievement_silver);
         }else if(!achievement_bronze && points >= BRONZE_POINTS) {
             achievement_bronze = true;
-            game.announcement(R.string.achievement_bronze);
+            game.announcement(R.string.achievement_bronze, R.string.toast_achievement_bronze);
         }
     }
 
@@ -193,7 +193,7 @@ public class AccomplishmentBox{
     private void checkForCoinAchievements(Game game){
         if(!achievement_50_coins && coins >= 50){
             achievement_50_coins = true;
-            game.announcement(R.string.toast_achievement_50_coins);
+            game.announcement(R.string.achievement_50_coins, R.string.toast_achievement_50_coins);
         }
     }
 }

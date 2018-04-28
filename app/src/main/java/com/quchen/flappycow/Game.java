@@ -174,11 +174,11 @@ public class Game extends BaseGameActivity{
     /**
      * Make an announcement in the game
      */
-    public void announcement(int toBeAnnounced){
+    public void announcement(int toBeAnnounced, int announcementText){
         if(getApiClient().isConnected()){
             Games.Achievements.unlock(getApiClient(), getResources().getString(toBeAnnounced));
         }else{
-            view.msgHandler.sendMessage(Message.obtain(view.msgHandler, MessageHandler.SHOW_TOAST, toBeAnnounced, MessageHandler.SHOW_TOAST));
+            view.msgHandler.sendMessage(Message.obtain(view.msgHandler, MessageHandler.SHOW_TOAST, announcementText, MessageHandler.SHOW_TOAST));
         }
     }
 
