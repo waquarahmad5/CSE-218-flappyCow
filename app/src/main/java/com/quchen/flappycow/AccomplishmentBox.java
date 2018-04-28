@@ -10,7 +10,6 @@ package com.quchen.flappycow;
 
 import com.google.android.gms.games.Games;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.Toast;
@@ -45,8 +44,8 @@ public class AccomplishmentBox{
     /** The amount of collected coins */
     private int coins;
 
-    boolean achievement_50_coins;
-    boolean achievement_toastification;
+    private boolean achievement_50_coins;
+    private boolean achievement_toastification;
     boolean achievement_bronze;
     boolean achievement_silver;
     boolean achievement_gold;
@@ -168,6 +167,7 @@ public class AccomplishmentBox{
         points++;
         checkForPointAchievements(game);
     }
+
     private void checkForPointAchievements(Game game){
         if(!achievement_gold && points >= GOLD_POINTS){
             achievement_gold = true;
