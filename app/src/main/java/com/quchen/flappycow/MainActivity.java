@@ -94,5 +94,5 @@ public class MainActivity extends BaseGameActivity {
             AccomplishmentBox.getLocal(this).submitScore(this, getApiClient());
         }
     }
-    
+
 }
