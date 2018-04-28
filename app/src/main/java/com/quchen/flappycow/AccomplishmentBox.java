@@ -10,43 +10,42 @@ package com.quchen.flappycow;
 
 import com.google.android.gms.games.Games;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
 public class AccomplishmentBox{
     /** Points needed for a gold medal */
-    public static final int GOLD_POINTS = 100;
+    private static final int GOLD_POINTS = 100;
     
     /** Points needed for a silver medal */
-    public static final int SILVER_POINTS = 50;
+    private static final int SILVER_POINTS = 50;
     
     /** Points needed for a bronze medal */
-    public static final int BRONZE_POINTS = 10;
+    private static final int BRONZE_POINTS = 10;
 
     /** Points needed for a Toast */
-    public static final int POINTS_TO_TOAST = 4; //TODO: SET TO 42 -AE
+    private static final int POINTS_TO_TOAST = 4; //TODO: SET TO 42 -AE
 
-    public static final String SAVE_NAME = "ACCOMPLISHMENTS";
+    private static final String SAVE_NAME = "ACCOMPLISHMENTS";
     
-    public static final String ONLINE_STATUS_KEY = "online_status";
+    private static final String ONLINE_STATUS_KEY = "online_status";
     
-    public static final String KEY_POINTS = "points";
-    public static final String ACHIEVEMENT_KEY_50_COINS = "achievement_survive_5_minutes";
-    public static final String ACHIEVEMENT_KEY_TOASTIFICATION = "achievement_toastification";
-    public static final String ACHIEVEMENT_KEY_BRONZE = "achievement_bronze";
-    public static final String ACHIEVEMENT_KEY_SILVER = "achievement_silver";
-    public static final String ACHIEVEMENT_KEY_GOLD = "achievement_gold";
+    private static final String KEY_POINTS = "points";
+    private static final String ACHIEVEMENT_KEY_50_COINS = "achievement_survive_5_minutes";
+    private static final String ACHIEVEMENT_KEY_TOASTIFICATION = "achievement_toastification";
+    private static final String ACHIEVEMENT_KEY_BRONZE = "achievement_bronze";
+    private static final String ACHIEVEMENT_KEY_SILVER = "achievement_silver";
+    private static final String ACHIEVEMENT_KEY_GOLD = "achievement_gold";
 
     /** The amount of points gained */
-    int points;
+    private int points;
 
     /** The amount of collected coins */
-    int coins;
+    private int coins;
 
-    boolean achievement_50_coins;
-    boolean achievement_toastification;
+    private boolean achievement_50_coins;
+    private boolean achievement_toastification;
     boolean achievement_bronze;
     boolean achievement_silver;
     boolean achievement_gold;
@@ -168,6 +167,7 @@ public class AccomplishmentBox{
         points++;
         checkForPointAchievements(game);
     }
+
     private void checkForPointAchievements(Game game){
         if(!achievement_gold && points >= GOLD_POINTS){
             achievement_gold = true;
