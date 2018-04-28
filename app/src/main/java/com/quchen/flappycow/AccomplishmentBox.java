@@ -168,14 +168,20 @@ public class AccomplishmentBox{
         checkForPointAchievements(game);
     }
 
+    private boolean checkForAchievements(boolean x, int y) {
+        if(!x && points >= y)
+            return true;
+        else
+            return false;
+    }
     private void checkForPointAchievements(Game game){
-        if(!achievement_gold && points >= GOLD_POINTS){
+        if(checkForAchievements(achievement_gold,GOLD_POINTS)){
             achievement_gold = true;
             game.announcement(R.string.achievement_gold, R.string.toast_achievement_gold);
-        }else if(!achievement_silver && points >= SILVER_POINTS) {
+        }else if(checkForAchievements(achievement_silver,SILVER_POINTS)) {
             achievement_silver = true;
             game.announcement(R.string.achievement_silver, R.string.toast_achievement_silver);
-        }else if(!achievement_bronze && points >= BRONZE_POINTS) {
+        }else if(checkForAchievements(achievement_bronze,BRONZE_POINTS)) {
             achievement_bronze = true;
             game.announcement(R.string.achievement_bronze, R.string.toast_achievement_bronze);
         }
