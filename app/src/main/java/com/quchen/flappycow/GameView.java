@@ -106,8 +106,10 @@ public class GameView extends SurfaceView{
      */
     public void run() {
         game.checkPasses();
-        checkOutOfRange();
-        checkCollision();
+        checkPowerUpsOutOfRange();
+        checkObstaclesOutOfRange();
+        checkObstaclesCollision();
+        checkPowerUpsCollision();
         createObstacle();
         move();
         draw();
@@ -234,13 +236,15 @@ public class GameView extends SurfaceView{
     /**
      * Checks whether the obstacles or powerUps are out of range and deletes them
      */
-    private void checkOutOfRange(){
-        for(int i=0; i<obstacles.size(); i++){
-            if(this.obstacles.get(i).isOutOfRange()){
+    private void checkObstaclesOutOfRange() {
+        for (int i = 0; i < obstacles.size(); i++) {
+            if (this.obstacles.get(i).isOutOfRange()) {
                 this.obstacles.remove(i);
                 i--;
             }
         }
+    }
+    private void checkPowerUpsOutOfRange() {
         for(int i=0; i<powerUps.size(); i++){
             if(this.powerUps.get(i).isOutOfRange()){
                 this.powerUps.remove(i);
@@ -250,15 +254,24 @@ public class GameView extends SurfaceView{
     }
     
     /**
-     * Checks collisions and performs the action
+     * Checks collision with obstacles/edges and end game if so
      */
-    private void checkCollision(){
+    private void checkObstaclesCollision(){
         for(Obstacle o : obstacles){
             if(o.isColliding(player)){
                 o.onCollision();
                 gameOver();
             }
         }
+        if(player.isTouchingEdge()){
+            gameOver();
+        }
+    }
+
+    /**    checks collisions with PowerUps
+     *
+     */
+    private void checkPowerUpsCollision() {
         for(int i=0; i<powerUps.size(); i++){
             if(this.powerUps.get(i).isColliding(player)){
                 this.powerUps.get(i).onCollision();
@@ -266,11 +279,8 @@ public class GameView extends SurfaceView{
                 i--;
             }
         }
-        if(player.isTouchingEdge()){
-            gameOver();
-        }
     }
-    
+
     /**
      * if no obstacle is present a new one is created
      */
