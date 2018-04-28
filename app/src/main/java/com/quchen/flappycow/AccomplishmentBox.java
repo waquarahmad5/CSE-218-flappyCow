@@ -14,6 +14,8 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.Contract;
+
 public class AccomplishmentBox{
     /** Points needed for a gold medal */
     private static final int GOLD_POINTS = 100;
@@ -167,8 +169,9 @@ public class AccomplishmentBox{
         checkForPointAchievements(game);
     }
 
-    private boolean checkForAchievements(boolean x, int y) {
-        if(!x && points >= y)
+    @org.jetbrains.annotations.Contract(value = "true, _ -> false", pure = true)
+    private boolean checkForAchievements(boolean achievement_state, int achievement_points) {
+        if(!achievement_state && points >= achievement_points)
             return true;
         else
             return false;
@@ -196,6 +199,7 @@ public class AccomplishmentBox{
     public boolean getAchievementBronze() {return achievement_bronze;}
     public boolean getAchievementSilver() {return achievement_silver;}
     public boolean getAchievementGold() {return achievement_gold;}
+    @Contract(pure = true)
     public static int getPointsToToast() {return POINTS_TO_TOAST;}
     public String getSaveName(){return SAVE_NAME;}
     public String getOnlineStatusKey(){return ONLINE_STATUS_KEY;}
