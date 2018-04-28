@@ -89,14 +89,14 @@ public class GameOverDialog extends Dialog {
     private void manageScore(){
         SharedPreferences saves = game.getSharedPreferences(score_save_name, 0);
         int oldPoints = saves.getInt(best_score_key, 0);
-        if(game.accomplishmentBox.points > oldPoints){
+        if(game.accomplishmentBox.getPoints() > oldPoints){
             // Save new highscore
             SharedPreferences.Editor editor = saves.edit();
-            editor.putInt(best_score_key, game.accomplishmentBox.points);
+            editor.putInt(best_score_key, game.accomplishmentBox.getPoints());
             tvBestScoreVal.setTextColor(Color.RED);
             editor.commit();
         }
-        tvCurrentScoreVal.setText("" + game.accomplishmentBox.points);
+        tvCurrentScoreVal.setText("" + game.accomplishmentBox.getPoints());
         tvBestScoreVal.setText("" + oldPoints);
     }
     

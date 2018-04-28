@@ -209,7 +209,7 @@ public class GameView extends SurfaceView{
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(getScoreTextMetrics());
-        canvas.drawText(game.getResources().getString(R.string.onscreen_score_text) + " " + game.accomplishmentBox.points
+        canvas.drawText(game.getResources().getString(R.string.onscreen_score_text) + " " + game.accomplishmentBox.getPoints()
                         + " / " + game.getResources().getString(R.string.onscreen_coin_text) + " " + game.accomplishmentBox.getCoins(),
                         0, getScoreTextMetrics(), paint);
     }
@@ -307,12 +307,8 @@ public class GameView extends SurfaceView{
      * Changes the player to Nyan Cat
      */
     public void changeToNyanCat(){
-        game.accomplishmentBox.achievement_toastification = true;
-        if(game.getApiClient().isConnected()){
-            Games.Achievements.unlock(game.getApiClient(), getResources().getString(R.string.achievement_toastification));
-        }else{
-            msgHandler.sendMessage(Message.obtain(msgHandler,1,R.string.toast_achievement_toastification, MessageHandler.SHOW_TOAST));
-        }
+        game.accomplishmentBox.setToastification();
+        game.announcement(R.string.achievement_toastification, R.string.toast_achievement_toastification);
         
         PlayableCharacter tmp = this.player;
         this.player = new NyanCat(this, game);
@@ -333,7 +329,7 @@ public class GameView extends SurfaceView{
         int speedDefault = this.getWidth() / 45;
         
         // 1,2 every 4 points @ 720x1280 px
-        int speedIncrease = (int) (this.getWidth() / 600f * (game.accomplishmentBox.points / 4));
+        int speedIncrease = (int) (this.getWidth() / 600f * (game.accomplishmentBox.getPoints() / 4));
         
         int speed = speedDefault + speedIncrease;
         

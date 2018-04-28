@@ -14,16 +14,14 @@ import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
 
-public class Toast extends PowerUp {
+public class NyanToast extends PowerUp {
     
     /**
      * Static bitmap to reduce memory usage.
      */
     public static Bitmap globalBitmap;
-    
-    public static final int POINTS_TO_TOAST = 42;
 
-    public Toast(GameView view, Game game) {
+    public NyanToast(GameView view, Game game) {
         super(view, game);
         if(globalBitmap == null){
             globalBitmap = Util.getScaledBitmapAlpha8(game, R.drawable.toast);

@@ -22,6 +22,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Message;
 import android.widget.Toast;
+import com.quchen.flappycow.sprites.NyanToast;
 
 import java.util.List;
 
@@ -103,7 +104,7 @@ public class Game extends BaseGameActivity{
 
     private void loadCoins(){
         SharedPreferences saves = this.getSharedPreferences(coin_save, 0);
-        this.accomplishmentBox.setCoins(saves.getInt(coin_key, 0) + 100); ////REMOVE 100 :P -SR
+        accomplishmentBox.setCoins(saves.getInt(coin_key, 0) + 100); //TODO: REMOVE 100 :P -SR
     }
 
     /**
@@ -168,7 +169,7 @@ public class Game extends BaseGameActivity{
      */
     public void increasePoints(){
         accomplishmentBox.increasePoints(this);
-        this.view.getPlayer().upgradeBitmap(accomplishmentBox.points); //CURRENTLY EMPTY
+        this.view.getPlayer().upgradeBitmap(accomplishmentBox.getPoints()); //CURRENTLY EMPTY
     }
 
     /**
@@ -207,12 +208,12 @@ public class Game extends BaseGameActivity{
      */
     private void createPowerUp(List<PowerUp> powerUps){
         // Toast
-        if(accomplishmentBox.points >= com.quchen.flappycow.sprites.Toast.POINTS_TO_TOAST /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
+        if(accomplishmentBox.getPoints() >= accomplishmentBox.getPointsToToast() /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
             // If no powerUp is present and you have more than / equal 42 points
-            if(accomplishmentBox.points == com.quchen.flappycow.sprites.Toast.POINTS_TO_TOAST){    // First time 100 % chance
-                powerUps.add(new com.quchen.flappycow.sprites.Toast(view,this));
+            if(accomplishmentBox.getPoints() == accomplishmentBox.getPointsToToast()){    // First time 100 % chance
+                powerUps.add(new NyanToast(view,this));
             } else if(Math.random()*100 < 33){    // 33% chance
-                powerUps.add(new com.quchen.flappycow.sprites.Toast(view,this));
+                powerUps.add(new NyanToast(view,this));
             }
         }
 
@@ -221,10 +222,6 @@ public class Game extends BaseGameActivity{
             powerUps.add(new Coin(view,this));
         }
     }
-
-
-
-
 
     public void setNumberOfRevive(int numberOfRevive) {
         this.numberOfRevive = numberOfRevive;

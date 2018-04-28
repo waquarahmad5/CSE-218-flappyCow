@@ -24,8 +24,11 @@ public class AccomplishmentBox{
     
     /** Points needed for a bronze medal */
     public static final int BRONZE_POINTS = 10;
-    
-    public static final String SAVE_NAME = "ACCOMBLISHMENTS";
+
+    /** Points needed for a Toast */
+    public static final int POINTS_TO_TOAST = 4; //TODO: SET TO 42 -AE
+
+    public static final String SAVE_NAME = "ACCOMPLISHMENTS";
     
     public static final String ONLINE_STATUS_KEY = "online_status";
     
@@ -178,6 +181,14 @@ public class AccomplishmentBox{
         }
     }
 
+    public void setToastification(){
+        achievement_toastification = true;
+    }
+
+    public int getPoints(){
+        return points;
+    }
+
     public int getCoins(){
         return coins;
     }
@@ -196,4 +207,7 @@ public class AccomplishmentBox{
             game.announcement(R.string.achievement_50_coins, R.string.toast_achievement_50_coins);
         }
     }
+
+    public static int getPointsToToast() {return POINTS_TO_TOAST;}
+
 }
