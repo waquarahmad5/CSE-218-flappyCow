@@ -28,28 +28,27 @@ public class AccomplishmentBox{
     private static final int POINTS_TO_TOAST = 4; //TODO: SET TO 42 -AE
 
     private static final String SAVE_NAME = "ACCOMPLISHMENTS";
-    
     private static final String ONLINE_STATUS_KEY = "online_status";
-    
     private static final String KEY_POINTS = "points";
+
     private static final String ACHIEVEMENT_KEY_50_COINS = "achievement_survive_5_minutes";
     private static final String ACHIEVEMENT_KEY_TOASTIFICATION = "achievement_toastification";
     private static final String ACHIEVEMENT_KEY_BRONZE = "achievement_bronze";
     private static final String ACHIEVEMENT_KEY_SILVER = "achievement_silver";
     private static final String ACHIEVEMENT_KEY_GOLD = "achievement_gold";
 
-    /** The amount of points gained */
-    private int points;
+    private int points; /** The amount of points gained */
 
-    /** The amount of collected coins */
-    private int coins;
 
-    private boolean achievement_50_coins;
-    private boolean achievement_toastification;
-    boolean achievement_bronze;
-    boolean achievement_silver;
-    boolean achievement_gold;
-    
+    private int coins;    /** The amount of collected coins */
+
+
+    private boolean achievement_50_coins;       /** 50 coins achievement attained */
+    private boolean achievement_toastification; /** NyanCat achievement attained */
+    private boolean achievement_bronze;         /** Bronze medal achievement attained */
+    private boolean achievement_silver;         /** Silver medal achievement attained */
+    private boolean achievement_gold;           /** Gold medal achievement attained */
+
     /**
      * Stores the score and achievements locally.
      * 
@@ -92,24 +91,24 @@ public class AccomplishmentBox{
     public void submitScore(Activity activity, GoogleApiClient apiClient){
         Games.Leaderboards.submitScore(apiClient, activity.getResources().getString(R.string.leaderboard_highscore), this.points);
         
-        if(this.achievement_50_coins){
+        if(achievement_50_coins){
             Games.Achievements.unlock(apiClient, activity.getResources().getString(R.string.achievement_50_coins));
         }
-        if(this.achievement_toastification){
+        if(achievement_toastification){
             Games.Achievements.unlock(apiClient, activity.getResources().getString(R.string.achievement_toastification));
         }
-        if(this.achievement_bronze){
+        if(achievement_bronze){
             Games.Achievements.unlock(apiClient, activity.getResources().getString(R.string.achievement_bronze));
         }
-        if(this.achievement_silver){
+        if(achievement_silver){
             Games.Achievements.unlock(apiClient, activity.getResources().getString(R.string.achievement_silver));
         }
-        if(this.achievement_gold){
+        if(achievement_gold){
             Games.Achievements.unlock(apiClient, activity.getResources().getString(R.string.achievement_gold));
         }
         
         AccomplishmentBox.savesAreOnline(activity);
-        
+
         Toast.makeText(activity.getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
     }
     
@@ -153,7 +152,7 @@ public class AccomplishmentBox{
         editor.putBoolean(ONLINE_STATUS_KEY, false);
         editor.commit();
     }
-    
+
     /**
      * checks if the last data is already uploaded
      * @param activity activity that is needed for shared preferences
@@ -181,25 +180,32 @@ public class AccomplishmentBox{
         }
     }
 
-    public void setToastification(){
-        achievement_toastification = true;
-    }
 
     public int getPoints(){
         return points;
     }
-
     public int getCoins(){
         return coins;
     }
+    public boolean getAchievementBronze() {return achievement_bronze;}
+    public boolean getAchievementSilver() {return achievement_silver;}
+    public boolean getAchievementGold() {return achievement_gold;}
+    public static int getPointsToToast() {return POINTS_TO_TOAST;}
+    public String getSaveName(){return SAVE_NAME;}
+    public String getOnlineStatusKey(){return ONLINE_STATUS_KEY;}
 
     public void setCoins(int incCoins){
         coins = incCoins;
     }
+    public void setToastification(){
+        achievement_toastification = true;
+    }
+
     public void increaseCoins(Game game){
         coins++;
         checkForCoinAchievements(game);
     }
+
 
     private void checkForCoinAchievements(Game game){
         if(!achievement_50_coins && coins >= 50){
@@ -207,7 +213,4 @@ public class AccomplishmentBox{
             game.announcement(R.string.achievement_50_coins, R.string.toast_achievement_50_coins);
         }
     }
-
-    public static int getPointsToToast() {return POINTS_TO_TOAST;}
-
 }

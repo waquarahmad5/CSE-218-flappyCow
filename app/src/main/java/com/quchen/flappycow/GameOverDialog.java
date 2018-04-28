@@ -106,17 +106,17 @@ public class GameOverDialog extends Dialog {
       
         SharedPreferences.Editor editor = medaille_save.edit();
 
-        if(game.accomplishmentBox.achievement_gold){
+        if(game.accomplishmentBox.getAchievementGold()){
             ((ImageView)findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.gold));
             if(medaille < 3){
                 editor.putInt(MainActivity.medaille_key, 3);
             }
-        }else if(game.accomplishmentBox.achievement_silver){
+        }else if(game.accomplishmentBox.getAchievementSilver()){
             ((ImageView)findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.silver));
             if(medaille < 2){
                 editor.putInt(MainActivity.medaille_key, 2);
             }
-        }else if(game.accomplishmentBox.achievement_bronze){
+        }else if(game.accomplishmentBox.getAchievementBronze()){
             ((ImageView)findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.bronce));
             if(medaille < 1){
                 editor.putInt(MainActivity.medaille_key, 1);
