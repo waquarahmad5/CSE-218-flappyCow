@@ -414,12 +414,10 @@ public class GameView extends SurfaceView{
     {
         this.powerUps = powers;
     }
-
     public PlayableCharacter getPlayerInstance()
     {
         return this.player;
     }
-
     public void setPlayerInstance(PlayableCharacter p)
     {
         this.player = p;
