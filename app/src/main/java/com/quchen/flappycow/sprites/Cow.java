@@ -32,7 +32,7 @@ public class Cow extends PlayableCharacter{
 
     public Cow(GameView view, Game game) {
         super(view, game);
-        if(globalBitmap == null){
+        if(isGlobalBitmapNull()){
             globalBitmap = Util.getScaledBitmapAlpha8(game, R.drawable.cow);
         }
         this.bitmap = globalBitmap;
@@ -41,13 +41,21 @@ public class Cow extends PlayableCharacter{
         this.frameTime = 3;        // the frame will change every 3 runs
         this.y = game.getResources().getDisplayMetrics().heightPixels / 2;    // Startposition in in the middle of the screen
         
-        if(sound == -1){
+        if(isMute()){
             sound = Game.soundPool.load(game, R.raw.cow, 1);
         }
         
         this.accessory = new Accessory(view, game);
     }
-    
+
+    private boolean isGlobalBitmapNull() {
+        return globalBitmap == null;
+    }
+
+    private boolean isMute() {
+        return sound == -1;
+    }
+
     private void playSound(){
         Game.soundPool.play(sound, MainActivity.volume, MainActivity.volume, 0, 0, 1);
     }
@@ -87,9 +95,13 @@ public class Cow extends PlayableCharacter{
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if(this.accessory != null && !isDead){
+        if(shouldDraw()){
             this.accessory.draw(canvas);
         }
+    }
+
+    private boolean shouldDraw() {
+        return this.accessory != null && !isDead;
     }
 
     /**
@@ -113,11 +125,15 @@ public class Cow extends PlayableCharacter{
     @Override
     public void upgradeBitmap(int points) {
         super.upgradeBitmap(points);
-        if(points == POINTS_TO_SIR){
+        if(isPointsToChangePlayerSprite(points, POINTS_TO_SIR)){
             this.accessory.setBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.accessory_sir));
-        }else if(points == POINTS_TO_COOL){
+        }else if(isPointsToChangePlayerSprite(points, POINTS_TO_COOL)){
             this.accessory.setBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.accessory_sunglasses));
         }
     }
-    
+
+    private boolean isPointsToChangePlayerSprite(int points, int pointsTo) {
+        return points == pointsTo;
+    }
+
 }
