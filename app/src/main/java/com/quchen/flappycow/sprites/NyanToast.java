@@ -23,12 +23,16 @@ public class NyanToast extends PowerUp {
 
     public NyanToast(GameView view, Game game) {
         super(view, game);
-        if(globalBitmap == null){
+        if(isGlobalBitmapNull()){
             globalBitmap = Util.getScaledBitmapAlpha8(game, R.drawable.toast);
         }
         this.bitmap = globalBitmap;
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
+    }
+
+    private boolean isGlobalBitmapNull() {
+        return globalBitmap == null;
     }
 
     /**
