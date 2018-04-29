@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 import com.google.android.gms.games.Games;
@@ -57,33 +58,33 @@ public class StartscreenView extends View{
     public StartscreenView(MainActivity context) {
         super(context);
         this.mainActivity = context;
-        if(splash == null) {
+        if(isObjectNull(splash)) {
             splash = Util.getBitmapAlpha8(mainActivity, R.drawable.splash);
         }
-        srcSplash = new Rect(0, 0, splash.getWidth(), splash.getHeight());
-        if(logInOut == null) {
+        srcSplash = setRect(0, splash);
+        if(isObjectNull(logInOut)) {
             logInOut = Util.getBitmapAlpha8(mainActivity, R.drawable.signinout);
         }
-        if(play == null) {
+        if(isObjectNull(play)) {
             play = Util.getBitmapAlpha8(mainActivity, R.drawable.play_button);
         }
-        srcPlay = new Rect(0, 0, play.getWidth(), play.getHeight());
-        if(achievements == null) {
+        srcPlay = setRect(0, play);
+        if(isObjectNull(achievements)) {
             achievements = Util.getBitmapAlpha8(mainActivity, R.drawable.achievement_button);
         }
-        srcAchievements = new Rect(0, 0, achievements.getWidth(), achievements.getHeight());
-        if(leaderboard == null) {
+        srcAchievements = setRect(0, achievements);
+        if(isObjectNull(leaderboard)) {
             leaderboard = Util.getBitmapAlpha8(mainActivity, R.drawable.highscore_button);
         }
-        srcLeaderboard = new Rect(0, 0, leaderboard.getWidth(), leaderboard.getHeight());
-        if(speaker == null) {
+        srcLeaderboard = setRect(0, leaderboard);
+        if(isObjectNull(speaker)) {
             speaker = Util.getBitmapAlpha8(mainActivity, R.drawable.speaker);
         }
-        if(info == null) {
+        if(isObjectNull(info)) {
             info = Util.getBitmapAlpha8(mainActivity, R.drawable.about);
         }
-        srcInfo = new Rect(0, 0, info.getWidth(), info.getHeight());
-        if(socket == null) {
+        srcInfo = setRect(0, info);
+        if(isObjectNull(socket)) {
             socket = Util.getBitmapAlpha8(mainActivity, R.drawable.socket);
         }
         
@@ -92,19 +93,28 @@ public class StartscreenView extends View{
         setSpeaker(true);
         setSocket(0);
     }
-    
+
+    @NonNull
+    private Rect setRect(int i, Bitmap splash) {
+        return new Rect(0, i, splash.getWidth(), splash.getHeight());
+    }
+
+    private boolean isObjectNull(Bitmap splash) {
+        return splash == null;
+    }
+
     public void setSpeaker(boolean on) {
         if(on) {
             srcSpeaker = new Rect(0, 0, speaker.getWidth(), speaker.getHeight()/2);
         } else {
-            srcSpeaker = new Rect(0, speaker.getHeight()/2, speaker.getWidth(), speaker.getHeight());
+            srcSpeaker = setRect(speaker.getHeight()/2, speaker);
         }
     }
-    
+
     public void setOnline(boolean online) {
         this.online = online;
         if(online) {
-            srcLogInOut = new Rect(0, logInOut.getHeight()/2, logInOut.getWidth(), logInOut.getHeight());
+            srcLogInOut = setRect(logInOut.getHeight()/2, logInOut);
         } else {
             srcLogInOut = new Rect(0, 0, logInOut.getWidth(), logInOut.getHeight()/2);
         }
