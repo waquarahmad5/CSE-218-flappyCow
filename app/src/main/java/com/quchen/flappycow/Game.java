@@ -93,13 +93,17 @@ public class Game extends BaseGameActivity{
      * and sets the position to 0.
      */
     public void initMusicPlayer(){
-        if(musicPlayer == null){
+        if(isMusicPlayerNull()){
             // to avoid unnecessary reinitialisation
             musicPlayer = MediaPlayer.create(this, R.raw.nyan_cat_theme);
             musicPlayer.setLooping(true);
             musicPlayer.setVolume(MainActivity.volume, MainActivity.volume);
         }
         musicPlayer.seekTo(0);    // Reset song to position 0
+    }
+
+    private boolean isMusicPlayerNull() {
+        return musicPlayer == null;
     }
 
     private void loadCoins(){

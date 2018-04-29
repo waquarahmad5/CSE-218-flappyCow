@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class GameTimer {
     private Timer timer;
     private GameView gameView;
-    TimerTask task;
+    private TimerTask task;
     private long UPDATE_INTERVAL;
 
     public GameTimer(GameView gameView, long UPDATE_INTERVAL){
@@ -23,15 +23,35 @@ public class GameTimer {
 
     public void stopTimer()
     {
-        if(timer != null){
+        if(isNotNull(timer)){
             timer.cancel();
             timer.purge();
         }
 
-        if(task != null){
+        if(isNotNull(task)){
             task.cancel();
         }
     }
+
+    private boolean isNotNull(Object timer) {
+
+        try {
+            if (timer instanceof Timer || timer instanceof TimerTask) {
+                return timer != null;
+            }
+            else{
+                throw new Exception("Expected instance of Timer");
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Catch Block") ;
+            System.out.println(e) ;
+        }
+
+        return false;
+    }
+
     private void setUpTimerTask(){
         stopTimer();
         task = new TimerTask() {
