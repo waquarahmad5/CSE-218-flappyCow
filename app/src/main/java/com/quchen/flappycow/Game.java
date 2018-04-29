@@ -130,23 +130,32 @@ public class Game extends BaseGameActivity{
         if(musicShouldPlay){
             musicPlayer.start();
         }
-        if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS){
+        if(isPlayServicesAvailable()){
             Toast.makeText(this, "Please check your Google Services", Toast.LENGTH_LONG).show();
         }
         super.onResume();
     }
 
+    private boolean isPlayServicesAvailable() {
+        return GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS;
+    }
+
     /**
      * Prevent accidental exits by requiring a double press.
      */
+
     @Override
     public void onBackPressed() {
-        if(System.currentTimeMillis() - backPressed < DOUBLE_BACK_TIME){
+        if(isBackPressed()){
             super.onBackPressed();
         }else{
             backPressed = System.currentTimeMillis();
             Toast.makeText(this, getResources().getString(R.string.on_back_press), Toast.LENGTH_LONG).show();
         }
+    }
+    //Query
+    private boolean isBackPressed() {
+        return System.currentTimeMillis() - backPressed < DOUBLE_BACK_TIME;
     }
 
     /**
