@@ -89,7 +89,7 @@ public class GameOverDialog extends Dialog {
     private void manageScore(){
         SharedPreferences saves = game.getSharedPreferences(score_save_name, 0);
         int oldPoints = saves.getInt(best_score_key, 0);
-        if(game.accomplishmentBox.getPoints() > oldPoints){
+        if(isHighScore(oldPoints)){
             // Save new highscore
             SharedPreferences.Editor editor = saves.edit();
             editor.putInt(best_score_key, game.accomplishmentBox.getPoints());
@@ -99,34 +99,44 @@ public class GameOverDialog extends Dialog {
         tvCurrentScoreVal.setText("" + game.accomplishmentBox.getPoints());
         tvBestScoreVal.setText("" + oldPoints);
     }
-    
+
+    private boolean isHighScore(int oldPoints) {
+        return game.accomplishmentBox.getPoints() > oldPoints;
+    }
+
     private void manageMedals(){
         SharedPreferences medaille_save = game.getSharedPreferences(MainActivity.medaille_save, 0);
         int medaille = medaille_save.getInt(MainActivity.medaille_key, 0);
-      
-        SharedPreferences.Editor editor = medaille_save.edit();
+        SharedPreferences.Editor editor = setAchievementStatus(medaille, medaille_save.edit());
+        editor.commit();
+    }
 
+    private SharedPreferences.Editor setAchievementStatus(int medaille, SharedPreferences.Editor editor) {
         if(game.accomplishmentBox.getAchievementGold()){
-            ((ImageView)findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.gold));
+            setAchievementTo(R.drawable.gold);
             if(medaille < 3){
                 editor.putInt(MainActivity.medaille_key, 3);
             }
         }else if(game.accomplishmentBox.getAchievementSilver()){
-            ((ImageView)findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.silver));
+            setAchievementTo(R.drawable.silver);
             if(medaille < 2){
                 editor.putInt(MainActivity.medaille_key, 2);
             }
         }else if(game.accomplishmentBox.getAchievementBronze()){
-            ((ImageView)findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, R.drawable.bronce));
+            setAchievementTo(R.drawable.bronce);
             if(medaille < 1){
                 editor.putInt(MainActivity.medaille_key, 1);
             }
         }else{
             ((ImageView)findViewById(R.id.medaille)).setVisibility(View.INVISIBLE);
         }
-        editor.commit();
+        return editor;
     }
-    
+
+    private void setAchievementTo(int gold) {
+        ((ImageView) findViewById(R.id.medaille)).setImageBitmap(Util.getScaledBitmapAlpha8(game, gold));
+    }
+
     private void saveCoins(){
         SharedPreferences coin_save = game.getSharedPreferences(Game.coin_save, 0);
         coin_save.getInt(Game.coin_key, 0);
