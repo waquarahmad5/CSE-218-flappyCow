@@ -26,4 +26,5 @@ dependencies {
     compile project(':BaseGameUtils')
     compile 'com.google.android.gms:play-services-ads:11.8.0'
     compile 'org.valid4j:valid4j:0.5.0'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }

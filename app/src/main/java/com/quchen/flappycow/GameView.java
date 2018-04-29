@@ -353,14 +353,18 @@ public class GameView extends SurfaceView{
     public void gameOver(){
         pause();
         playerDeadFall();
-        if(game.getGameOverCounter() % Game.GAMES_PER_AD == 0) {
+        if(showAd()) {
             msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.SHOW_AD));
         } else {
             msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
         }
     }
 
-    
+    private boolean showAd() {
+        return game.getGameOverCounter() % Game.GAMES_PER_AD == 0;
+    }
+
+
     /**
      * A value for the position and size of the onScreen score Text
      */
