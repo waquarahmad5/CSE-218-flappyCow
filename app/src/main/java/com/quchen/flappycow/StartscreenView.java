@@ -55,6 +55,7 @@ public class StartscreenView extends View{
     private boolean online;
     private MainActivity mainActivity;
 
+    //Separate the query and command into 2 methods.
     public StartscreenView(MainActivity context) {
         super(context);
         this.mainActivity = context;
@@ -98,7 +99,7 @@ public class StartscreenView extends View{
     private Rect setRect(int i, Bitmap splash) {
         return new Rect(0, i, splash.getWidth(), splash.getHeight());
     }
-
+    //Separated the query to check for null for object from the command
     private boolean isObjectNull(Bitmap splash) {
         return splash == null;
     }

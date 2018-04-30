@@ -81,7 +81,8 @@ public class Game extends BaseGameActivity{
         view = new GameView(this);
         gameOverDialog = new GameOverDialog(this);
         setContentView(view);
-        initMusicPlayer();
+        // Query check takes place in the client, isMusicPlayerNull passed as a boolean argument
+        initMusicPlayer(isMusicPlayerNull());
         loadCoins();
         if(gameOverCounter % GAMES_PER_AD == 0) {
             view.setupAd();
@@ -92,8 +93,9 @@ public class Game extends BaseGameActivity{
      * Initializes the player with the nyan cat song
      * and sets the position to 0.
      */
-    public void initMusicPlayer(){
-        if(isMusicPlayerNull()){
+    //Supplier, avoids the query check on supplier.
+    public void initMusicPlayer(boolean isNull){
+        if(isNull){
             // to avoid unnecessary reinitialisation
             musicPlayer = MediaPlayer.create(this, R.raw.nyan_cat_theme);
             musicPlayer.setLooping(true);
@@ -101,7 +103,7 @@ public class Game extends BaseGameActivity{
         }
         musicPlayer.seekTo(0);    // Reset song to position 0
     }
-
+    //Created a method to check for pre-condition
     private boolean isMusicPlayerNull() {
         return musicPlayer == null;
     }
@@ -128,26 +130,27 @@ public class Game extends BaseGameActivity{
      * and starts the music if it should be running.
      * Also checks whether the Google Play Services are available.
      */
+    //separated command that checks for availablity of play services and sets the status in the same method.
     @Override
     protected void onResume() {
         view.drawOnce();
         if(musicShouldPlay){
             musicPlayer.start();
         }
-        if(isPlayServicesAvailable()){
+        if(isPlayServicesNotAvailable()){
             Toast.makeText(this, "Please check your Google Services", Toast.LENGTH_LONG).show();
         }
         super.onResume();
     }
-
-    private boolean isPlayServicesAvailable() {
+    //separated query for if playservices is not available
+    private boolean isPlayServicesNotAvailable() {
         return GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS;
     }
 
     /**
      * Prevent accidental exits by requiring a double press.
      */
-
+    //Separated command from query
     @Override
     public void onBackPressed() {
         if(isBackPressed()){
@@ -221,9 +224,9 @@ public class Game extends BaseGameActivity{
      */
     private void createPowerUp(List<PowerUp> powerUps){
         // Toast
-        if(accomplishmentBox.getPoints() >= accomplishmentBox.getPointsToToast() /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
+        if(accomplishmentBox.getPoints() >= AccomplishmentBox.getPointsToToast() /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
             // If no powerUp is present and you have more than / equal 42 points
-            if(accomplishmentBox.getPoints() == accomplishmentBox.getPointsToToast()){    // First time 100 % chance
+            if(accomplishmentBox.getPoints() == AccomplishmentBox.getPointsToToast()){    // First time 100 % chance
                 powerUps.add(new NyanToast(view,this));
             } else if(Math.random()*100 < 33){    // 33% chance
                 powerUps.add(new NyanToast(view,this));

@@ -52,7 +52,7 @@ public class MainActivity extends BaseGameActivity {
     }
     
     public void muteToggle() {
-        if(volume != 0){
+        if(isVolumeNotZero()){
             volume = 0;
             view.setSpeaker(false);
         }else{
@@ -61,7 +61,11 @@ public class MainActivity extends BaseGameActivity {
         }
         view.invalidate();
     }
-    
+
+    private boolean isVolumeNotZero() {
+        return volume != 0;
+    }
+
     /**
      * Fills the socket with the medals that have already been collected.
      */

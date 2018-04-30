@@ -350,17 +350,18 @@ public class GameView extends SurfaceView{
      * Let's the player fall down dead, makes sure the runcycle stops
      * and invokes the next method for the dialog and stuff.
      */
+    //Separate the command deciding whether to show AD or not from the query, to check if an Ad is to be shown
     public void gameOver(){
         pause();
         playerDeadFall();
-        if(showAd()) {
+        if(shouldShowAd()) {
             msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.SHOW_AD));
         } else {
             msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
         }
     }
-
-    private boolean showAd() {
+    //the query that returns true if numbr of games per Ad threshold is reacehd.
+    private boolean shouldShowAd() {
         return game.getGameOverCounter() % Game.GAMES_PER_AD == 0;
     }
 

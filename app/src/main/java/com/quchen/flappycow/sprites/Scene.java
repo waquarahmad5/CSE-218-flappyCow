@@ -18,7 +18,7 @@ public class Scene extends Sprite implements SharedObjects {
     public Scene(GameView view, Game game, X_GROUND x_ground){
         super(view, game);
 
-        if(globalBitmap == null) {
+        if(isGlobalBitmapNull()) {
             switch (x_ground) {
                 case BACKGROUND: {
                     globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.bg);
@@ -31,6 +31,10 @@ public class Scene extends Sprite implements SharedObjects {
             }
         }
         this.bitmap = globalBitmap;
+    }
+
+    private boolean isGlobalBitmapNull() {
+        return globalBitmap == null;
     }
 
     /**
