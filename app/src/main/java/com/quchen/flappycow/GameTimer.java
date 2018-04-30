@@ -23,34 +23,22 @@ public class GameTimer {
 
     public void stopTimer()
     {
-        if(isNotNull(timer)){
+        if(isTimerNotNull(timer)){
             timer.cancel();
             timer.purge();
         }
-
-        if(isNotNull(task)){
+        if(isTimerTaskNotNull(task)){
             task.cancel();
         }
     }
 
-    private boolean isNotNull(Object timer) {
-
-        try {
-            if (timer instanceof Timer || timer instanceof TimerTask) {
-                return timer != null;
-            }
-            else{
-                throw new Exception("Expected instance of Timer");
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println("Catch Block") ;
-            System.out.println(e) ;
-        }
-
-        return false;
+    private boolean isTimerTaskNotNull(TimerTask task){
+        return task != null;
     }
+    private boolean isTimerNotNull(Timer timer) {
+    return timer != null;
+    }
+
 
     private void setUpTimerTask(){
         stopTimer();
