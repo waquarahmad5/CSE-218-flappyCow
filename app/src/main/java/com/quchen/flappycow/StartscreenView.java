@@ -88,12 +88,22 @@ public class StartscreenView extends View{
         if(isObjectNull(socket)) {
             socket = Util.getBitmapAlpha8(mainActivity, R.drawable.socket);
         }
-        
+
+        assert isObjectNull(socket) == false: "Socket is NULL";
+        assert isObjectNull(info) == false: "info is NULL";
+        assert isObjectNull(leaderboard) == false: "leaderboard is NULL";
+        assert isObjectNull(speaker) == false: "speaker is NULL";
+        assert isObjectNull(achievements) == false: "achievements is NULL";
+        assert isObjectNull(play) == false: "play is NULL";
+        assert isObjectNull(logInOut) == false: "logInOut is NULL";
+        assert isObjectNull(splash) == false: "splash is NULL";
+
         setWillNotDraw(false);
         setOnline(false);
         setSpeaker(true);
         setSocket(0);
     }
+
 
     @NonNull
     private Rect setRect(int i, Bitmap splash) {
