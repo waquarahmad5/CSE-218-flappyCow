@@ -30,6 +30,8 @@ public class GameTimer {
         if(isTimerTaskNotNull(task)){
             task.cancel();
         }
+
+
     }
 
     private boolean isTimerTaskNotNull(TimerTask task){
