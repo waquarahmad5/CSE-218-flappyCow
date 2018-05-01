@@ -47,7 +47,9 @@ public class MessageHandler extends Handler {
         }
 
         private void showGameOverDialog() {
+            int gc = game.getGameOverCounter();
             game.incrementGameCounter();
+            assert gc + 1 == game.getGameOverCounter() : "Counter did not increase";
             game.gameOverDialog.init();
             game.gameOverDialog.show();
         }

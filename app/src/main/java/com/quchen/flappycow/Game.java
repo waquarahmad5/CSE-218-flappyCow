@@ -249,11 +249,7 @@ public class Game extends BaseGameActivity{
     }
 
     public void incrementGameCounter(){
-        int gc = gameOverCounter;
-
         ++gameOverCounter;
-
-        assert gameOverCounter == gc + 1 : "Game Counter did not increment";
     }
 
     @Override
