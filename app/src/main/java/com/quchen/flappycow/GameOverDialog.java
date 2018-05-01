@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import org.jetbrains.annotations.Contract;
 
 public class GameOverDialog extends Dialog {
     public static final int REVIVE_PRICE = 5;

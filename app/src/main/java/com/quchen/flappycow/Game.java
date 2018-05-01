@@ -24,6 +24,8 @@ import android.os.Message;
 import android.widget.Toast;
 import com.quchen.flappycow.sprites.NyanToast;
 
+import org.jetbrains.annotations.Contract;
+
 import java.util.List;
 
 public class Game extends BaseGameActivity{
@@ -104,6 +106,7 @@ public class Game extends BaseGameActivity{
         musicPlayer.seekTo(0);    // Reset song to position 0
     }
     //Created a method to check for pre-condition
+    @Contract(pure = true)
     private boolean isMusicPlayerNull() {
         return musicPlayer == null;
     }

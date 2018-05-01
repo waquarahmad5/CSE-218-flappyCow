@@ -33,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.google.android.gms.games.Games;
+import org.jetbrains.annotations.Contract;
 
 public class GameView extends SurfaceView{
     

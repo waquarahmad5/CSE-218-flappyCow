@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class AccomplishmentBox{
     /** Points needed for a gold medal */
@@ -119,7 +120,7 @@ public class AccomplishmentBox{
      * @param activity activity that is needed for shared preferences
      * @return local stored score and achievements
      */
-    public static AccomplishmentBox getLocal(Activity activity){
+    public static AccomplishmentBox getLocal(@NotNull Activity activity){
         AccomplishmentBox box = new AccomplishmentBox();
         SharedPreferences saves = activity.getSharedPreferences(SAVE_NAME, 0);
         
@@ -137,7 +138,8 @@ public class AccomplishmentBox{
      * marks the data as online
      * @param activity activity that is needed for shared preferences
      */
-    public static void savesAreOnline(Activity activity){
+
+    public static void savesAreOnline(@NotNull Activity activity){
         SharedPreferences saves = activity.getSharedPreferences(SAVE_NAME, 0);
         SharedPreferences.Editor editor = saves.edit();
         editor.putBoolean(ONLINE_STATUS_KEY, true);
@@ -148,7 +150,8 @@ public class AccomplishmentBox{
      * marks the data as offline
      * @param activity activity that is needed for shared preferences
      */
-    public static void savesAreOffline(Activity activity){
+
+    public static void savesAreOffline(@NotNull Activity activity){
         SharedPreferences saves = activity.getSharedPreferences(SAVE_NAME, 0);
         SharedPreferences.Editor editor = saves.edit();
         editor.putBoolean(ONLINE_STATUS_KEY, false);
@@ -160,7 +163,7 @@ public class AccomplishmentBox{
      * @param activity activity that is needed for shared preferences
      * @return wheater the last data is already uploaded
      */
-    public static boolean isOnline(Activity activity){
+    public static boolean isOnline(@NotNull Activity activity){
         return activity.getSharedPreferences(SAVE_NAME, 0).getBoolean(ONLINE_STATUS_KEY, true);
     }
 

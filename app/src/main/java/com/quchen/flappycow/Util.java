@@ -3,6 +3,8 @@ package com.quchen.flappycow;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class Util {
 private static final int DEFAULT_DENSITY = 1024;
@@ -29,7 +31,7 @@ private static final int DEFAULT_DENSITY = 1024;
         return b;
     }
     
-    public static Bitmap getBitmapAlpha8(Context context, int id) {
+    public static Bitmap getBitmapAlpha8(@NotNull Context context, int id) {
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inPreferredConfig = Bitmap.Config.ALPHA_8;
         return BitmapFactory.decodeResource(context.getResources(), id, bitmapOptions);
@@ -40,7 +42,7 @@ private static final int DEFAULT_DENSITY = 1024;
      * @param context
      * @return
      */
-    public static float getScaleFactor(Context context){
+    public static float getScaleFactor(@NotNull Context context){
         // 1.2 @ 720x1280 px
         return context.getResources().getDisplayMetrics().heightPixels / 1066f;
     }

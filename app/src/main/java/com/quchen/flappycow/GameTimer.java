@@ -2,6 +2,7 @@ package com.quchen.flappycow;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import org.jetbrains.annotations.Contract;
 
 public class GameTimer {
     private Timer timer;
@@ -34,9 +35,11 @@ public class GameTimer {
 
     }
 
+    @Contract(value = "null -> false; !null -> true", pure = true)
     private boolean isTimerTaskNotNull(TimerTask task){
         return task != null;
     }
+    @Contract(value = "null -> false; !null -> true", pure = true)
     private boolean isTimerNotNull(Timer timer) {
     return timer != null;
     }

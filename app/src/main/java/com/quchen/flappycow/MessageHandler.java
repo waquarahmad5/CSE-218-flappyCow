@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+
 public class MessageHandler extends Handler {
 
         public static final int GAME_OVER_DIALOG = 0;

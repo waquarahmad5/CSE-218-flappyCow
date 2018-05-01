@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 import com.google.android.gms.games.Games;
+import org.jetbrains.annotations.Contract;
 
 public class StartscreenView extends View{
     
@@ -110,6 +111,7 @@ public class StartscreenView extends View{
         return new Rect(0, i, splash.getWidth(), splash.getHeight());
     }
     //Separated the query to check for null for object from the command
+    @Contract(value = "null -> true; !null -> false", pure = true)
     private boolean isObjectNull(Bitmap splash) {
         return splash == null;
     }
