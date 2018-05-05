@@ -47,6 +47,7 @@ public class Cow extends PlayableCharacter{
         
         this.accessory = new Accessory(view, game);
         this.deadBehavior = new DeadCow();
+        movePlayer = new MoveCow();
     }
 
     private boolean isGlobalBitmapNull() {
@@ -71,23 +72,10 @@ public class Cow extends PlayableCharacter{
      * Calls super.move
      * and manages the frames. (flattering cape)
      */
-    @Override
+
     public void move(){
-        changeToNextFrame();
-        super.move();
-        
-        // manage frames
-        if(row != 3){
-            // not dead
-            if(speedY > getTabSpeed() / 3 && speedY < getMaxSpeed() * 1/3){
-                row = 0;
-            }else if(speedY > 0){
-                row = 1;
-            }else{
-                row = 2;
-            }
-        }
-        
+        movePlayer.move(this);
+
         if(this.accessory != null){
             this.accessory.moveTo(this.x, this.y);
         }

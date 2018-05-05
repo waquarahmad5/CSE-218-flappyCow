@@ -37,16 +37,16 @@ public class NyanCat extends PlayableCharacter {
         
         this.rainbow = new Rainbow(view, game);
         this.deadBehavior = new DeadCat();
+        movePlayer = new MoveCat();
     }
     
     /**
      * Moves itself via super.move
      * and moves the rainbow and manages its frames
      */
-    @Override
+
     public void move(){
-        super.move();
-        
+        movePlayer.move(this);
         if(rainbow != null){
             manageRainbowMovement();            
         }
@@ -96,5 +96,6 @@ public class NyanCat extends PlayableCharacter {
         this.row = 0;
         manageRainbowMovement();
     }
+
 
 }
