@@ -54,7 +54,7 @@ public abstract class Sprite {
     
     /** The context */
     protected Game game;
-
+    MoveNonPlayableCharacterBehaviour moveNonPlayer;
     /**
      * Height of the ground relative to the height of the bitmap
      */
