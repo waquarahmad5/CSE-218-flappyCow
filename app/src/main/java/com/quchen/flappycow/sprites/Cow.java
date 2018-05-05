@@ -46,6 +46,7 @@ public class Cow extends PlayableCharacter{
         }
         
         this.accessory = new Accessory(view, game);
+        this.deadBehavior = new DeadCow();
     }
 
     private boolean isGlobalBitmapNull() {
@@ -110,10 +111,7 @@ public class Cow extends PlayableCharacter{
      */
 
     public void dead() {
-        this.row = 3;
-        this.frameTime = 3;
-        this.isDead = true;
-        this.speedY = getMaxSpeed()/2;
+        deadBehavior.dead(this);
     }
 
     public void revive() {

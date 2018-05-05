@@ -13,6 +13,7 @@ import com.quchen.flappycow.GameView;
 public abstract class PlayableCharacter extends Sprite implements DynamicObjects,SharedObjects{
     
     protected boolean isDead = false;
+    DeadBehavior deadBehavior;
     
     public PlayableCharacter(GameView view, Game game) {
         super(view, game);
@@ -65,7 +66,7 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
      * Falling speed limit
      * @return
      */
-    protected float getMaxSpeed(){
+    public float getMaxSpeed(){
         // 25 @ 720x1280 px
         return view.getHeight() / 51.2f;
     }
@@ -121,11 +122,17 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
         return this.y + this.height > this.view.getHeight() - this.view.getHeight() * GROUND_HEIGHT;
     }
 
+
+
     /**
      * Checks whether the sprite is touching the sky.
      * @return
      */
     public boolean isTouchingSky(){
         return this.y < 0;
+    }
+
+    public void setIsDead(boolean isDead) {
+        this.isDead = isDead;
     }
 }

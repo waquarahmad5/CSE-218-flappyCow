@@ -36,6 +36,7 @@ public class NyanCat extends PlayableCharacter {
         this.y = game.getResources().getDisplayMetrics().heightPixels / 2;
         
         this.rainbow = new Rainbow(view, game);
+        this.deadBehavior = new DeadCat();
     }
     
     /**
@@ -85,9 +86,7 @@ public class NyanCat extends PlayableCharacter {
      */
 
     public void dead() {
-        this.isDead = true;
-        this.speedY = getMaxSpeed()/2;
-        this.row = 1;
+        deadBehavior.dead(this);
         
         // Maybe an explosion
     }
