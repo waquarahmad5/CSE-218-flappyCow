@@ -80,6 +80,10 @@ public class Cow extends PlayableCharacter{
         }
     }
 
+    /**
+     * Draws the Cow onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);

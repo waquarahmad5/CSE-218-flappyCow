@@ -6,8 +6,9 @@ import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
+import android.graphics.Canvas;
 
-public class Terrain extends Sprite implements StaticObjects,SharedObjects {
+public class Terrain extends Sprite implements StaticObjects {
     /**
      * Static bitmap to reduce memory usage.
      */
@@ -17,6 +18,7 @@ public class Terrain extends Sprite implements StaticObjects,SharedObjects {
 
     public Terrain(GameView view, Game game, type obstacleType) {
         super(view, game);
+        moveNonPlayer = new MoveNonPlayer();
         if(globalBitmap == null){
             switch(obstacleType){
                 case WOODLOG:
@@ -35,6 +37,7 @@ public class Terrain extends Sprite implements StaticObjects,SharedObjects {
         this.bitmap = globalBitmap;
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
+        drawBehavior = new DrawSpriteBehavior();
     }
 
     /**
@@ -93,8 +96,14 @@ public class Terrain extends Sprite implements StaticObjects,SharedObjects {
     public void move(){
         // changeToNextFrame();
         // Its more efficient if only the classes that need this implement it in their move method.
+        moveNonPlayer.move(this);
+    }
 
-        x+= speedX;
-        y+= speedY;
+    /**
+     * Draws the Terrain onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
     }
 }

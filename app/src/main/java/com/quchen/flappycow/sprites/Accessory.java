@@ -10,6 +10,7 @@ public class Accessory extends Sprite {
     
     public Accessory(GameView view, Game game) {
         super(view, game);
+        drawBehavior = new DrawSpriteBehavior();
     }
 
     public void moveTo(int x, int y) {
@@ -22,11 +23,13 @@ public class Accessory extends Sprite {
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
     }
-
-    @Override
+    /**
+     * Draws the Accessory onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
     public void draw(Canvas canvas) {
         if(this.bitmap != null){
-            super.draw(canvas);
+            drawBehavior.draw(canvas, this);
         }
     }
 }
