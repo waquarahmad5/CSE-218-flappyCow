@@ -4,10 +4,9 @@ import android.media.MediaPlayer;
 
 import org.jetbrains.annotations.Contract;
 
-public class MyMediaPlayerClient {
+public class MyMediaPlayerClient extends MediaPlayerAbstract {
 
-    MediaPlayerInterface musicPlayer;
-    Game g;
+
     MyMediaPlayerClient(Game g){
         this.g = g;
     }
@@ -17,7 +16,7 @@ public class MyMediaPlayerClient {
         }
     }
     //Created a method to check for pre-condition
-    @Contract(pure = true)
+    @Override
     public boolean isMusicPlayerNull() {
         return musicPlayer == null;
     }

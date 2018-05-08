@@ -51,7 +51,7 @@ public class Game extends BaseGameActivity{
      * nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan
      * Does someone know the second verse ???
      */
-    public static MyMediaPlayerClient musicPlayer = null;
+    public static MediaPlayerAbstract musicPlayer = null;
     
     /**
      * Whether the music should play or not
