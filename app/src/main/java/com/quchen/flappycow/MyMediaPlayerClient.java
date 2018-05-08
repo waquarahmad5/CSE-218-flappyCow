@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Contract;
 
 public class MyMediaPlayerClient {
 
-    MediaPlayerWrapper musicPlayer;
+    MediaPlayerInterface musicPlayer;
     Game g;
     MyMediaPlayerClient(Game g){
         this.g = g;
