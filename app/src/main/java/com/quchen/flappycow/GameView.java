@@ -10,7 +10,7 @@ package com.quchen.flappycow;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.android.gms.ads.AdListener;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
@@ -32,8 +32,6 @@ import android.os.Message;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import com.google.android.gms.games.Games;
-import org.jetbrains.annotations.Contract;
 
 public class GameView extends SurfaceView{
     
@@ -391,14 +389,9 @@ public class GameView extends SurfaceView{
 
         AdRequest adRequest = new AdRequest.Builder().build();
         interstitial.loadAd(adRequest);
-        interstitial.setAdListener(new MyAdListener());
+        interstitial.setAdListener(new AdListenerTarget());
     }
 
-    private class MyAdListener extends AdListener {
-        public void onAdClosed() {
-            msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
-        }
-    }
 
     public List<Obstacle> getObstacles()
     {
