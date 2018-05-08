@@ -20,9 +20,7 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
 
     public PlayableCharacter(GameView view, Game game) {
         super(view, game);
-        //movePlayer.move(this);
         drawBehavior = new DrawSpriteBehavior();
-        move();
     }
     
     /**
@@ -31,14 +29,7 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
      * Manages the speed changes -> Falling
      */
     public void move() {}
-    /**
-     * A dead character falls slowly to the ground.
-     */
-//    public void dead(){
-//        this.isDead = true;
-//        this.speedY = getMaxSpeed()/2;
-//    }
-    
+
     /**
      * Let the character flap up.
      */

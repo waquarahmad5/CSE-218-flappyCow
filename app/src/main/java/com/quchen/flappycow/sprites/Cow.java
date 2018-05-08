@@ -69,10 +69,9 @@ public class Cow extends PlayableCharacter{
     }
     
     /**
-     * Calls super.move
+     * Calls move
      * and manages the frames. (flattering cape)
      */
-
     public void move(){
         movePlayer.move(this);
 

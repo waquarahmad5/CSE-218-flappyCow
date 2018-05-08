@@ -123,5 +123,4 @@ public class Obstacle extends Sprite implements StaticObjects,SharedObjects{
     public void onCollision() {
         Game.soundPool.play(collideSound, MainActivity.volume/SOUND_VOLUME_DIVIDER, MainActivity.volume/SOUND_VOLUME_DIVIDER, 0, 0, 1);
     }
-
 }
