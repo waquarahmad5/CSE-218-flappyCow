@@ -7,6 +7,8 @@
 
 package com.quchen.flappycow.sprites;
 
+import android.graphics.Canvas;
+
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
@@ -18,6 +20,7 @@ public class PauseButton extends Sprite implements SharedObjects{
         this.bitmap = Util.getScaledBitmapAlpha8(game, R.drawable.pause_button);
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
+        drawBehavior = new DrawSpriteBehavior();
     }
     
     /**
@@ -27,5 +30,14 @@ public class PauseButton extends Sprite implements SharedObjects{
     public void move(){
         this.x = this.view.getWidth() - this.width;
         this.y = 0;
+    }
+
+    /**
+     * Draws the frame of the bitmap specified by col and row
+     * at the position given by x and y
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
     }
 }

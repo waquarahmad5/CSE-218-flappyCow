@@ -42,7 +42,7 @@ public class NyanToast extends PowerUp {
         view.changeToNyanCat();
     }
 
-    public boolean isOutOfRange() {
-        return this.x + width < 0;
-    }
+//    public boolean isOutOfRange() {
+//        return this.x + width < 0;
+//    }
 }
