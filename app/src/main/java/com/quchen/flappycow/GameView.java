@@ -391,14 +391,10 @@ public class GameView extends SurfaceView{
 
         AdRequest adRequest = new AdRequest.Builder().build();
         interstitial.loadAd(adRequest);
-        interstitial.setAdListener(new MyAdListener());
+        interstitial.setAdListener(new AdListenerTarget());
     }
 
-    private class MyAdListener extends AdListener {
-        public void onAdClosed() {
-            msgHandler.sendMessage(Message.obtain(msgHandler, MessageHandler.GAME_OVER_DIALOG));
-        }
-    }
+
 
     public List<Obstacle> getObstacles()
     {
