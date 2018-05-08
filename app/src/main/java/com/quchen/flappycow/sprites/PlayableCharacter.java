@@ -7,8 +7,6 @@
 
 package com.quchen.flappycow.sprites;
 
-import android.graphics.Canvas;
-
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 
@@ -21,8 +19,6 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
     public PlayableCharacter(GameView view, Game game) {
         super(view, game);
         //movePlayer.move(this);
-        drawBehavior = new DrawSpriteBehavior();
-        move();
     }
     
     /**
@@ -119,14 +115,5 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
 
     public void setIsDead(boolean isDead) {
         this.isDead = isDead;
-    }
-
-    /**
-     * Draws the frame of the bitmap specified by col and row
-     * at the position given by x and y
-     * @param canvas Canvas that should be drawn on
-     */
-    public void draw(Canvas canvas){
-        drawBehavior.draw(canvas, this);
     }
 }

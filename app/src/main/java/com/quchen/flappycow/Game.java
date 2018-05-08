@@ -51,7 +51,7 @@ public class Game extends BaseGameActivity{
      * nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan
      * Does someone know the second verse ???
      */
-    public static MediaPlayer musicPlayer = null;
+    public static MyMediaPlayerClient musicPlayer = null;
     
     /**
      * Whether the music should play or not
@@ -84,7 +84,8 @@ public class Game extends BaseGameActivity{
         gameOverDialog = new GameOverDialog(this);
         setContentView(view);
         // Query check takes place in the client, isMusicPlayerNull passed as a boolean argument
-        initMusicPlayer(isMusicPlayerNull());
+        musicPlayer = new MyMediaPlayerClient(this);
+        musicPlayer.initMusicPlayer(musicPlayer.isMusicPlayerNull());
         loadCoins();
         if(gameOverCounter % GAMES_PER_AD == 0) {
             view.setupAd();
@@ -96,20 +97,6 @@ public class Game extends BaseGameActivity{
      * and sets the position to 0.
      */
     //Supplier, avoids the query check on supplier.
-    public void initMusicPlayer(boolean isNull){
-        if(isNull){
-            // to avoid unnecessary reinitialisation
-            musicPlayer = MediaPlayer.create(this, R.raw.nyan_cat_theme);
-            musicPlayer.setLooping(true);
-            musicPlayer.setVolume(MainActivity.volume, MainActivity.volume);
-        }
-        musicPlayer.seekTo(0);    // Reset song to position 0
-    }
-    //Created a method to check for pre-condition
-    @Contract(pure = true)
-    private boolean isMusicPlayerNull() {
-        return musicPlayer == null;
-    }
 
     private void loadCoins(){
         SharedPreferences saves = this.getSharedPreferences(coin_save, 0);

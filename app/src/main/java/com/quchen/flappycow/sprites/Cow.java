@@ -81,10 +81,6 @@ public class Cow extends PlayableCharacter{
         }
     }
 
-    /**
-     * Draws itself via drawBehavior
-     * and the rainbow.
-     */
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
