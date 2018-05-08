@@ -24,6 +24,7 @@ public class Rainbow extends Sprite implements SharedObjects {
     
     public Rainbow(GameView view, Game game) {
         super(view, game);
+        moveNonPlayer = new MoveNonPlayer();
         if(globalBitmap == null){
             globalBitmap = Util.getScaledBitmapAlpha8(game, R.drawable.rainbow);
         }
@@ -36,8 +37,7 @@ public class Rainbow extends Sprite implements SharedObjects {
 
     public void move() {
         changeToNextFrame();
-        x+= speedX;
-        y+= speedY;
+        moveNonPlayer.move(this);
     }
 
     /**

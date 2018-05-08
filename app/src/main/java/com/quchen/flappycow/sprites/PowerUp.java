@@ -14,8 +14,9 @@ import android.graphics.Canvas;
 public abstract class PowerUp extends Sprite implements StaticObjects,SharedObjects{
     public PowerUp(GameView view, Game game) {
         super(view, game);
-        init();
         drawBehavior = new DrawSpriteBehavior();
+        moveNonPlayer = new MoveNonPlayer();
+        init();
     }
 
     /**
@@ -62,8 +63,7 @@ public abstract class PowerUp extends Sprite implements StaticObjects,SharedObje
         // changeToNextFrame();
         // Its more efficient if only the classes that need this implement it in their move method.
 
-        x+= speedX;
-        y+= speedY;
+        moveNonPlayer.move(this);
     }
 
     /**

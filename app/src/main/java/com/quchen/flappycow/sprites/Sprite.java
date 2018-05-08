@@ -16,6 +16,8 @@ public abstract class Sprite {
 
     DrawBehavior drawBehavior;
 
+    MoveNonPlayableCharacterBehaviour moveNonPlayer;
+
     /** The bitmaps that holds the frames that should be drawn */
     protected Bitmap bitmap;
     
