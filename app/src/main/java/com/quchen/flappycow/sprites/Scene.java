@@ -31,6 +31,7 @@ public class Scene extends Sprite implements SharedObjects {
             }
         }
         this.bitmap = globalBitmap;
+        moveNonPlayer = new MoveNonPlayer();
     }
 
     private boolean isGlobalBitmapNull() {
@@ -69,8 +70,6 @@ public class Scene extends Sprite implements SharedObjects {
      public void move(){
         // changeToNextFrame();
         // Its more efficient if only the classes that need this implement it in their move method.
-
-        x+= speedX;
-        y+= speedY;
+         moveNonPlayer.move(this);
     }
 }
