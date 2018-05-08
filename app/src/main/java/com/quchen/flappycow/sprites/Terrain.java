@@ -6,6 +6,7 @@ import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
+import android.graphics.Canvas;
 
 public class Terrain extends Sprite implements StaticObjects,SharedObjects {
     /**
@@ -35,6 +36,7 @@ public class Terrain extends Sprite implements StaticObjects,SharedObjects {
         this.bitmap = globalBitmap;
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
+        drawBehavior = new DrawSpriteBehavior();
     }
 
     /**
@@ -96,5 +98,13 @@ public class Terrain extends Sprite implements StaticObjects,SharedObjects {
 
         x+= speedX;
         y+= speedY;
+    }
+
+    /**
+     * Draws the powerUp onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
     }
 }

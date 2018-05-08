@@ -13,6 +13,7 @@ import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 public class Tutorial extends Sprite implements SharedObjects {
     public static Bitmap globalBitmap;
@@ -25,6 +26,7 @@ public class Tutorial extends Sprite implements SharedObjects {
         this.bitmap = globalBitmap;
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
+        drawBehavior = new DrawSpriteBehavior();
     }
 
     /**
@@ -34,5 +36,11 @@ public class Tutorial extends Sprite implements SharedObjects {
         this.x = view.getWidth() / 2 - this.width / 2;
         this.y = view.getHeight() / 2 - this.height / 2;
     }
-
+    /**
+     * Draws the Tutorial onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
+    }
 }

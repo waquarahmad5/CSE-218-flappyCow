@@ -9,13 +9,14 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import android.graphics.Canvas;
 
 public abstract class PowerUp extends Sprite implements StaticObjects,SharedObjects{
     public PowerUp(GameView view, Game game) {
         super(view, game);
         init();
+        drawBehavior = new DrawSpriteBehavior();
     }
-
 
     /**
      * Sets this sprite above the visible screen.
@@ -63,5 +64,13 @@ public abstract class PowerUp extends Sprite implements StaticObjects,SharedObje
 
         x+= speedX;
         y+= speedY;
+    }
+
+    /**
+     * Draws the powerUp onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
     }
 }

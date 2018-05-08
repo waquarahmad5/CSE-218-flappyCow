@@ -9,12 +9,12 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
-
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public abstract class Sprite {
+
+    DrawBehavior drawBehavior;
 
     /** The bitmaps that holds the frames that should be drawn */
     protected Bitmap bitmap;
@@ -66,17 +66,6 @@ public abstract class Sprite {
         frameTime = 1;
         src = new Rect();
         dst = new Rect();
-    }
-    
-    /**
-     * Draws the frame of the bitmap specified by col and row
-     * at the position given by x and y
-     * @param canvas Canvas that should be drawn on
-     */
-    public void draw(Canvas canvas){
-        src.set(col*width, row*height, (col+1)*width, (row+1)*height);
-        dst.set(x, y, x+width, y+height);
-        canvas.drawBitmap(bitmap, src, dst, null);
     }
     
     /**

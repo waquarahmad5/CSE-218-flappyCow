@@ -11,6 +11,7 @@ import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
+import android.graphics.Canvas;
 
 import android.graphics.Bitmap;
 
@@ -29,6 +30,7 @@ public class Rainbow extends Sprite implements SharedObjects {
         this.bitmap = globalBitmap;
         this.width = this.bitmap.getWidth()/(colNr = 4);
         this.height = this.bitmap.getHeight()/3;
+        drawBehavior = new DrawSpriteBehavior();
     }
 
 
@@ -37,6 +39,12 @@ public class Rainbow extends Sprite implements SharedObjects {
         x+= speedX;
         y+= speedY;
     }
-    
-    
+
+    /**
+     * Draws the powerUp onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
+    }
 }
