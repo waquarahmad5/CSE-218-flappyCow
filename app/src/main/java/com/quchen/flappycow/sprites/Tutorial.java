@@ -30,7 +30,6 @@ public class Tutorial extends Sprite implements SharedObjects {
     /**
      * Sets the position to the center of the view.
      */
-
     public void move() {
         this.x = view.getWidth() / 2 - this.width / 2;
         this.y = view.getHeight() / 2 - this.height / 2;
