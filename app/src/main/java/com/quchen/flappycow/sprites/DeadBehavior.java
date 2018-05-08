@@ -6,5 +6,8 @@ import android.graphics.Rect;
 
 public interface DeadBehavior {
 
+    /**
+     * A dead character falls slowly to the ground.
+     */
     void dead(PlayableCharacter player);
 }
