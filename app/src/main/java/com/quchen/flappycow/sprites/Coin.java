@@ -24,7 +24,6 @@ public class Coin extends PowerUp implements SharedObjects {
 
     public Coin(GameView view, Game game) {
         super(view, game);
-        moveNonPlayer = new MoveNonPlayer();
         if(globalBitmap == null){
             globalBitmap = Util.getScaledBitmapAlpha8(game, R.drawable.coin);
         }
@@ -60,6 +59,7 @@ public class Coin extends PowerUp implements SharedObjects {
 
     public void move() {
         changeToNextFrame();
-        moveNonPlayer.move(this);
+        x+= speedX;
+        y+= speedY;
     }
 }
