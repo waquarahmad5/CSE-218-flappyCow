@@ -13,6 +13,7 @@ import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 public class Rainbow extends Sprite implements SharedObjects {
     
@@ -30,6 +31,7 @@ public class Rainbow extends Sprite implements SharedObjects {
         this.bitmap = globalBitmap;
         this.width = this.bitmap.getWidth()/(colNr = 4);
         this.height = this.bitmap.getHeight()/3;
+        drawBehavior = new DrawSpriteBehavior();
     }
 
 
@@ -37,6 +39,15 @@ public class Rainbow extends Sprite implements SharedObjects {
         changeToNextFrame();
         moveNonPlayer.move(this);
     }
-    
+
+
+    /**
+     * Draws the frame of the bitmap specified by col and row
+     * at the position given by x and y
+     * @param canvas Canvas that should be drawn on
+     */
+    public void draw(Canvas canvas){
+        drawBehavior.draw(canvas, this);
+    }
     
 }

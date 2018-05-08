@@ -61,7 +61,7 @@ public class Obstacle extends Sprite implements StaticObjects,SharedObjects{
     /**
      * Draws spider and log.
      */
-    @Override
+//    @Override
     public void draw(Canvas canvas) {
         spider.draw(canvas);
         log.draw(canvas);

@@ -43,7 +43,6 @@ public class Scene extends Sprite implements SharedObjects {
      * When the bitmap is scrolled to far to the left, so it won't cover the whole screen,
      * the bitmap will be drawn another time behind the first one.
      */
-    @Override
     public void draw(Canvas canvas) {
         double factor = (1.0 * canvas.getHeight()) / bitmap.getHeight();
 

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/BaseGameUtils/BaseGameUtils.iml" filepath="$PROJECT_DIR$/BaseGameUtils/BaseGameUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/FlappyCow.iml" filepath="$PROJECT_DIR$/FlappyCow.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cse-218-course-long-refactoring-gameofthreads.iml" filepath="$PROJECT_DIR$/cse-218-course-long-refactoring-gameofthreads.iml" />
     </modules>
   </component>
 </project>
