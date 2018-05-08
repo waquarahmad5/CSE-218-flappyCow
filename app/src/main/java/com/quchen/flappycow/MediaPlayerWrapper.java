@@ -2,7 +2,7 @@ package com.quchen.flappycow;
 
 import android.media.MediaPlayer;
 
-public class MediaPlayerWrapper {
+public class MediaPlayerWrapper implements MediaPlayerInterface {
 
     MediaPlayer legacyPlayer;
 
@@ -13,11 +13,11 @@ public class MediaPlayerWrapper {
         legacyPlayer.setVolume(MainActivity.volume, MainActivity.volume);
         legacyPlayer.seekTo(0);
     }
-    void setLooping(){
-
-
+    public void setLooping(boolean val){
+        legacyPlayer.setLooping(val);
     }
-    void setVolume(float left_vol, float right_vol){
+    public void setVolume(float left_vol, float right_vol){
+        legacyPlayer.setVolume(left_vol, right_vol);
 
     }
     public boolean isPlaying(){
@@ -27,10 +27,11 @@ public class MediaPlayerWrapper {
     public void pause(){
         legacyPlayer.pause();
     }
-    void start(){
+    public void start(){
         legacyPlayer.start();
     }
-    void seekTo() {
+    public void seekTo(int x) {
+        legacyPlayer.seekTo(x);
 
     }
 
