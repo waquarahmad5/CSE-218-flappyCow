@@ -100,7 +100,7 @@ public class Terrain extends Sprite implements StaticObjects {
     }
 
     /**
-     * Draws the powerUp onto the canvas
+     * Draws the Terrain onto the canvas
      * @param canvas Canvas that should be drawn on
      */
     public void draw(Canvas canvas){

@@ -41,7 +41,7 @@ public class Rainbow extends Sprite implements SharedObjects {
     }
 
     /**
-     * Draws the powerUp onto the canvas
+     * Draws the Rainbow onto the canvas
      * @param canvas Canvas that should be drawn on
      */
     public void draw(Canvas canvas){

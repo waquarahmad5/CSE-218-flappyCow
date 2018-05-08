@@ -32,8 +32,7 @@ public class PauseButton extends Sprite implements SharedObjects{
     }
 
     /**
-     * Draws the frame of the bitmap specified by col and row
-     * at the position given by x and y
+     * Draws the PauseButton onto the canvas
      * @param canvas Canvas that should be drawn on
      */
     public void draw(Canvas canvas){

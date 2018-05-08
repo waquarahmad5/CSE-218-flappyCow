@@ -81,8 +81,8 @@ public class Cow extends PlayableCharacter{
     }
 
     /**
-     * Draws itself via drawBehavior
-     * and the rainbow.
+     * Draws the Cow onto the canvas
+     * @param canvas Canvas that should be drawn on
      */
     @Override
     public void draw(Canvas canvas) {

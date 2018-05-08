@@ -23,7 +23,10 @@ public class Accessory extends Sprite {
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
     }
-
+    /**
+     * Draws the Accessory onto the canvas
+     * @param canvas Canvas that should be drawn on
+     */
     public void draw(Canvas canvas) {
         if(this.bitmap != null){
             drawBehavior.draw(canvas, this);

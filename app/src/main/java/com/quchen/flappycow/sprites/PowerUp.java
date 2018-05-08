@@ -67,7 +67,7 @@ public abstract class PowerUp extends Sprite implements StaticObjects,SharedObje
     }
 
     /**
-     * Draws the powerUp onto the canvas
+     * Draws the PowerUp onto the canvas
      * @param canvas Canvas that should be drawn on
      */
     public void draw(Canvas canvas){

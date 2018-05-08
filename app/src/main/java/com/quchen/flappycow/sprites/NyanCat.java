@@ -68,8 +68,8 @@ public class NyanCat extends PlayableCharacter {
     }
 
     /**
-     * Draws itself via super.draw
-     * and the rainbow.
+     * Draws the NyanCat onto the canvas
+     * @param canvas Canvas that should be drawn on
      */
     @Override
     public void draw(Canvas canvas) {
