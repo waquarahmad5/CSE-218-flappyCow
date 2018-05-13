@@ -35,6 +35,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import org.hamcrest.core.IsInstanceOf;
+
 public class GameView extends SurfaceView{
     
     /** Milliseconds for game timer tick */
@@ -66,7 +68,7 @@ public class GameView extends SurfaceView{
         super(context);
         this.game = (Game) context;
         setFocusable(true);
-
+        observers = new ArrayList<Sprite>();
         holder = getHolder();
         player = new Cow(this, game);
         register(player);
@@ -79,7 +81,7 @@ public class GameView extends SurfaceView{
         tutorial = new Tutorial(this, game);
         register(tutorial);
         msgHandler = new MessageHandler(this.game, this);
-        observers = new ArrayList<Sprite>();
+
         powerUps = new ArrayList<PowerUp>();
         obstacles = new ArrayList<Obstacle>();
     }
@@ -123,14 +125,33 @@ public class GameView extends SurfaceView{
         createObstacle();
         notifyFrameChanged();
         //move();
-        draw();
+        //draw();
     }
 
     public void notifyFrameChanged() {
-        for (Sprite s: observers) s.update();
+        int speed = getSpeedX();
+        System.out.println(observers.indexOf(player));
+        while(!holder.getSurface().isValid()){
+            /*wait*/
+            try { Thread.sleep(10); } catch (InterruptedException e) { e.printStackTrace(); }
+        }
+
+        Canvas canvas = getCanvas();
+        for (Sprite s: observers) s.update(speed, canvas);
+
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(getScoreTextMetrics());
+        canvas.drawText(game.getResources().getString(R.string.onscreen_score_text) + " " + game.accomplishmentBox.getPoints()
+                        + " / " + game.getResources().getString(R.string.onscreen_coin_text) + " " + game.accomplishmentBox.getCoins(),
+                0, getScoreTextMetrics(), paint);
+
+        holder.unlockCanvasAndPost(canvas);
+
     }
     public void register(Sprite s) {
         observers.add(s);
+        System.out.println(observers.size());
 
     }
     public void unregister ( Sprite s) {
@@ -219,6 +240,8 @@ public class GameView extends SurfaceView{
         background.draw(canvas);
         for(Obstacle r : obstacles){
             r.draw(canvas);
+
+
         }
         for(PowerUp p : powerUps){
             p.draw(canvas);
@@ -261,6 +284,7 @@ public class GameView extends SurfaceView{
     private void checkObstaclesOutOfRange() {
         for (int i = 0; i < obstacles.size(); i++) {
             if (this.obstacles.get(i).isOutOfRange()) {
+                unregister(obstacles.get(i));
                 this.obstacles.remove(i);
                 i--;
             }
@@ -269,6 +293,7 @@ public class GameView extends SurfaceView{
     private void checkPowerUpsOutOfRange() {
         for(int i=0; i<powerUps.size(); i++){
             if(this.powerUps.get(i).isOutOfRange()){
+                unregister(powerUps.get(i));
                 this.powerUps.remove(i);
                 i--;
             }
@@ -297,6 +322,7 @@ public class GameView extends SurfaceView{
         for(int i=0; i<powerUps.size(); i++){
             if(this.powerUps.get(i).isColliding(player)){
                 this.powerUps.get(i).onCollision();
+                unregister(powerUps.get(i));
                 this.powerUps.remove(i);
                 i--;
             }
@@ -307,6 +333,7 @@ public class GameView extends SurfaceView{
      * if no obstacle is present a new one is created
      */
     private void createObstacle(){
+        System.out.println(obstacles.size());
         if(obstacles.size() < 1){
             Obstacle obs = new Obstacle(this, game);
             obstacles.add(obs);
@@ -322,19 +349,20 @@ public class GameView extends SurfaceView{
             o.setSpeedX(-getSpeedX());
             o.move();
         }
-        for(PowerUp p : powerUps){
-            p.move();
-        }
-        
-        background.setSpeedX(-getSpeedX()/2);
-        background.move();
-        
-        foreground.setSpeedX(-getSpeedX()*4/3);
-        foreground.move();
-        
-        pauseButton.move();
-        
-        player.move();
+//        for(PowerUp p : powerUps){
+//            p.move();
+//        }
+//
+//        background.setSpeedX(-getSpeedX()/2);
+//        background.move();
+//
+//        foreground.setSpeedX(-getSpeedX()/2);
+//        //foreground.setSpeedX(-getSpeedX()*4/3);
+//        foreground.move();
+//
+//        pauseButton.move();
+//
+//        player.move();
     }
     
     /**
@@ -430,6 +458,9 @@ public class GameView extends SurfaceView{
     public void setObstacles(List<Obstacle> obs)
     {
         this.obstacles = obs;
+        for (Obstacle o: obstacles ) {
+            observers.add(o);
+        }
     }
     public void setPowerUps(List<PowerUp> powers)
     {

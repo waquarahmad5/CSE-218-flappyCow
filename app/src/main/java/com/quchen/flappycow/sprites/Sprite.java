@@ -10,6 +10,7 @@ package com.quchen.flappycow.sprites;
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public abstract class Sprite {
@@ -155,7 +156,7 @@ public abstract class Sprite {
         return width;
     }
 
-    public abstract void update();
+    public abstract void update( int speed, Canvas canvas );
 
 
 }

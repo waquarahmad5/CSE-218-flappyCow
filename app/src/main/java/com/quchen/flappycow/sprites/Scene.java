@@ -14,7 +14,7 @@ public class Scene extends Sprite implements SharedObjects {
     public Bitmap globalBitmap;
 
     public enum X_GROUND {FOREGROUND, BACKGROUND}
-
+    int state;
     public Scene(GameView view, Game game, X_GROUND x_ground){
         super(view, game);
 
@@ -22,10 +22,12 @@ public class Scene extends Sprite implements SharedObjects {
             switch (x_ground) {
                 case BACKGROUND: {
                     globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.bg);
+                    state = 0;
                     break;
                 }
                 case FOREGROUND: {
                     globalBitmap = Util.getDownScaledBitmapAlpha8(game, R.drawable.fg);
+                    state = 1;
                     break;
                 }
             }
@@ -73,8 +75,14 @@ public class Scene extends Sprite implements SharedObjects {
          moveNonPlayer.move(this);
     }
 
-    public void update() {
-        this.setSpeedX(-getSpeedX()*4/3);
-        this.move();
+    public void update( int speed, Canvas canvas ) {
+        if (state == 0) {
+            this.setSpeedX(-speed / 2);
+        }
+        else {
+            this.setSpeedX(-speed * 4 / 3);
+        }
+        move();
+        draw(canvas);
     }
 }

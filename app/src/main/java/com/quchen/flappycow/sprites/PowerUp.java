@@ -74,7 +74,8 @@ public abstract class PowerUp extends Sprite implements StaticObjects,SharedObje
         drawBehavior.draw(canvas, this);
     }
 
-    public void update() {
-        this.move();
+    public void update( int x, Canvas canvas ) {
+        move();
+        draw(canvas);
     }
 }

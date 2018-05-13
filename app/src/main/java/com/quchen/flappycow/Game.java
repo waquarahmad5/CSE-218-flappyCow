@@ -230,7 +230,9 @@ public class Game extends BaseGameActivity{
 
         if((powerUps.size() < 1) && (Math.random()*100 < 20)){
             // If no powerUp is present and 20% chance
-            powerUps.add(new Coin(view,this));
+            PowerUp nt = new Coin(view,this);
+            powerUps.add(nt);
+            view.makeshiftRegister(nt);
         }
     }
 

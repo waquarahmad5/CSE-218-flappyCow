@@ -35,7 +35,7 @@ public class Rainbow extends Sprite implements SharedObjects {
     }
 
     @Override
-    public void update() {
+    public void update( int x, Canvas canvas ) {
 
     }
 

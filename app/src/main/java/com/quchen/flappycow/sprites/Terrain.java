@@ -15,7 +15,8 @@ public class Terrain extends Sprite implements StaticObjects {
     public Bitmap globalBitmap;
 
     @Override
-    public void update() {
+    public void update( int x, Canvas canvas ) {
+        draw(canvas);
 
     }
 

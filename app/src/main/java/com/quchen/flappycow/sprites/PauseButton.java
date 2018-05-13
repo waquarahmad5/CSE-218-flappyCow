@@ -39,7 +39,7 @@ public class PauseButton extends Sprite implements SharedObjects, ObserverInterf
         drawBehavior.draw(canvas, this);
     }
 
-    public void update(){
+    public void update( int x, Canvas canvas ){
         this.move();
     }
 }

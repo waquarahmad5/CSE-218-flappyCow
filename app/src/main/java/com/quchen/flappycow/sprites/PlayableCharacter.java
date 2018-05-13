@@ -27,7 +27,9 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
      * Moves the character to 1/6 of the horizontal screen
      * Manages the speed changes -> Falling
      */
-    public void move() {}
+    public void move() {
+
+    }
 
     /**
      * Let the character flap up.
@@ -119,7 +121,8 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
         drawBehavior.draw(canvas, this);
     }
 
-    public void update(){
-        this.move();
+    public void update( int x, Canvas canvas ){
+        move();
+        draw(canvas);
     }
 }

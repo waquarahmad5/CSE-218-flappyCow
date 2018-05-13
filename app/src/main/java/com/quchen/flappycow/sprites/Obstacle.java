@@ -123,8 +123,9 @@ public class Obstacle extends Sprite implements StaticObjects,SharedObjects, Obs
         Game.soundPool.play(collideSound, MainActivity.volume/SOUND_VOLUME_DIVIDER, MainActivity.volume/SOUND_VOLUME_DIVIDER, 0, 0, 1);
     }
 
-    public void update() {
-        this.setSpeedX(-getSpeedX());
-        this.move();
+    public void update( int speed, Canvas canvas ) {
+        this.setSpeedX(-speed);
+        move();
+        draw(canvas);
     }
 }

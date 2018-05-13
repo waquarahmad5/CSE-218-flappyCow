@@ -14,8 +14,7 @@ public class Accessory extends Sprite {
     }
 
     @Override
-    public void update() {
-
+    public void update( int x, Canvas canvas ) {
     }
 
     public void moveTo(int x, int y) {
