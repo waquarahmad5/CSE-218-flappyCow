@@ -11,7 +11,7 @@ import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import android.graphics.Canvas;
 
-public abstract class PowerUp extends Sprite implements StaticObjects,SharedObjects{
+public abstract class PowerUp extends Sprite implements StaticObjects,SharedObjects, ObserverInterface{
     public PowerUp(GameView view, Game game) {
         super(view, game);
         drawBehavior = new DrawSpriteBehavior();
@@ -72,5 +72,9 @@ public abstract class PowerUp extends Sprite implements StaticObjects,SharedObje
      */
     public void draw(Canvas canvas){
         drawBehavior.draw(canvas, this);
+    }
+
+    public void update() {
+        this.move();
     }
 }

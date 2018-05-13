@@ -43,4 +43,7 @@ public class Tutorial extends Sprite implements SharedObjects {
     public void draw(Canvas canvas){
         drawBehavior.draw(canvas, this);
     }
+    public void update() {
+
+    }
 }

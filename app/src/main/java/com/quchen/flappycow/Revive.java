@@ -7,7 +7,9 @@ import com.google.android.gms.games.Player;
 import com.quchen.flappycow.sprites.Obstacle;
 import com.quchen.flappycow.sprites.PlayableCharacter;
 import com.quchen.flappycow.sprites.PowerUp;
+import com.quchen.flappycow.sprites.Sprite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Revive {
@@ -47,9 +49,15 @@ public class Revive {
         player.setX(gameView.getWidth()/6);
         obstacles.clear();
         powerUps.clear();
-
+//        gameView.flushObservers();
+//        List<Sprite> observers = new ArrayList<Sprite>();
+//        observers.add(player);
         gameView.setObstacles(obstacles);
+//
+//        for (Obstacle o: obstacles) observers.add(o);
         gameView.setPowerUps(powerUps);
+//        for (PowerUp p: powerUps) observers.add(p);
+
         SurfaceHolder holder = gameView.getHolderInstance();
         player.revive();
 

@@ -217,9 +217,14 @@ public class Game extends BaseGameActivity{
         if(accomplishmentBox.getPoints() >= AccomplishmentBox.getPointsToToast() /*&& powerUps.size() < 1*/ && !(view.isPlayerNyanCat())){
             // If no powerUp is present and you have more than / equal 42 points
             if(accomplishmentBox.getPoints() == AccomplishmentBox.getPointsToToast()){    // First time 100 % chance
-                powerUps.add(new NyanToast(view,this));
+                PowerUp nt = new NyanToast(view,this);
+                powerUps.add(nt);
+                view.makeshiftRegister(nt);
+
             } else if(Math.random()*100 < 33){    // 33% chance
-                powerUps.add(new NyanToast(view,this));
+                PowerUp nt = new NyanToast(view,this);
+                powerUps.add(nt);
+                view.makeshiftRegister(nt);
             }
         }
 

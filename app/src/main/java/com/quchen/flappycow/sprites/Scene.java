@@ -72,4 +72,9 @@ public class Scene extends Sprite implements SharedObjects {
         // Its more efficient if only the classes that need this implement it in their move method.
          moveNonPlayer.move(this);
     }
+
+    public void update() {
+        this.setSpeedX(-getSpeedX()*4/3);
+        this.move();
+    }
 }

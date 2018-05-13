@@ -154,7 +154,8 @@ public abstract class Sprite {
     public int getWidth() {
         return width;
     }
-    
+
+    public abstract void update();
 
 
 }

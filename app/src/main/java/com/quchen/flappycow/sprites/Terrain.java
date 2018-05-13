@@ -14,6 +14,11 @@ public class Terrain extends Sprite implements StaticObjects {
      */
     public Bitmap globalBitmap;
 
+    @Override
+    public void update() {
+
+    }
+
     public enum type {SPIDER, WOODLOG}
 
     public Terrain(GameView view, Game game, type obstacleType) {

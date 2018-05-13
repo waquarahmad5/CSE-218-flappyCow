@@ -14,7 +14,7 @@ import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
 
-public class Obstacle extends Sprite implements StaticObjects,SharedObjects{
+public class Obstacle extends Sprite implements StaticObjects,SharedObjects, ObserverInterface{
     private Terrain spider;
     private Terrain log;
     
@@ -121,5 +121,10 @@ public class Obstacle extends Sprite implements StaticObjects,SharedObjects{
 
     public void onCollision() {
         Game.soundPool.play(collideSound, MainActivity.volume/SOUND_VOLUME_DIVIDER, MainActivity.volume/SOUND_VOLUME_DIVIDER, 0, 0, 1);
+    }
+
+    public void update() {
+        this.setSpeedX(-getSpeedX());
+        this.move();
     }
 }

@@ -13,6 +13,11 @@ public class Accessory extends Sprite {
         drawBehavior = new DrawSpriteBehavior();
     }
 
+    @Override
+    public void update() {
+
+    }
+
     public void moveTo(int x, int y) {
         this.x = x;
         this.y = y;

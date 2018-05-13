@@ -34,6 +34,11 @@ public class Rainbow extends Sprite implements SharedObjects {
         drawBehavior = new DrawSpriteBehavior();
     }
 
+    @Override
+    public void update() {
+
+    }
+
 
     public void move() {
         changeToNextFrame();

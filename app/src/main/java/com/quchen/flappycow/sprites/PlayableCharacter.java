@@ -11,7 +11,7 @@ import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
 import android.graphics.Canvas;
 
-public abstract class PlayableCharacter extends Sprite implements DynamicObjects {
+public abstract class PlayableCharacter extends Sprite implements DynamicObjects, ObserverInterface {
     
     protected boolean isDead = false;
     DeadBehavior deadBehavior;
@@ -117,5 +117,9 @@ public abstract class PlayableCharacter extends Sprite implements DynamicObjects
      */
     public void draw(Canvas canvas){
         drawBehavior.draw(canvas, this);
+    }
+
+    public void update(){
+        this.move();
     }
 }

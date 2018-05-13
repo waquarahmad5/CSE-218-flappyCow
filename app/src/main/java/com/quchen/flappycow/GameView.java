@@ -10,6 +10,8 @@ package com.quchen.flappycow;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
@@ -20,6 +22,7 @@ import com.quchen.flappycow.sprites.PauseButton;
 import com.quchen.flappycow.sprites.PlayableCharacter;
 import com.quchen.flappycow.sprites.PowerUp;
 import com.quchen.flappycow.sprites.Scene;
+import com.quchen.flappycow.sprites.Sprite;
 import com.quchen.flappycow.sprites.Tutorial;
 
 import android.content.Context;
@@ -46,9 +49,10 @@ public class GameView extends SurfaceView{
     private PlayableCharacter player;
     private Scene background;
     private Scene foreground;
-    private List<Obstacle> obstacles = new ArrayList<Obstacle>();
-    private List<PowerUp> powerUps = new ArrayList<PowerUp>();
-    
+    private List<Obstacle> obstacles;
+    private List<PowerUp> powerUps;
+    private List<Sprite> observers;
+
     private PauseButton pauseButton;
     volatile private boolean paused = true;
     
@@ -65,11 +69,19 @@ public class GameView extends SurfaceView{
 
         holder = getHolder();
         player = new Cow(this, game);
+        register(player);
         background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
+        register(background);
         foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
+        register(foreground);
         pauseButton = new PauseButton(this, game);
+        register(pauseButton);
         tutorial = new Tutorial(this, game);
+        register(tutorial);
         msgHandler = new MessageHandler(this.game, this);
+        observers = new ArrayList<Sprite>();
+        powerUps = new ArrayList<PowerUp>();
+        obstacles = new ArrayList<Obstacle>();
     }
     
     @Override
@@ -109,10 +121,22 @@ public class GameView extends SurfaceView{
         checkObstaclesCollision();
         checkPowerUpsCollision();
         createObstacle();
-        move();
+        notifyFrameChanged();
+        //move();
         draw();
     }
 
+    public void notifyFrameChanged() {
+        for (Sprite s: observers) s.update();
+    }
+    public void register(Sprite s) {
+        observers.add(s);
+
+    }
+    public void unregister ( Sprite s) {
+        int ind = observers.indexOf(s);
+        observers.remove(ind);
+    }
     public Canvas getCanvas() {
         Canvas canvas;
 
@@ -284,7 +308,9 @@ public class GameView extends SurfaceView{
      */
     private void createObstacle(){
         if(obstacles.size() < 1){
-            obstacles.add(new Obstacle(this, game));
+            Obstacle obs = new Obstacle(this, game);
+            obstacles.add(obs);
+            register(obs);
         }
     }
     
@@ -420,6 +446,15 @@ public class GameView extends SurfaceView{
     public SurfaceHolder getHolderInstance()
     {
         return this.holder;
+    }
+    public void flushObservers(){
+        observers.clear();
+    }
+    public void reinstantiateObservers(List<Sprite> observers) {
+        this.observers = observers;
+    }
+    public void makeshiftRegister(Sprite s) {
+        observers.add(s);
     }
 
 }
