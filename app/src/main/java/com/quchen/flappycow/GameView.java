@@ -71,7 +71,7 @@ public class GameView extends SurfaceView{
         observers = new ArrayList<Sprite>();
         holder = getHolder();
         player = new Cow(this, game);
-        register(player);
+
         background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
         register(background);
         foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
@@ -81,7 +81,7 @@ public class GameView extends SurfaceView{
         tutorial = new Tutorial(this, game);
         register(tutorial);
         msgHandler = new MessageHandler(this.game, this);
-
+        register(player);
         powerUps = new ArrayList<PowerUp>();
         obstacles = new ArrayList<Obstacle>();
     }
@@ -139,6 +139,7 @@ public class GameView extends SurfaceView{
         Canvas canvas = getCanvas();
         for (Sprite s: observers) s.update(speed, canvas);
 
+        player.draw(canvas);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(getScoreTextMetrics());
@@ -373,12 +374,13 @@ public class GameView extends SurfaceView{
         game.announcement(R.string.achievement_toastification, R.string.toast_achievement_toastification);
         
         PlayableCharacter tmp = this.player;
+        unregister(tmp);
         this.player = new NyanCat(this, game);
         this.player.setX(tmp.getX());
         this.player.setY(tmp.getY());
         this.player.setSpeedX(tmp.getSpeedX());
         this.player.setSpeedY(tmp.getSpeedY());
-        
+        register(player);
         game.musicShouldPlay = true;
         Game.musicPlayer.start();
     }
