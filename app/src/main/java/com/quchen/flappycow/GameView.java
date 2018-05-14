@@ -326,7 +326,9 @@ public class GameView extends SurfaceView{
      */
     private void checkPowerUpsCollision() {
         for(int i=0; i<powerUps.size(); i++){
-            if(this.powerUps.get(i).isColliding(player)){
+            //if(this.powerUps.get(i).isColliding(player)){
+                if(cc.CheckCollisionM(this.powerUps.get(i),player,game))
+                {
                 this.powerUps.get(i).onCollision();
                 unregister(powerUps.get(i));
                 this.powerUps.remove(i);

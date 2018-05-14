@@ -10,5 +10,5 @@ import android.graphics.Canvas;
 
 public interface CollisionMediator{
 
-    public boolean CheckCollisionM(Obstacle object, PlayableCharacter p, Game g);
+    public boolean CheckCollisionM(Sprite object, PlayableCharacter p, Game g);
 }

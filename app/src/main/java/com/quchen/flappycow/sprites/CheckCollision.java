@@ -12,7 +12,7 @@ import android.graphics.Canvas;
 public class CheckCollision implements CollisionMediator{
 
     //Terrain spider
-    public boolean CheckCollisionM(Obstacle obs, PlayableCharacter p, Game g) {
+    public boolean CheckCollisionM(Sprite obs, PlayableCharacter p, Game g) {
             if (isColliding(obs,p,g))
             {
                 return true;
