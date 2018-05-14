@@ -6,7 +6,7 @@ public interface StaticObjects {
      */
     void onCollision();
 
-    boolean isColliding(Sprite sprite);
+    //boolean isColliding(Sprite sprite);
 
     /**
      * Checks whether this object is so far to the left, it's not visible anymore.

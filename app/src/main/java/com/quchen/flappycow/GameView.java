@@ -15,6 +15,8 @@ import java.util.Observer;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.quchen.flappycow.sprites.CheckCollision;
+import com.quchen.flappycow.sprites.CollisionMediator;
 import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
@@ -47,13 +49,14 @@ public class GameView extends SurfaceView{
     /** The surfaceholder needed for the canvas drawing */
     private SurfaceHolder holder;
     
-    private Game game;
-    private PlayableCharacter player;
+    public Game game;
+    public PlayableCharacter player;
     private Scene background;
     private Scene foreground;
-    private List<Obstacle> obstacles;
+    public List<Obstacle> obstacles;
     private List<PowerUp> powerUps;
     private List<Sprite> observers;
+    CollisionMediator cc = new CheckCollision();
 
     private PauseButton pauseButton;
     volatile private boolean paused = true;
@@ -304,9 +307,11 @@ public class GameView extends SurfaceView{
     /**
      * Checks collision with obstacles/edges and end game if so
      */
+
     private void checkObstaclesCollision(){
-        for(Obstacle o : obstacles){
-            if(o.isColliding(player)){
+
+       for(Obstacle o : obstacles){
+            if(cc.CheckCollisionM(o,player,game)){
                 o.onCollision();
                 gameOver();
             }
