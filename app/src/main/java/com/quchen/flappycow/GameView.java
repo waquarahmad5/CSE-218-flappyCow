@@ -10,11 +10,11 @@ package com.quchen.flappycow;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.quchen.flappycow.sprites.AbstractObservers;
 import com.quchen.flappycow.sprites.CheckCollision;
 import com.quchen.flappycow.sprites.CollisionMediator;
 import com.quchen.flappycow.sprites.Cow;
@@ -37,8 +37,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import org.hamcrest.core.IsInstanceOf;
-
 public class GameView extends SurfaceView{
     
     /** Milliseconds for game timer tick */
@@ -55,7 +53,7 @@ public class GameView extends SurfaceView{
     private Scene foreground;
     public List<Obstacle> obstacles;
     private List<PowerUp> powerUps;
-    private List<Sprite> observers;
+    private List<AbstractObservers> observers;
     CollisionMediator cc = new CheckCollision();
 
     private PauseButton pauseButton;
@@ -71,7 +69,7 @@ public class GameView extends SurfaceView{
         super(context);
         this.game = (Game) context;
         setFocusable(true);
-        observers = new ArrayList<Sprite>();
+        observers = new ArrayList<AbstractObservers>();
         holder = getHolder();
         player = new Cow(this, game);
 
@@ -153,12 +151,12 @@ public class GameView extends SurfaceView{
         holder.unlockCanvasAndPost(canvas);
 
     }
-    public void register(Sprite s) {
+    public void register(AbstractObservers s) {
         observers.add(s);
         System.out.println(observers.size());
 
     }
-    public void unregister ( Sprite s) {
+    public void unregister ( AbstractObservers s) {
         int ind = observers.indexOf(s);
         observers.remove(ind);
     }
@@ -291,6 +289,7 @@ public class GameView extends SurfaceView{
                 unregister(obstacles.get(i));
                 this.obstacles.remove(i);
                 i--;
+                System.out.println("Obstacle removed");
             }
         }
     }
@@ -490,10 +489,10 @@ public class GameView extends SurfaceView{
     public void flushObservers(){
         observers.clear();
     }
-    public void reinstantiateObservers(List<Sprite> observers) {
+    public void reinstantiateObservers(List<AbstractObservers> observers) {
         this.observers = observers;
     }
-    public void makeshiftRegister(Sprite s) {
+    public void makeshiftRegister(AbstractObservers s) {
         observers.add(s);
     }
 

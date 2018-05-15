@@ -14,7 +14,7 @@ import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
 
-public class Obstacle extends Sprite implements StaticObjects,SharedObjects, ObserverInterface{
+public class Obstacle extends AbstractObservers implements StaticObjects,SharedObjects, ObserverInterface{
     private Terrain spider;
     private Terrain log;
     
