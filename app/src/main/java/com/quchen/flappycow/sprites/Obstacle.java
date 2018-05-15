@@ -14,7 +14,7 @@ import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
 
-public class Obstacle extends Sprite implements StaticObjects,SharedObjects, ObserverInterface{
+public class Obstacle extends AbstractObservers implements StaticObjects,SharedObjects, ObserverInterface{
     private Terrain spider;
     private Terrain log;
     
@@ -73,13 +73,21 @@ public class Obstacle extends Sprite implements StaticObjects,SharedObjects, Obs
         return spider.isOutOfRange() && log.isOutOfRange();
     }
 
+    public Terrain getLog() {
+        return log;
+    }
+
+    public Terrain getSpider() {
+        return spider;
+    }
+
     /**
      * Checks whether the spider or the log is colliding with the sprite.
      */
 
-    public boolean isColliding(Sprite sprite) {
-        return spider.isColliding(sprite) || log.isColliding(sprite);
-    }
+   /* public boolean isColliding(Sprite sprite) {
+        return spider.is(sprite) || log.isColliding(sprite);
+    }*/
 
     /**
      * Moves both, spider and log.

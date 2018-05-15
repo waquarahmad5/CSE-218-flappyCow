@@ -8,7 +8,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 
-public class Scene extends Sprite implements SharedObjects {
+public class Scene extends AbstractObservers implements SharedObjects {
 
     /** Static bitmap to reduce memory usage */
     public Bitmap globalBitmap;

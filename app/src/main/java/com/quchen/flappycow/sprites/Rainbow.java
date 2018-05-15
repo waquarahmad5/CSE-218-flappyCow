@@ -15,7 +15,7 @@ import android.graphics.Canvas;
 
 import android.graphics.Bitmap;
 
-public class Rainbow extends Sprite implements SharedObjects {
+public class Rainbow extends AbstractObservers implements SharedObjects {
     
     /**
      * Static bitmap to reduce memory usage.
