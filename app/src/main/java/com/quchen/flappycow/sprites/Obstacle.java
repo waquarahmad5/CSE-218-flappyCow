@@ -85,9 +85,9 @@ public class Obstacle extends AbstractObservers implements StaticObjects,SharedO
      * Checks whether the spider or the log is colliding with the sprite.
      */
 
-   /* public boolean isColliding(Sprite sprite) {
-        return spider.is(sprite) || log.isColliding(sprite);
-    }*/
+    public boolean isColliding(Sprite sprite) {
+        return spider.isColliding(sprite) || log.isColliding(sprite);
+    }
 
     /**
      * Moves both, spider and log.

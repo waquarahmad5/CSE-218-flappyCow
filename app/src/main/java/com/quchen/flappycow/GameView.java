@@ -54,7 +54,7 @@ public class GameView extends SurfaceView{
     public List<Obstacle> obstacles;
     private List<PowerUp> powerUps;
     private List<AbstractObservers> observers;
-    CollisionMediator cc = new CheckCollision();
+    //CollisionMediator cc = new CheckCollision();
 
     private PauseButton pauseButton;
     volatile private boolean paused = true;
@@ -310,7 +310,8 @@ public class GameView extends SurfaceView{
     private void checkObstaclesCollision(){
 
        for(Obstacle o : obstacles){
-            if(cc.CheckCollisionM(o,player,game)){
+           if(o.isColliding(player)){
+            //if(cc.CheckCollisionM(o,player,game)){
                 o.onCollision();
                 gameOver();
             }
@@ -325,9 +326,9 @@ public class GameView extends SurfaceView{
      */
     private void checkPowerUpsCollision() {
         for(int i=0; i<powerUps.size(); i++){
-            //if(this.powerUps.get(i).isColliding(player)){
-                if(cc.CheckCollisionM(this.powerUps.get(i),player,game))
-                {
+            if(this.powerUps.get(i).isColliding(player)){
+                //if(cc.CheckCollisionM(this.powerUps.get(i),player,game))
+
                 this.powerUps.get(i).onCollision();
                 unregister(powerUps.get(i));
                 this.powerUps.remove(i);
