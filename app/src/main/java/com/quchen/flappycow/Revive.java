@@ -15,9 +15,22 @@ import java.util.List;
 public class Revive {
 
     private int numberOfRevive;
+    private ArrayList<ReviveObserver> reviveObservers;
+    private ClearCanvas clearCanvas;
+    private ClearObstacles clearObstacles;
+    private ClearPowerUps clearPowerUps;
+
     public Revive(int n)
     {
         numberOfRevive = n;
+        clearCanvas = new ClearCanvas();
+        clearObstacles = new ClearObstacles();
+        clearPowerUps = new ClearPowerUps();
+
+        register(clearCanvas);
+        register(clearObstacles);
+        register(clearPowerUps);
+
     }
     public void revive(final GameView gameView) {
 
@@ -38,41 +51,21 @@ public class Revive {
      */
     public void setupRevive(GameView gameView)
         {
-
-        List<Obstacle> obstacles = gameView.getObstacles();
-        List<PowerUp> powerUps = gameView.getPowerUps();
-        PlayableCharacter player = gameView.getPlayerInstance();
-        Game game = gameView.getGame();
-
-        game.gameOverDialog.hide();
-        player.setY(gameView.getHeight()/2 - player.getWidth()/2);
-        player.setX(gameView.getWidth()/6);
-        obstacles.clear();
-        powerUps.clear();
-//        gameView.flushObservers();
-//        List<Sprite> observers = new ArrayList<Sprite>();
-//        observers.add(player);
-        gameView.setObstacles(obstacles);
-//
-//        for (Obstacle o: obstacles) observers.add(o);
-        gameView.setPowerUps(powerUps);
-//        for (PowerUp p: powerUps) observers.add(p);
-
-        SurfaceHolder holder = gameView.getHolderInstance();
-        player.revive();
-
-        for(int i = 0; i < 6; ++i){
-            while(!holder.getSurface().isValid()){/*wait*/}
-            Canvas canvas = gameView.getCanvas();
-            gameView.drawCanvas(canvas, i%2 == 0);
-            holder.unlockCanvasAndPost(canvas);
-            // sleep
-            try { Thread.sleep(gameView.UPDATE_INTERVAL*6); } catch (InterruptedException e) { e.printStackTrace(); }
+            for(ReviveObserver ro : reviveObservers)
+            {
+                ro.update(gameView);
+            }
+            gameView.resume();
         }
 
-        gameView.resume();
-        gameView.setPowerUps(powerUps);
-        gameView.setObstacles(obstacles);
-        gameView.setPlayerInstance(player);
+    public void register(ReviveObserver r) {
+        reviveObservers.add(r);
+        System.out.println(reviveObservers.size());
+
+    }
+
+    public void unregister (ReviveObserver r) {
+        int index = reviveObservers.indexOf(r);
+        reviveObservers.remove(index);
     }
 }
