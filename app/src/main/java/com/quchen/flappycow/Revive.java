@@ -19,17 +19,21 @@ public class Revive {
     private ClearCanvas clearCanvas;
     private ClearObstacles clearObstacles;
     private ClearPowerUps clearPowerUps;
+    private RevivePlayer revivePlayer;
 
     public Revive(int n)
     {
         numberOfRevive = n;
+        reviveObservers = new ArrayList<ReviveObserver>();
         clearCanvas = new ClearCanvas();
         clearObstacles = new ClearObstacles();
         clearPowerUps = new ClearPowerUps();
+        revivePlayer = new RevivePlayer();
 
-        register(clearCanvas);
         register(clearObstacles);
         register(clearPowerUps);
+        register(clearCanvas);
+        register(revivePlayer);
 
     }
     public void revive(final GameView gameView) {
@@ -55,7 +59,15 @@ public class Revive {
             {
                 ro.update(gameView);
             }
+            //gameView.getPlayerInstance().revive();
+            //gameView.resume();
+
             gameView.resume();
+
+
+
+
+
         }
 
     public void register(ReviveObserver r) {
