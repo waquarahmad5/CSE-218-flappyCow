@@ -63,27 +63,33 @@ public class GameView extends SurfaceView{
     /** To do UI things from different threads */
     public MessageHandler msgHandler;
 
+    PlayCharFactory myPlayCharFactory = new PlayCharFactory();
+
     public GameView(Context context) {
         super(context);
         this.game = (Game) context;
-        setFocusable(true);
-        observers = new ArrayList<AbstractObservers>();
-        holder = getHolder();
-        player = new Cow(this, game);
+    setFocusable(true);
+    observers = new ArrayList<AbstractObservers>();
+    holder = getHolder();
+    player = myPlayCharFactory.inject( game,this,"cow");//new Cow(this, game);
 
-        background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
-        register(background);
-        foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
-        register(foreground);
-        pauseButton = new PauseButton(this, game);
-        register(pauseButton);
-        tutorial = new Tutorial(this, game);
-        register(tutorial);
-        msgHandler = new MessageHandler(this.game, this);
-        register(player);
-        powerUps = new ArrayList<PowerUp>();
-        obstacles = new ArrayList<Obstacle>();
-    }
+    background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
+    register(background);
+    foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
+    register(foreground);
+    pauseButton = new PauseButton(this, game);
+    register(pauseButton);
+    tutorial = new Tutorial(this, game);
+    register(tutorial);
+    msgHandler = new MessageHandler(this.game, this);
+    register(player);
+    powerUps = new ArrayList<PowerUp>();
+    obstacles = new ArrayList<Obstacle>();
+
+        myPlayCharFactory.addCharacter("nyan cat");
+        myPlayCharFactory.addCharacter("pikachu");
+
+}
     
     @Override
     public boolean performClick() {
@@ -380,7 +386,7 @@ public class GameView extends SurfaceView{
         
         PlayableCharacter tmp = this.player;
         unregister(tmp);
-        this.player = new NyanCat(this, game);
+        this.player = myPlayCharFactory.inject(game, this,"nyan cat");
         this.player.setX(tmp.getX());
         this.player.setY(tmp.getY());
         this.player.setSpeedX(tmp.getSpeedX());
