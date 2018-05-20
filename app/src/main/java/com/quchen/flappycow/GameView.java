@@ -15,8 +15,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.quchen.flappycow.sprites.AbstractObservers;
-import com.quchen.flappycow.sprites.CheckCollision;
-import com.quchen.flappycow.sprites.CollisionMediator;
 import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
@@ -54,7 +52,7 @@ public class GameView extends SurfaceView{
     public List<Obstacle> obstacles;
     private List<PowerUp> powerUps;
     private List<AbstractObservers> observers;
-    CollisionMediator cc = new CheckCollision();
+    //CollisionMediator cc = new CheckCollision();
 
     private PauseButton pauseButton;
     volatile private boolean paused = true;
@@ -65,27 +63,33 @@ public class GameView extends SurfaceView{
     /** To do UI things from different threads */
     public MessageHandler msgHandler;
 
+    PlayCharFactory myPlayCharFactory = new PlayCharFactory();
+
     public GameView(Context context) {
         super(context);
         this.game = (Game) context;
-        setFocusable(true);
-        observers = new ArrayList<AbstractObservers>();
-        holder = getHolder();
-        player = new Cow(this, game);
+    setFocusable(true);
+    observers = new ArrayList<AbstractObservers>();
+    holder = getHolder();
+    player = myPlayCharFactory.inject( game,this,"cow");//new Cow(this, game);
 
-        background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
-        register(background);
-        foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
-        register(foreground);
-        pauseButton = new PauseButton(this, game);
-        register(pauseButton);
-        tutorial = new Tutorial(this, game);
-        register(tutorial);
-        msgHandler = new MessageHandler(this.game, this);
-        register(player);
-        powerUps = new ArrayList<PowerUp>();
-        obstacles = new ArrayList<Obstacle>();
-    }
+    background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
+    register(background);
+    foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
+    register(foreground);
+    pauseButton = new PauseButton(this, game);
+    register(pauseButton);
+    tutorial = new Tutorial(this, game);
+    register(tutorial);
+    msgHandler = new MessageHandler(this.game, this);
+    register(player);
+    powerUps = new ArrayList<PowerUp>();
+    obstacles = new ArrayList<Obstacle>();
+
+        myPlayCharFactory.addCharacter("nyan cat");
+        myPlayCharFactory.addCharacter("pikachu");
+
+}
     
     @Override
     public boolean performClick() {
@@ -310,7 +314,8 @@ public class GameView extends SurfaceView{
     private void checkObstaclesCollision(){
 
        for(Obstacle o : obstacles){
-            if(cc.CheckCollisionM(o,player,game)){
+           if(o.isColliding(player)){
+            //if(cc.CheckCollisionM(o,player,game)){
                 o.onCollision();
                 gameOver();
             }
@@ -325,9 +330,9 @@ public class GameView extends SurfaceView{
      */
     private void checkPowerUpsCollision() {
         for(int i=0; i<powerUps.size(); i++){
-            //if(this.powerUps.get(i).isColliding(player)){
-                if(cc.CheckCollisionM(this.powerUps.get(i),player,game))
-                {
+            if(this.powerUps.get(i).isColliding(player)){
+                //if(cc.CheckCollisionM(this.powerUps.get(i),player,game))
+
                 this.powerUps.get(i).onCollision();
                 unregister(powerUps.get(i));
                 this.powerUps.remove(i);
@@ -381,7 +386,7 @@ public class GameView extends SurfaceView{
         
         PlayableCharacter tmp = this.player;
         unregister(tmp);
-        this.player = new NyanCat(this, game);
+        this.player = myPlayCharFactory.inject(game, this,"nyan cat");
         this.player.setX(tmp.getX());
         this.player.setY(tmp.getY());
         this.player.setSpeedX(tmp.getSpeedX());

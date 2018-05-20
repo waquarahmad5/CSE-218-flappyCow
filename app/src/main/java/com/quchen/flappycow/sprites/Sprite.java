@@ -9,6 +9,9 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.DrawBehavior;
+import com.quchen.flappycow.Interfaces.MoveNonPlayableCharacterBehaviour;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;

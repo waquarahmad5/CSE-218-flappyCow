@@ -9,6 +9,7 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.SharedObjects;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 import android.graphics.Canvas;

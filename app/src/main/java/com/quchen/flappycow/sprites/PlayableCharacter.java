@@ -9,6 +9,11 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.DeadBehavior;
+import com.quchen.flappycow.Interfaces.DynamicObjects;
+import com.quchen.flappycow.Interfaces.MovePlayableCharacterBehavior;
+import com.quchen.flappycow.Interfaces.ObserverInterface;
+
 import android.graphics.Canvas;
 
 public abstract class PlayableCharacter extends AbstractObservers implements DynamicObjects, ObserverInterface {

@@ -1,5 +1,7 @@
 package com.quchen.flappycow.sprites;
 
+import com.quchen.flappycow.Interfaces.MovePlayableCharacterBehavior;
+
 public abstract class MovePlayer implements MovePlayableCharacterBehavior {
 
 

@@ -1,8 +1,10 @@
-package com.quchen.flappycow.sprites;
+package com.quchen.flappycow.Interfaces;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+
+import com.quchen.flappycow.sprites.PlayableCharacter;
 
 public interface DeadBehavior {
 

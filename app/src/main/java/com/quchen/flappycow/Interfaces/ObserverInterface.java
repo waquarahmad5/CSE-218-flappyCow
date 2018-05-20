@@ -1,4 +1,4 @@
-package com.quchen.flappycow.sprites;
+package com.quchen.flappycow.Interfaces;
 
 import android.graphics.Canvas;
 

@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.ObserverInterface;
 
 public abstract class AbstractObservers extends Sprite implements ObserverInterface {
     public AbstractObservers( GameView view, Game game ) {

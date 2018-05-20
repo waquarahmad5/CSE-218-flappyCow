@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.StaticObjects;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 import android.graphics.Canvas;
@@ -67,7 +68,7 @@ public class Terrain extends Sprite implements StaticObjects {
      * @param
      * @return
      */
-    /*public boolean isColliding(Sprite sprite){
+    public boolean isColliding(Sprite sprite){
         if(this.x + getCollisionTolerance() < sprite.x + sprite.width
                 && this.x + this.width > sprite.x + getCollisionTolerance()
                 && this.y + getCollisionTolerance() < sprite.y + sprite.height
@@ -75,7 +76,7 @@ public class Terrain extends Sprite implements StaticObjects {
             return true;
         }
         return false;
-    }*/
+    }
 
     public boolean isOutOfRange() {
         return this.x + width < 0;

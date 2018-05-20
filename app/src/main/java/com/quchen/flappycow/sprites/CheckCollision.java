@@ -1,15 +1,10 @@
 package com.quchen.flappycow.sprites;
 
 
-import android.graphics.Bitmap;
-
 import com.quchen.flappycow.Game;
-import com.quchen.flappycow.GameView;
-import com.quchen.flappycow.R;
-import com.quchen.flappycow.Util;
-import android.graphics.Canvas;
+import com.quchen.flappycow.Interfaces.CollisionMediator;
 
-public class CheckCollision implements CollisionMediator{
+public class CheckCollision implements CollisionMediator {
 
     //Terrain spider
     public boolean CheckCollisionM(Sprite obs, PlayableCharacter p, Game g) {

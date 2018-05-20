@@ -9,12 +9,15 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.ObserverInterface;
+import com.quchen.flappycow.Interfaces.SharedObjects;
+import com.quchen.flappycow.Interfaces.StaticObjects;
 import com.quchen.flappycow.MainActivity;
 import com.quchen.flappycow.R;
 
 import android.graphics.Canvas;
 
-public class Obstacle extends AbstractObservers implements StaticObjects,SharedObjects, ObserverInterface{
+public class Obstacle extends AbstractObservers implements StaticObjects,SharedObjects, ObserverInterface {
     private Terrain spider;
     private Terrain log;
     
@@ -85,9 +88,9 @@ public class Obstacle extends AbstractObservers implements StaticObjects,SharedO
      * Checks whether the spider or the log is colliding with the sprite.
      */
 
-   /* public boolean isColliding(Sprite sprite) {
-        return spider.is(sprite) || log.isColliding(sprite);
-    }*/
+    public boolean isColliding(Sprite sprite) {
+        return spider.isColliding(sprite) || log.isColliding(sprite);
+    }
 
     /**
      * Moves both, spider and log.
