@@ -351,11 +351,11 @@ public class GameView extends SurfaceView{
     /**
      * Update sprite movements
      */
-    private void move(){
-        for(Obstacle o : obstacles){
-            o.setSpeedX(-getSpeedX());
-            o.move();
-        }
+//    private void move(){
+//        for(Obstacle o : obstacles){
+//            o.setSpeedX(-getSpeedX());
+//            o.move();
+//        }
 //        for(PowerUp p : powerUps){
 //            p.move();
 //        }
@@ -370,7 +370,7 @@ public class GameView extends SurfaceView{
 //        pauseButton.move();
 //
 //        player.move();
-    }
+//    }
     
     /**
      * Changes the player to Nyan Cat
