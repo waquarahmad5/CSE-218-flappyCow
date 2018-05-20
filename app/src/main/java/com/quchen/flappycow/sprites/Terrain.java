@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.StaticObjects;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 import android.graphics.Canvas;

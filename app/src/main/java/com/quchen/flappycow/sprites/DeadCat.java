@@ -1,6 +1,8 @@
 package com.quchen.flappycow.sprites;
 
-public class DeadCat implements DeadBehavior{
+import com.quchen.flappycow.Interfaces.DeadBehavior;
+
+public class DeadCat implements DeadBehavior {
 
     /**
      * A dead cat falls slowly to the ground.

@@ -1,16 +1,8 @@
 package com.quchen.flappycow;
 
-import android.graphics.Canvas;
-import android.view.SurfaceHolder;
-
-import com.google.android.gms.games.Player;
-import com.quchen.flappycow.sprites.Obstacle;
-import com.quchen.flappycow.sprites.PlayableCharacter;
-import com.quchen.flappycow.sprites.PowerUp;
-import com.quchen.flappycow.sprites.Sprite;
+import com.quchen.flappycow.Interfaces.ReviveObserver;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Revive {
 

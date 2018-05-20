@@ -2,6 +2,8 @@ package com.quchen.flappycow.sprites;
 
 import android.graphics.Canvas;
 
+import com.quchen.flappycow.Interfaces.DrawBehavior;
+
 public class DrawSpriteBehavior implements DrawBehavior {
     /**
      * Draws the frame of the bitmap specified by col and row

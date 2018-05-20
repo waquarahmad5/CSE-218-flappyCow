@@ -9,9 +9,13 @@ package com.quchen.flappycow.sprites;
 
 import com.quchen.flappycow.Game;
 import com.quchen.flappycow.GameView;
+import com.quchen.flappycow.Interfaces.ObserverInterface;
+import com.quchen.flappycow.Interfaces.SharedObjects;
+import com.quchen.flappycow.Interfaces.StaticObjects;
+
 import android.graphics.Canvas;
 
-public abstract class PowerUp extends AbstractObservers implements StaticObjects,SharedObjects, ObserverInterface{
+public abstract class PowerUp extends AbstractObservers implements StaticObjects,SharedObjects, ObserverInterface {
     public PowerUp(GameView view, Game game) {
         super(view, game);
         drawBehavior = new DrawSpriteBehavior();

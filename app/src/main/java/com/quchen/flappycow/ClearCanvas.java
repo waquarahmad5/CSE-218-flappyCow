@@ -3,6 +3,8 @@ package com.quchen.flappycow;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.quchen.flappycow.Interfaces.ReviveObserver;
+
 public class ClearCanvas implements ReviveObserver {
     @Override
     public void update(GameView gameView) {

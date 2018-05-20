@@ -2,6 +2,8 @@ package com.quchen.flappycow;
 
 import android.media.MediaPlayer;
 
+import com.quchen.flappycow.Interfaces.MediaPlayerInterface;
+
 public class MediaPlayerWrapper implements MediaPlayerInterface {
 
     MediaPlayer legacyPlayer;

@@ -1,6 +1,6 @@
 package com.quchen.flappycow;
 
-import org.jetbrains.annotations.Contract;
+import com.quchen.flappycow.Interfaces.MediaPlayerInterface;
 
 public abstract class MediaPlayerAbstract {
 

@@ -1,6 +1,6 @@
 package com.quchen.flappycow.sprites;
 
-import android.graphics.Canvas;
+import com.quchen.flappycow.Interfaces.DeadBehavior;
 
 public class DeadCow implements DeadBehavior {
 

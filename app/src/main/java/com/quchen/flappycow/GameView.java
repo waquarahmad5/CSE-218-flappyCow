@@ -15,8 +15,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.quchen.flappycow.sprites.AbstractObservers;
-import com.quchen.flappycow.sprites.CheckCollision;
-import com.quchen.flappycow.sprites.CollisionMediator;
 import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
