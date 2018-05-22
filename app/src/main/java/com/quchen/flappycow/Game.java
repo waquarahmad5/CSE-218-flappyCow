@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.widget.Toast;
 import com.quchen.flappycow.sprites.NyanToast;
+import com.quchen.flappycow.sprites.PowerUpFactoryPlay;
 
 import org.jetbrains.annotations.Contract;
 
@@ -41,7 +42,7 @@ public class Game extends BaseGameActivity{
     public static final int GAMES_PER_AD = 3;
     /** Counts number of played games */
     private static int gameOverCounter = 1;
-
+    PowerUpFactoryPlay pup = new PowerUpFactoryPlay();
     
     /**
      * Will play songs like:
@@ -90,6 +91,8 @@ public class Game extends BaseGameActivity{
         if(gameOverCounter % GAMES_PER_AD == 0) {
             view.setupAd();
         }
+        pup.addPowerUp("coin");
+        pup.addPowerUp("heart");
     }
 
     /**
@@ -100,7 +103,7 @@ public class Game extends BaseGameActivity{
 
     private void loadCoins(){
         SharedPreferences saves = this.getSharedPreferences(coin_save, 0);
-        accomplishmentBox.setCoins(saves.getInt(coin_key, 0) + 100); //TODO: REMOVE 100 :P -SR
+        accomplishmentBox.setCoins(saves.getInt(coin_key, 0)+100); //TODO: REMOVE 100 :P -SR
     }
 
     /**
@@ -230,7 +233,7 @@ public class Game extends BaseGameActivity{
 
         if((powerUps.size() < 1) && (Math.random()*100 < 20)){
             // If no powerUp is present and 20% chance
-            PowerUp nt = new Coin(view,this);
+            PowerUp nt = pup.inject(this,view,"heart");
             powerUps.add(nt);
             view.makeshiftRegister(nt);
         }
