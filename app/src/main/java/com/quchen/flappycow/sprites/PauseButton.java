@@ -15,7 +15,7 @@ import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
 import android.graphics.Canvas;
 
-public class PauseButton extends AbstractObservers implements SharedObjects, ObserverInterface {
+public class PauseButton extends AbstractObservers {
     public PauseButton(GameView view, Game game) {
         super(view, game);
         this.bitmap = Util.getScaledBitmapAlpha8(game, R.drawable.pause_button);
