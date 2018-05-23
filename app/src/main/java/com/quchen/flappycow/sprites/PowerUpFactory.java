@@ -1,7 +1,7 @@
 package com.quchen.flappycow.sprites;
 import java.util.HashSet;
 
-public class PowerUpFactory {
+public abstract class PowerUpFactory {
     private HashSet<String> availablePowerUps;
     public PowerUpFactory(){
         availablePowerUps = new HashSet<String>();
