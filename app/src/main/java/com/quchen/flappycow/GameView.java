@@ -19,11 +19,15 @@ import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
 import com.quchen.flappycow.sprites.Obstacle;
 import com.quchen.flappycow.sprites.PauseButton;
+import com.quchen.flappycow.sprites.PauseButtonBuilder;
 import com.quchen.flappycow.sprites.PlayableCharacter;
 import com.quchen.flappycow.sprites.PowerUp;
 import com.quchen.flappycow.sprites.Scene;
 import com.quchen.flappycow.sprites.Sprite;
+import com.quchen.flappycow.sprites.SpriteBuilder;
+import com.quchen.flappycow.sprites.SpriteMaker;
 import com.quchen.flappycow.sprites.Tutorial;
+import com.quchen.flappycow.sprites.TutorialBuilder;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -77,12 +81,20 @@ public class GameView extends SurfaceView{
     register(background);
     foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
     register(foreground);
-    pauseButton = new PauseButton(this, game);
-    register(pauseButton);
-    tutorial = new Tutorial(this, game);
+
+    SpriteBuilder tutorialBuilder = new TutorialBuilder(this,game);
+    SpriteMaker spriteMaker = new SpriteMaker(tutorialBuilder,this,game);
+    tutorial = (Tutorial) spriteMaker.getSprite();
+    //pauseButton = new PauseButton(this, game);
+    PauseButtonBuilder pauseButtonBuilder = new PauseButtonBuilder(this,game);
+    spriteMaker = new SpriteMaker(pauseButtonBuilder,this,game);
+    pauseButton = (PauseButton) spriteMaker.getSprite();
+    //tutorial = new Tutorial(this, game);
+
     register(tutorial);
     msgHandler = new MessageHandler(this.game, this);
     register(player);
+    register(pauseButton);
     powerUps = new ArrayList<PowerUp>();
     obstacles = new ArrayList<Obstacle>();
 
@@ -356,11 +368,11 @@ public class GameView extends SurfaceView{
     /**
      * Update sprite movements
      */
-    private void move(){
-        for(Obstacle o : obstacles){
-            o.setSpeedX(-getSpeedX());
-            o.move();
-        }
+//    private void move(){
+//        for(Obstacle o : obstacles){
+//            o.setSpeedX(-getSpeedX());
+//            o.move();
+//        }
 //        for(PowerUp p : powerUps){
 //            p.move();
 //        }
@@ -375,7 +387,7 @@ public class GameView extends SurfaceView{
 //        pauseButton.move();
 //
 //        player.move();
-    }
+//    }
     
     /**
      * Changes the player to Nyan Cat

@@ -16,7 +16,7 @@ import com.quchen.flappycow.Util;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Tutorial extends AbstractObservers implements SharedObjects {
+public class Tutorial extends AbstractObservers {
     public static Bitmap globalBitmap;
 
     public Tutorial(GameView view, Game game) {
