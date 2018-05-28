@@ -25,6 +25,8 @@ public abstract class PlayableCharacter extends AbstractObservers implements Dyn
     public PlayableCharacter(GameView view, Game game) {
         super(view, game);
         drawBehavior = new DrawSpriteBehavior();
+        this.view = view;
+        view.register(this);
     }
     
     /**

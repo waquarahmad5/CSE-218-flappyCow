@@ -18,7 +18,8 @@ public class Scene extends AbstractObservers implements SharedObjects {
     int state;
     public Scene(GameView view, Game game, X_GROUND x_ground){
         super(view, game);
-
+        this.view = view;
+        view.register(this);
         if(isGlobalBitmapNull()) {
             switch (x_ground) {
                 case BACKGROUND: {

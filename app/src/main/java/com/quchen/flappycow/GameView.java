@@ -78,9 +78,7 @@ public class GameView extends SurfaceView{
     player = myPlayCharFactory.inject( game,this,"cow");//new Cow(this, game);
 
     background = new Scene(this, game, Scene.X_GROUND.BACKGROUND);
-    register(background);
     foreground = new Scene(this, game, Scene.X_GROUND.FOREGROUND);
-    register(foreground);
 
     SpriteBuilder tutorialBuilder = new TutorialBuilder(this,game);
     SpriteMaker spriteMaker = new SpriteMaker(tutorialBuilder,this,game);
@@ -90,11 +88,7 @@ public class GameView extends SurfaceView{
     spriteMaker = new SpriteMaker(pauseButtonBuilder,this,game);
     pauseButton = (PauseButton) spriteMaker.getSprite();
     //tutorial = new Tutorial(this, game);
-
-    register(tutorial);
     msgHandler = new MessageHandler(this.game, this);
-    register(player);
-    register(pauseButton);
     powerUps = new ArrayList<PowerUp>();
     obstacles = new ArrayList<Obstacle>();
 

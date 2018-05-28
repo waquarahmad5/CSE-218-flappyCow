@@ -31,7 +31,8 @@ public class Obstacle extends AbstractObservers implements StaticObjects,SharedO
         super(view, game);
         spider = new Terrain(view, game, Terrain.type.SPIDER);
         log = new Terrain(view, game, Terrain.type.WOODLOG);
-        
+        this.view = view;
+        view.register(this);
         if(collideSound == -1){
             collideSound = Game.soundPool.load(game, R.raw.crash, 1);
         }

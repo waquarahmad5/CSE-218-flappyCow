@@ -28,6 +28,8 @@ public class Tutorial extends AbstractObservers {
         this.width = this.bitmap.getWidth();
         this.height = this.bitmap.getHeight();
         drawBehavior = new DrawSpriteBehavior();
+        this.view = view;
+        view.register(this);
     }
 
     /**
