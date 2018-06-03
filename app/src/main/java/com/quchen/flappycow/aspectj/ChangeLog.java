@@ -7,12 +7,14 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
 @Aspect
-public class TraceAspect {
+public class ChangeLog {
     private static final String POINTCUT_METHOD =
-            "execution(@com.quchen.flappycow.aspectj.DebugTrace * *(..))";
+            "execution(@com.quchen.flappycow.aspectj.ChangeTrace * *(..))";
 
     private static final String POINTCUT_CONSTRUCTOR =
-            "execution(@com.quchen.flappycow.aspectj.DebugTrace *.new(..))";
+            "execution(@com.quchen.flappycow.aspectj.ChangeTrace *.new(..))";
+
+    static int count = 0;
 
     @Pointcut(POINTCUT_METHOD)
     public void methodAnnotatedWithDebugTrace() {}
@@ -26,23 +28,23 @@ public class TraceAspect {
         String className = methodSignature.getDeclaringType().getSimpleName();
         String methodName = methodSignature.getName();
 
-        final StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-        Object result = joinPoint.proceed();
-        stopWatch.stop();
 
-        DebugLog.log(className, buildLogMessage(methodName, stopWatch.getTotalTimeMillis()));
+
+        Object result = joinPoint.proceed();
+
+        count += 1;
+
+        DebugLog.log(className, buildLogMessage(methodName, count));
 
         return result;
     }
-    private static String buildLogMessage(String methodName, long methodDuration) {
+    private static String buildLogMessage(String methodName, int count) {
         StringBuilder message = new StringBuilder();
-        message.append("TraceAspect --> ");
+        message.append("TraceAspect --> PowerUps initiated");
         message.append(methodName);
         message.append(" --> ");
         message.append("[");
-        message.append(methodDuration);
-        message.append("us");
+        message.append(count);
         message.append("]");
 
         return message.toString();

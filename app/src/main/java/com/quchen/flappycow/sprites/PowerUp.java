@@ -12,6 +12,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.Interfaces.ObserverInterface;
 import com.quchen.flappycow.Interfaces.SharedObjects;
 import com.quchen.flappycow.Interfaces.StaticObjects;
+import com.quchen.flappycow.aspectj.ChangeTrace;
 
 import android.graphics.Canvas;
 
@@ -31,6 +32,7 @@ public abstract class PowerUp extends AbstractObservers implements StaticObjects
      * At x = 4/5 of the screen.
      * Uses the speed of the GameView to let the power-up fall slowly down.
      */
+    @ChangeTrace
     private void init(){
         this.x = view.getWidth() * 4/5;
         this.y = 0 - this.height;
