@@ -10,7 +10,7 @@ public class CheckCollision implements CollisionMediator {
     public boolean CheckCollisionM(Sprite obs, PlayableCharacter p, Game g) {
             if (isColliding(obs,p,g))
             {
-                System.out.println("Collision Occured");
+                //System.out.println("Collision Occured");
                 return true;
     }
         return false;

@@ -141,7 +141,7 @@ public class GameView extends SurfaceView{
 
     public void notifyFrameChanged() {
         int speed = getSpeedX();
-        System.out.println(observers.indexOf(player));
+        //System.out.println(observers.indexOf(player));
         while(!holder.getSurface().isValid()){
             /*wait*/
             try { Thread.sleep(10); } catch (InterruptedException e) { e.printStackTrace(); }
@@ -163,7 +163,7 @@ public class GameView extends SurfaceView{
     }
     public void register(AbstractObservers s) {
         observers.add(s);
-        System.out.println(observers.size());
+        //System.out.println(observers.size());
 
     }
     public void unregister ( AbstractObservers s) {
@@ -299,7 +299,7 @@ public class GameView extends SurfaceView{
                 unregister(obstacles.get(i));
                 this.obstacles.remove(i);
                 i--;
-                System.out.println("Obstacle removed");
+                //System.out.println("Obstacle removed");
             }
         }
     }
@@ -351,7 +351,7 @@ public class GameView extends SurfaceView{
      * if no obstacle is present a new one is created
      */
     private void createObstacle(){
-        System.out.println(obstacles.size());
+        //System.out.println(obstacles.size());
         if(obstacles.size() < 1){
             Obstacle obs = new Obstacle(this, game);
             obstacles.add(obs);

@@ -64,7 +64,7 @@ public class Revive {
 
     public void register(ReviveObserver r) {
         reviveObservers.add(r);
-        System.out.println(reviveObservers.size());
+        //System.out.println(reviveObservers.size());
 
     }
 

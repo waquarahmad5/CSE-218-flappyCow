@@ -12,6 +12,7 @@ import com.quchen.flappycow.GameView;
 import com.quchen.flappycow.MainActivity;
 import com.quchen.flappycow.R;
 import com.quchen.flappycow.Util;
+import com.quchen.flappycow.aspectj.DebugTrace;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -30,6 +31,7 @@ public class Cow extends PlayableCharacter{
     /** sunglasses, hats and stuff */
     private Accessory accessory;
 
+    @DebugTrace
     public Cow(GameView view, Game game) {
         super(view, game);
         if(isGlobalBitmapNull()){
