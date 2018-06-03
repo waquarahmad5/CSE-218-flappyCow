@@ -355,7 +355,6 @@ public class GameView extends SurfaceView{
         if(obstacles.size() < 1){
             Obstacle obs = new Obstacle(this, game);
             obstacles.add(obs);
-            register(obs);
         }
     }
     
