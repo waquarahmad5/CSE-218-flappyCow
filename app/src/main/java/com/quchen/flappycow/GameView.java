@@ -396,7 +396,6 @@ public class GameView extends SurfaceView{
         this.player.setY(tmp.getY());
         this.player.setSpeedX(tmp.getSpeedX());
         this.player.setSpeedY(tmp.getSpeedY());
-        register(player);
         game.musicShouldPlay = true;
         Game.musicPlayer.start();
     }
