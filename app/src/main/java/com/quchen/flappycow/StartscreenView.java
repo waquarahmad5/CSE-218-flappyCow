@@ -13,8 +13,12 @@ import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
+
 import com.google.android.gms.games.Games;
+
 import org.jetbrains.annotations.Contract;
+import com.quchen.flappycow.aspectj.DebugTrace;
+
 
 public class StartscreenView extends View{
     
@@ -136,7 +140,8 @@ public class StartscreenView extends View{
     public void setSocket(int level) {
         srcSocket = new Rect(0, level*socket.getHeight()/4, socket.getWidth(), (level+1)*socket.getHeight()/4);
     }
-    
+
+    @DebugTrace
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(splash, srcSplash, dstSplash, null);

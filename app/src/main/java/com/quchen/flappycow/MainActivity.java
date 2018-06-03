@@ -7,12 +7,13 @@
 
 package com.quchen.flappycow;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.example.games.basegameutils.BaseGameActivity;
-
-import android.os.Bundle;
-import android.content.SharedPreferences;
-import android.widget.Toast;
+import com.quchen.flappycow.aspectj.DebugTrace;
 
 public class MainActivity extends BaseGameActivity {
     
@@ -29,6 +30,7 @@ public class MainActivity extends BaseGameActivity {
     
     private StartscreenView view;
 
+    @DebugTrace
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
