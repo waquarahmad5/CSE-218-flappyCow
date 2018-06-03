@@ -1,11 +1,12 @@
 package com.quchen.flappycow.aspectj;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
+@Aspect
 public class TraceAspect {
     private static final String POINTCUT_METHOD =
             "execution(@com.quchen.flappycow.aspectj.DebugTrace * *(..))";

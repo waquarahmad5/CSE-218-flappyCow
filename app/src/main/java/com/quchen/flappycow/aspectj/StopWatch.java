@@ -24,14 +24,14 @@ public class StopWatch {
 
     public void stop() {
         if (startTime != 0) {
-            endTime = System.nanoTime();
-            elapsedTime = endTime - startTime;
+                endTime = System.nanoTime();
+                elapsedTime = endTime - startTime;
         } else {
-            reset();
+                reset();
         }
     }
 
     public long getTotalTimeMillis() {
-        return (elapsedTime != 0) ? TimeUnit.NANOSECONDS.toMillis(endTime - startTime) : 0;
+        return (elapsedTime != 0) ? TimeUnit.MICROSECONDS.toMicros(endTime - startTime) : 0;
     }
 }
