@@ -40,7 +40,7 @@ public class ChangeLog {
     }
     private static String buildLogMessage(String methodName, int count) {
         StringBuilder message = new StringBuilder();
-        message.append("TraceAspect --> PowerUps initiated");
+        message.append("TraceAspect --> PowerUps initiated --> ");
         message.append(methodName);
         message.append(" --> ");
         message.append("[");
