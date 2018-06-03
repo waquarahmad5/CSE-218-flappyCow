@@ -222,12 +222,10 @@ public class Game extends BaseGameActivity{
             if(accomplishmentBox.getPoints() == AccomplishmentBox.getPointsToToast()){    // First time 100 % chance
                 PowerUp nt = new NyanToast(view,this);
                 powerUps.add(nt);
-                view.makeshiftRegister(nt);
 
             } else if(Math.random()*100 < 33){    // 33% chance
                 PowerUp nt = new NyanToast(view,this);
                 powerUps.add(nt);
-                view.makeshiftRegister(nt);
             }
         }
 
@@ -235,7 +233,7 @@ public class Game extends BaseGameActivity{
             // If no powerUp is present and 20% chance
             PowerUp nt = pup.inject(this,view,"heart");
             powerUps.add(nt);
-            view.makeshiftRegister(nt);
+
         }
     }
 

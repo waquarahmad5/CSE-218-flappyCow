@@ -20,9 +20,10 @@ public abstract class PowerUp extends AbstractObservers implements StaticObjects
         super(view, game);
         drawBehavior = new DrawSpriteBehavior();
         moveNonPlayer = new MoveNonPlayer();
-        init();
+
         this.view = view;
         view.register(this);
+        init();
     }
 
     /**
