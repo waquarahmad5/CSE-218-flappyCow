@@ -1,4 +1,6 @@
 package com.quchen.flappycow.sprites;
+import com.quchen.flappycow.aspectj.ChangeTrace;
+
 import java.util.HashSet;
 
 public abstract class PowerUpFactory {
@@ -6,6 +8,7 @@ public abstract class PowerUpFactory {
     public PowerUpFactory(){
         availablePowerUps = new HashSet<String>();
     }
+
 
     public void addPowerUp(String newPowerUp){
         availablePowerUps.add(newPowerUp);
