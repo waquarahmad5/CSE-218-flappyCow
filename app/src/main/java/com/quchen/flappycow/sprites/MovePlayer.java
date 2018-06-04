@@ -5,7 +5,7 @@ import com.quchen.flappycow.aspectj.DebugTrace;
 
 public abstract class MovePlayer implements MovePlayableCharacterBehavior {
 
-    @DebugTrace
+
     public void move( PlayableCharacter player) {
 
         player.x = player.view.getWidth() / 6;

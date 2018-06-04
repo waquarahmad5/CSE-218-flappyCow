@@ -14,6 +14,7 @@ import java.util.List;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.quchen.flappycow.aspectj.DeadTrace;
 import com.quchen.flappycow.sprites.AbstractObservers;
 import com.quchen.flappycow.sprites.Cow;
 import com.quchen.flappycow.sprites.NyanCat;
@@ -322,13 +323,22 @@ public class GameView extends SurfaceView{
        for(Obstacle o : obstacles){
            if(o.isColliding(player)){
             //if(cc.CheckCollisionM(o,player,game)){
-                o.onCollision();
-                gameOver();
+               deathByObstacle(o);
             }
         }
         if(player.isTouchingEdge()){
-            gameOver();
+            deathByTouchingEdge();
         }
+    }
+    @DeadTrace
+    private void deathByTouchingEdge() {
+        gameOver();
+    }
+
+    @DeadTrace
+    private void deathByObstacle( Obstacle o ) {
+        o.onCollision();
+        gameOver();
     }
 
     /**    checks collisions with PowerUps
