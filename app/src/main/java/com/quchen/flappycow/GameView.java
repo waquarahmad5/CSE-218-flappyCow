@@ -14,6 +14,8 @@ import java.util.List;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+
+import com.quchen.flappycow.aspectj.TapTrace;
 import com.quchen.flappycow.aspectj.DeadTrace;
 import com.quchen.flappycow.sprites.AbstractObservers;
 import com.quchen.flappycow.sprites.Cow;
@@ -103,7 +105,8 @@ public class GameView extends SurfaceView{
         return super.performClick();
         // Just to remove the stupid warning
     }
-    
+
+    @TapTrace
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         performClick();
